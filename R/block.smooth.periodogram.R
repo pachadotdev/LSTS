@@ -24,11 +24,11 @@
 #' \eqn{(1,\ldots,n)} where \code{n} is the length of \code{y}. More details in \code{y} argument
 #' from \code{\link[graphics]{persp}} function.
 #'
-#' @param n (type: numeric) value corresponding to the length of the window to compute periodogram.
+#' @param N (type: numeric) value corresponding to the length of the window to compute periodogram.
 #' If \code{N=NULL} then the function will use \eqn{N = \textmd{trunc}(n^{0.8})}, see
 #' \insertCite{dahlhaus1998optimal;textual}{lsts} where \eqn{n} is the length of the \code{y} vector.
 #'
-#' @param s (type: numeric) value corresponding to the lag with which will be taking the blocks or windows
+#' @param S (type: numeric) value corresponding to the lag with which will be taking the blocks or windows
 #' to calculate the periodogram.
 #'
 #' @param p (type: numeric) value used if it is desired that \code{S} is proportional to \code{N}.

@@ -7,9 +7,9 @@
 #' \deqn{L_n(\theta) = \frac{1}{4\pi}\frac{1}{M} \int_{-\pi}^{\pi} \bigg\{log f_{\theta}(u_j,\lambda) + \frac{I_N(u_j, \lambda)}{f_{\theta}(u_j,\lambda)}\bigg\}\,d\lambda}
 #' where \eqn{M} is the number of blocks, \eqn{N} the length of the series per block, \eqn{n =S(M-1)+N}, \eqn{S} is the shift from block to block, \eqn{u_j =t_j/n}, \eqn{t_j =S(j-1)+N/2}, \eqn{j =1,\ldots,M} and \eqn{\lambda} the Fourier frequencies in the block (\eqn{2\,\pi\,k/N}, \eqn{k = 1,\ldots, N}).
 #'
+#' @param x COMPLETE
+#' 
 #' @param series (type: numeric) univariate time series.
-#'
-#' @param start (type: numeric) numeric vector, initial values for parameters to run the model.
 #'
 #' @param order (type: numeric) vector corresponding to \code{ARMA} model entered.
 #'

@@ -9,6 +9,8 @@ LS.whittle.loglik(x, series, order = c(p = 0, q = 0), ar.order = NULL,
   include.d = FALSE, N = NULL, S = NULL, include.taper = TRUE)
 }
 \arguments{
+\item{x}{COMPLETE}
+
 \item{series}{(type: numeric) univariate time series.}
 
 \item{order}{(type: numeric) vector corresponding to \code{ARMA} model entered.}
@@ -28,8 +30,6 @@ LS.whittle.loglik(x, series, order = c(p = 0, q = 0), ar.order = NULL,
 \item{S}{(type: numeric) value corresponding to the lag with which will go taking the blocks or windows.}
 
 \item{include.taper}{(type: logical) logical argument that by default is \code{TRUE}. See \code{\link{periodogram}}.}
-
-\item{start}{(type: numeric) numeric vector, initial values for parameters to run the model.}
 }
 \value{
 aaa

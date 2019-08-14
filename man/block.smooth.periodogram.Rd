@@ -15,6 +15,13 @@ block.smooth.periodogram(y, x = NULL, N = NULL, S = NULL, p = 0.25,
 \eqn{(1,\ldots,n)} where \code{n} is the length of \code{y}. More details in \code{y} argument
 from \code{\link[graphics]{persp}} function.}
 
+\item{N}{(type: numeric) value corresponding to the length of the window to compute periodogram.
+If \code{N=NULL} then the function will use \eqn{N = \textmd{trunc}(n^{0.8})}, see
+\insertCite{dahlhaus1998optimal;textual}{lsts} where \eqn{n} is the length of the \code{y} vector.}
+
+\item{S}{(type: numeric) value corresponding to the lag with which will be taking the blocks or windows
+to calculate the periodogram.}
+
 \item{p}{(type: numeric) value used if it is desired that \code{S} is proportional to \code{N}.
 By default \code{p=0.25}, if \code{S} and \code{N} are not entered.}
 
@@ -36,13 +43,6 @@ By default \code{p=0.25}, if \code{S} and \code{N} are not entered.}
 parameter.}
 
 \item{palette.col}{(type: character) colors palette.}
-
-\item{n}{(type: numeric) value corresponding to the length of the window to compute periodogram.
-If \code{N=NULL} then the function will use \eqn{N = \textmd{trunc}(n^{0.8})}, see
-\insertCite{dahlhaus1998optimal;textual}{lsts} where \eqn{n} is the length of the \code{y} vector.}
-
-\item{s}{(type: numeric) value corresponding to the lag with which will be taking the blocks or windows
-to calculate the periodogram.}
 }
 \value{
 ** COMPLETE **
