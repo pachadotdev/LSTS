@@ -71,43 +71,7 @@ Setting env vars:
 * checking S3 generic/method consistency ... OK
 * checking replacement functions ... OK
 * checking foreign function calls ... OK
-* checking R code for possible problems ... NOTE
-Box.Ljung.Test: no visible global function definition for ‘acf’
-Box.Ljung.Test: no visible binding for global variable ‘na.pass’
-Box.Ljung.Test: no visible global function definition for ‘pchisq’
-Box.Ljung.Test: no visible global function definition for ‘plot’
-Box.Ljung.Test: no visible global function definition for ‘abline’
-LS.kalman: no visible global function definition for ‘na.omit’
-LS.kalman: no visible global function definition for ‘ARMAtoMA’
-LS.summary: no visible global function definition for ‘pnorm’
-LS.whittle: no visible global function definition for ‘nlminb’
-LS.whittle.loglik: no visible global function definition for ‘na.omit’
-block.smooth.periodogram: no visible global function definition for
-  ‘smooth.spline’
-block.smooth.periodogram: no visible global function definition for
-  ‘colorRampPalette’
-block.smooth.periodogram: no visible global function definition for
-  ‘persp’
-periodogram: no visible global function definition for ‘fft’
-periodogram: no visible global function definition for ‘axis’
-smooth.periodogram: no visible global function definition for
-  ‘smooth.spline’
-smooth.periodogram: no visible global function definition for ‘axis’
-ts.diag: no visible global function definition for ‘sd’
-ts.diag: no visible global function definition for ‘par’
-ts.diag: no visible global function definition for ‘plot’
-ts.diag: no visible global function definition for ‘abline’
-ts.diag: no visible global function definition for ‘acf’
-ts.diag: no visible binding for global variable ‘na.pass’
-Undefined global functions or variables:
-  ARMAtoMA abline acf axis colorRampPalette fft na.omit na.pass nlminb
-  par pchisq persp plot pnorm sd smooth.spline
-Consider adding
-  importFrom("grDevices", "colorRampPalette")
-  importFrom("graphics", "abline", "axis", "par", "persp", "plot")
-  importFrom("stats", "ARMAtoMA", "acf", "fft", "na.omit", "na.pass",
-             "nlminb", "pchisq", "pnorm", "sd", "smooth.spline")
-to your NAMESPACE file.
+* checking R code for possible problems ... OK
 * checking Rd files ... OK
 * checking Rd metadata ... OK
 * checking Rd line widths ... OK
@@ -120,9 +84,6 @@ Undocumented arguments in documentation object 'Box.Ljung.Test'
 Documented arguments not in \usage in documentation object 'Box.Ljung.Test':
   ‘y’ ‘x’ ‘n’ ‘s’ ‘p’ ‘spar.freq’ ‘spar.time’ ‘theta’ ‘phi’ ‘xlim’
   ‘ylim’ ‘zlim’ ‘ylab’ ‘palette.col’
-
-Undocumented arguments in documentation object 'LS.kalman'
-  ‘ar.order’ ‘ma.order’
 
 Undocumented arguments in documentation object 'LS.whittle.loglik'
   ‘x’
@@ -144,14 +105,14 @@ Extensions’ manual.
 * checking examples ... OK
 * DONE
 
-Status: 1 WARNING, 1 NOTE
+Status: 1 WARNING
 See
   ‘/home/pacha/github/lsts.Rcheck/00check.log’
 for details.
 
 
 ── R CMD check results ─────────────────────────────────────────── lsts 1.1 ────
-Duration: 19.4s
+Duration: 19.5s
 
 ❯ checking Rd \usage sections ... WARNING
   Undocumented arguments in documentation object 'Box.Ljung.Test'
@@ -159,9 +120,6 @@ Duration: 19.4s
   Documented arguments not in \usage in documentation object 'Box.Ljung.Test':
     ‘y’ ‘x’ ‘n’ ‘s’ ‘p’ ‘spar.freq’ ‘spar.time’ ‘theta’ ‘phi’ ‘xlim’
     ‘ylim’ ‘zlim’ ‘ylab’ ‘palette.col’
-  
-  Undocumented arguments in documentation object 'LS.kalman'
-    ‘ar.order’ ‘ma.order’
   
   Undocumented arguments in documentation object 'LS.whittle.loglik'
     ‘x’
@@ -179,45 +137,7 @@ Duration: 19.4s
   See chapter ‘Writing R documentation files’ in the ‘Writing R
   Extensions’ manual.
 
-❯ checking R code for possible problems ... NOTE
-  Box.Ljung.Test: no visible global function definition for ‘acf’
-  Box.Ljung.Test: no visible binding for global variable ‘na.pass’
-  Box.Ljung.Test: no visible global function definition for ‘pchisq’
-  Box.Ljung.Test: no visible global function definition for ‘plot’
-  Box.Ljung.Test: no visible global function definition for ‘abline’
-  LS.kalman: no visible global function definition for ‘na.omit’
-  LS.kalman: no visible global function definition for ‘ARMAtoMA’
-  LS.summary: no visible global function definition for ‘pnorm’
-  LS.whittle: no visible global function definition for ‘nlminb’
-  LS.whittle.loglik: no visible global function definition for ‘na.omit’
-  block.smooth.periodogram: no visible global function definition for
-    ‘smooth.spline’
-  block.smooth.periodogram: no visible global function definition for
-    ‘colorRampPalette’
-  block.smooth.periodogram: no visible global function definition for
-    ‘persp’
-  periodogram: no visible global function definition for ‘fft’
-  periodogram: no visible global function definition for ‘axis’
-  smooth.periodogram: no visible global function definition for
-    ‘smooth.spline’
-  smooth.periodogram: no visible global function definition for ‘axis’
-  ts.diag: no visible global function definition for ‘sd’
-  ts.diag: no visible global function definition for ‘par’
-  ts.diag: no visible global function definition for ‘plot’
-  ts.diag: no visible global function definition for ‘abline’
-  ts.diag: no visible global function definition for ‘acf’
-  ts.diag: no visible binding for global variable ‘na.pass’
-  Undefined global functions or variables:
-    ARMAtoMA abline acf axis colorRampPalette fft na.omit na.pass nlminb
-    par pchisq persp plot pnorm sd smooth.spline
-  Consider adding
-    importFrom("grDevices", "colorRampPalette")
-    importFrom("graphics", "abline", "axis", "par", "persp", "plot")
-    importFrom("stats", "ARMAtoMA", "acf", "fft", "na.omit", "na.pass",
-               "nlminb", "pchisq", "pnorm", "sd", "smooth.spline")
-  to your NAMESPACE file.
-
-0 errors ✔ | 1 warning ✖ | 1 note ✖
+0 errors ✔ | 1 warning ✖ | 0 notes ✔
 Error: R CMD check found WARNINGs
 Execution halted
 

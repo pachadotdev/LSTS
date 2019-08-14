@@ -44,6 +44,8 @@
 #'
 #' @seealso \code{\link[stats]{nlminb}}, \code{\link{LS.kalman}}
 #'
+#' @importFrom stats na.omit
+#' 
 #' @export
 
 LS.whittle.loglik <- function(x, series, order = c(p = 0, q = 0), ar.order = NULL, ma.order = NULL, sd.order = NULL, d.order = NULL, include.d = FALSE, N = NULL, S = NULL, include.taper = TRUE) {
@@ -73,7 +75,7 @@ LS.whittle.loglik <- function(x, series, order = c(p = 0, q = 0), ar.order = NUL
   }
 
 
-  p <- na.omit(c(ar.order, ma.order, sd.order))
+  p <- stats::na.omit(c(ar.order, ma.order, sd.order))
   if (include.d == TRUE) {
     p <- na.omit(c(ar.order, ma.order, d.order, sd.order))
   }

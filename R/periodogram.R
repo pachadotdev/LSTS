@@ -43,6 +43,9 @@
 #'
 #' @seealso \code{\link[stats]{fft}}, \code{\link[base]{Mod}}, \code{\link[stats]{smooth.spline}}.
 #'
+#' @importFrom stats fft
+#' @importFrom graphics axis
+#' 
 #' @export
 
 periodogram <- function(y, plot = TRUE, include.taper = FALSE) {
@@ -54,7 +57,7 @@ periodogram <- function(y, plot = TRUE, include.taper = FALSE) {
     a <- 0.5 * (1 - cos(2 * pi * (0:(n - 1)) / n))
     series <- series * a
   }
-  aux <- Mod(fft(series))^2
+  aux <- Mod(stats::fft(series))^2
   m <- n / 2
   periodogram <- (aux[2:(m + 1)]) / (2 * pi * (n - N))
   if (include.taper == TRUE) {
@@ -63,7 +66,7 @@ periodogram <- function(y, plot = TRUE, include.taper = FALSE) {
   lambda <- (2 * pi * (1:m)) / n
   if (plot == TRUE) {
     plot(periodogram ~ lambda, bty = "n", las = 1, xlab = expression("Frequency"), ylab = expression("Periodogram"), xaxt = "n", type = "l")
-    axis(1, at = seq(0, pi, pi / 4), labels = expression(0, pi / 4, pi / 2, 3 * pi / 4, pi))
+    graphics::axis(1, at = seq(0, pi, pi / 4), labels = expression(0, pi / 4, pi / 2, 3 * pi / 4, pi))
   }
   return(list(periodogram = periodogram, lambda = lambda))
 }

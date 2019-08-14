@@ -12,6 +12,10 @@
 #'
 #' @param order (type: numeric) vector corresponding to \code{ARMA} model entered.
 #'
+#' @param ar.order (type: numeric) AR polimonial order.
+#'
+#' @param ma.order (type: numeric) MA polimonial order.
+#' 
 #' @param sd.order (type: numeric) polinomial order noise scale factor.
 #'
 #' @param d.order (type: numeric) \code{d} polinomial order, where \code{d} is the \code{ARFIMA} parameter.
@@ -38,6 +42,8 @@
 #' \item{fitted.values }{model fitted values.}
 #' \item{delta }{variance prediction error.}
 #'
+#' @importFrom stats na.omit ARMAtoMA
+#' 
 #' @export
 
 LS.kalman <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL, ma.order = NULL, sd.order = NULL, d.order = NULL, include.d = FALSE, m = NULL) {
@@ -63,7 +69,7 @@ LS.kalman <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL, m
   M <- m + 1
   u <- (1:T.) / T.
 
-  p <- na.omit(c(ar.order, ma.order, sd.order))
+  p <- stats::na.omit(c(ar.order, ma.order, sd.order))
   if (include.d == TRUE) {
     p <- na.omit(c(ar.order, ma.order, d.order, sd.order))
   }
@@ -120,16 +126,16 @@ LS.kalman <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL, m
   hat.y <- vector("numeric")
   for (i in 1:T.) {
     if (is.null(dim(phi.)) == 1 & is.null(dim(theta.)) == 1) {
-      psi <- c(1, ARMAtoMA(ar = numeric(), ma = numeric(), lag.max = m))
+      psi <- c(1, stats::ARMAtoMA(ar = numeric(), ma = numeric(), lag.max = m))
     }
     if (is.null(dim(phi.)) == 1 & is.null(dim(theta.)) == 0) {
-      psi <- c(1, ARMAtoMA(ar = numeric(), ma = theta.[i, ], lag.max = m))
+      psi <- c(1, stats::ARMAtoMA(ar = numeric(), ma = theta.[i, ], lag.max = m))
     }
     if (is.null(dim(phi.)) == 0 & is.null(dim(theta.)) == 1) {
-      psi <- c(1, ARMAtoMA(ar = phi.[i, ], ma = numeric(), lag.max = m))
+      psi <- c(1, stats::ARMAtoMA(ar = phi.[i, ], ma = numeric(), lag.max = m))
     }
     if (is.null(dim(phi.)) == 0 & is.null(dim(theta.)) == 0) {
-      psi <- c(1, ARMAtoMA(ar = phi.[i, ], ma = theta.[i, ], lag.max = m))
+      psi <- c(1, stats::ARMAtoMA(ar = phi.[i, ], ma = theta.[i, ], lag.max = m))
     }
     psi. <- numeric()
     if (include.d == TRUE) {

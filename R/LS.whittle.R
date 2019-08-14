@@ -61,12 +61,14 @@
 #'
 #' @seealso \code{\link[stats]{nlminb}}, \code{\link{LS.kalman}}
 #'
+#' @importFrom stats nlminb
+#' 
 #' @export
 
 LS.whittle <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL, ma.order = NULL, sd.order = NULL, d.order = NULL, include.d = FALSE, N = NULL, S = NULL, include.taper = TRUE, control = list(), lower = -Inf, upper = Inf, m = NULL, n.ahead = 0) {
   series <- c(series, rep(NA, n.ahead))
 
-  aux <- nlminb(start = start, objective = LS.whittle.loglik, series = series, order = order, ar.order = ar.order, ma.order = ma.order, sd.order = sd.order, d.order = d.order, include.d = include.d, N = N, S = S, include.taper = include.taper, lower = lower, upper = upper, control = control)
+  aux <- stats::nlminb(start = start, objective = LS.whittle.loglik, series = series, order = order, ar.order = ar.order, ma.order = ma.order, sd.order = sd.order, d.order = d.order, include.d = include.d, N = N, S = S, include.taper = include.taper, lower = lower, upper = upper, control = control)
 
   T. <- length(series)
   loglik <- -aux$objective

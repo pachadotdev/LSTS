@@ -15,6 +15,10 @@ LS.kalman(series, start, order = c(p = 0, q = 0), ar.order = NULL,
 
 \item{order}{(type: numeric) vector corresponding to \code{ARMA} model entered.}
 
+\item{ar.order}{(type: numeric) AR polimonial order.}
+
+\item{ma.order}{(type: numeric) MA polimonial order.}
+
 \item{sd.order}{(type: numeric) polinomial order noise scale factor.}
 
 \item{d.order}{(type: numeric) \code{d} polinomial order, where \code{d} is the \code{ARFIMA} parameter.}

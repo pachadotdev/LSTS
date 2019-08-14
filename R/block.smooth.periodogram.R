@@ -97,6 +97,10 @@
 #'
 #' @seealso \code{\link{arima.sim}}
 #'
+#' @importFrom stats smooth.spline
+#' @importFrom graphics persp
+#' @importFrom grDevices colorRampPalette
+#' 
 #' @export
 
 block.smooth.periodogram <- function(y, x = NULL, N = NULL, S = NULL, p = 0.25, spar.freq = 0, spar.time = 0, theta = 0, phi = 0, xlim = NULL, ylim = NULL, zlim = NULL, ylab = "Time", palette.col = NULL) {
@@ -123,13 +127,13 @@ block.smooth.periodogram <- function(y, x = NULL, N = NULL, S = NULL, p = 0.25, 
   aux2 <- aux
 
   for (j in 1:M) {
-    aux2[, j] <- smooth.spline(aux[, j], spar = spar.freq)$y
+    aux2[, j] <- stats::smooth.spline(aux[, j], spar = spar.freq)$y
   }
 
   aux3 <- aux
 
   for (i in 1:(dim(aux)[1])) {
-    aux3[i, ] <- smooth.spline(aux2[i, ], spar = spar.time)$y
+    aux3[i, ] <- stats::smooth.spline(aux2[i, ], spar = spar.time)$y
   }
 
   aux <- aux3
@@ -142,7 +146,7 @@ block.smooth.periodogram <- function(y, x = NULL, N = NULL, S = NULL, p = 0.25, 
     palette.col <- c("green", "lightgreen", "yellow", "orange", "darkred")
   }
 
-  jet.colors <- colorRampPalette(palette.col)
+  jet.colors <- grDevices::colorRampPalette(palette.col)
 
   nbcol <- 100
 
@@ -179,7 +183,7 @@ block.smooth.periodogram <- function(y, x = NULL, N = NULL, S = NULL, p = 0.25, 
   }
 
   return(
-    persp(
+    graphics::persp(
       x = lambda, y = t, z = aux, theta = theta, phi = phi, col = color[facetcol],
       zlab = "Smooth Periodogram", xlab = "Frequency", ylab = ylab, expand = 0.5,
       ticktype = "detailed", ylim = ylim, zlim = zlim, xlim = xlim
