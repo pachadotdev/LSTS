@@ -85,6 +85,7 @@ ls_kalman <- function(series, start, order = c(p = 0, q = 0),
   u <- (1:T.) / T.
 
   p <- stats::na.omit(c(ar.order, ma.order, sd.order))
+  
   if (include.d == TRUE) {
     p <- na.omit(c(ar.order, ma.order, d.order, sd.order))
   }

@@ -34,6 +34,7 @@ computes \eqn{Q} and returns the p-values graph with lag \emph{j}.
 z <- rnorm(500)
 box_ljung_test(z, lag = 15)
 ts_diagnostics(z)
+
 }
 \references{
 For more information on theoretical foundations and estimation methods see

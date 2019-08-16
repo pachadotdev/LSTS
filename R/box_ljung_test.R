@@ -28,6 +28,7 @@
 #' z <- rnorm(500)
 #' box_ljung_test(z, lag = 15)
 #' ts_diagnostics(z)
+#' 
 #' @return
 #' ** COMPLETE **
 #'
