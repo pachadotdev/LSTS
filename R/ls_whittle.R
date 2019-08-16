@@ -130,8 +130,11 @@ ls_whittle <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL,
     control = control)
 
   T. <- length(series)
+  
   loglik <- -aux$objective
+  
   npar <- length(aux$par)
+  
   aic <- -2 * loglik + 2 * npar / T.
 
   aux. <- ls_kalman(series = series - mean(series, na.rm = TRUE),

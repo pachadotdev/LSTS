@@ -100,43 +100,62 @@ ls_kalman <- function(series, start, order = c(p = 0, q = 0),
 
   for (j in 1:length(u)) {
     X <- numeric()
+    
     k <- 1
-    for (i in 1:length(p)) {
-      X[i] <- sum(x[k:(k + p[i])] * u[j]^(0:p[i]))
-      k <- k + p[i] + 1
-    }
-
+    
+    sapply(
+      1:length(p),
+      function(i) {
+        X[i] <<- sum(x[k:(k + p[i])] * u[j]^(0:p[i]))
+        k <<- k + p[i] + 1
+      }
+    )
+    
     phi <- numeric()
+    
     k <- 1
+    
     if (order[1] > 0) {
       phi[is.na(ar.order) == 1] <- 0
+      
       phi[is.na(ar.order) == 0] <- X[k:(length(na.omit(ar.order)))]
+      
       k <- length(na.omit(ar.order)) + 1
+      
       phi. <- rbind(phi., phi)
     }
 
     theta <- numeric()
+    
     if (order[2] > 0) {
       theta[is.na(ma.order) == 1] <- 0
+      
       theta[is.na(ma.order) == 0] <- X[k:(length(na.omit(ma.order)) + k - 1)]
+      
       k <- length(na.omit(ma.order)) + k
+      
       theta. <- rbind(theta., theta)
     }
 
     d <- 0
+    
     if (include.d == TRUE) {
       d <- X[k]
+      
       k <- k + 1
+      
       d. <- c(d., d)
     }
 
     sigma <- X[k]
+    
     sigma. <- c(sigma., sigma)
   }
 
   sigma <- sigma.
 
   Omega <- matrix(0, nrow = M, ncol = M)
+  
   diag(Omega) <- 1
 
   X <- rep(0, M)
@@ -145,63 +164,80 @@ ls_kalman <- function(series, start, order = c(p = 0, q = 0),
 
   hat.y <- vector("numeric")
 
-  for (i in 1:T.) {
-    if (is.null(dim(phi.)) == 1 & is.null(dim(theta.)) == 1) {
-      psi <- c(1, stats::ARMAtoMA(ar = numeric(), ma = numeric(), lag.max = m))
-    }
-
-    if (is.null(dim(phi.)) == 1 & is.null(dim(theta.)) == 0) {
-      psi <- c(1, stats::ARMAtoMA(ar = numeric(), ma = theta.[i, ],
-        lag.max = m))
-    }
-
-    if (is.null(dim(phi.)) == 0 & is.null(dim(theta.)) == 1) {
-      psi <- c(1, stats::ARMAtoMA(ar = phi.[i, ], ma = numeric(), lag.max = m))
-    }
-
-    if (is.null(dim(phi.)) == 0 & is.null(dim(theta.)) == 0) {
-      psi <- c(1, stats::ARMAtoMA(ar = phi.[i, ], ma = theta.[i, ],
-        lag.max = m))
-    }
-
-    psi. <- numeric()
-
-    if (include.d == TRUE) {
-      eta <- gamma(0:m + d.[i]) / (gamma(0:m + 1) * gamma(d.[i]))
-      for (k in 0:m) {
-        psi.[k + 1] <- sum(psi[1:(k + 1)] * rev(eta[1:(k + 1)]))
+  sapply(
+    1:T.,
+    function(i) {
+      if (is.null(dim(phi.)) == 1 & is.null(dim(theta.)) == 1) {
+        psi <- c(1, stats::ARMAtoMA(ar = numeric(), ma = numeric(), 
+                                    lag.max = m))
       }
-      psi <- psi.
+      
+      if (is.null(dim(phi.)) == 1 & is.null(dim(theta.)) == 0) {
+        psi <- c(1, stats::ARMAtoMA(ar = numeric(), ma = theta.[i, ],
+                                    lag.max = m))
+      }
+      
+      if (is.null(dim(phi.)) == 0 & is.null(dim(theta.)) == 1) {
+        psi <- c(1, stats::ARMAtoMA(ar = phi.[i, ], ma = numeric(), 
+                                    lag.max = m))
+      }
+      
+      if (is.null(dim(phi.)) == 0 & is.null(dim(theta.)) == 0) {
+        psi <- c(1, stats::ARMAtoMA(ar = phi.[i, ], ma = theta.[i, ],
+                                    lag.max = m))
+      }
+      
+      psi. <- numeric()
+      
+      if (include.d == TRUE) {
+        eta <- gamma(0:m + d.[i]) / (gamma(0:m + 1) * gamma(d.[i]))
+        
+        sapply(
+          k[k %in% 0:m],
+          function (k) {
+            psi.[k + 1] <- sum(psi[1:(k + 1)] * rev(eta[1:(k + 1)]))
+          }
+        )
+        
+        psi <- psi.
+      }
+      
+      g <- sigma[i] * rev(psi)
+      
+      aux <- Omega %*% g
+      
+      delta[i] <- g %*% aux
+      
+      F. <- matrix(0, M - 1, M - 1)
+      
+      diag(F.) <- 1
+      
+      F. <- cbind(0, F.)
+      
+      F. <- rbind(F., 0)
+      
+      Theta <- c(F. %*% aux)
+      
+      Q <- matrix(0, M, M)
+      
+      Q[M, M] <- 1
+      
+      if (is.na(series[i])) {
+        Omega <- F. %*% Omega %*% t(F.) + Q
+        
+        hat.y[i] <- t(g) %*% X
+        
+        X <- F. %*% X
+      } else {
+        Omega <- F. %*% Omega %*% t(F.) + Q - Theta %*% solve(delta[i]) %*%
+          Theta
+        
+        hat.y[i] <- t(g) %*% X
+        
+        X <- F. %*% X + Theta %*% solve(delta[i]) %*% (series[i] - hat.y[i])
+      }
     }
-
-    g <- sigma[i] * rev(psi)
-
-    aux <- Omega %*% g
-
-    delta[i] <- g %*% aux
-
-    F. <- matrix(0, M - 1, M - 1)
-
-    diag(F.) <- 1
-
-    F. <- cbind(0, F.)
-    F. <- rbind(F., 0)
-
-    Theta <- c(F. %*% aux)
-
-    Q <- matrix(0, M, M)
-    Q[M, M] <- 1
-
-    if (is.na(series[i])) {
-      Omega <- F. %*% Omega %*% t(F.) + Q
-      hat.y[i] <- t(g) %*% X
-      X <- F. %*% X
-    } else {
-      Omega <- F. %*% Omega %*% t(F.) + Q - Theta %*% solve(delta[i]) %*% Theta
-      hat.y[i] <- t(g) %*% X
-      X <- F. %*% X + Theta %*% solve(delta[i]) %*% (series[i] - hat.y[i])
-    }
-  }
+  )
 
   residuals <- (series - hat.y) / sqrt(delta[1:T.])
 

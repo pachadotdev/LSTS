@@ -103,10 +103,10 @@ hessian <- function(f, x0, ...) {
 
   f0 <- f(x0, ...)
 
-  grad <- sapply(seq_along(n), function(i) { f(x0 + mdelta[, i], ...) })
+  grad <- sapply(1:n, function(i) { f(x0 + mdelta[, i], ...) })
   
-  hess <- outer(seq_along(n),
-                seq_along(n),
+  hess <- outer(1:n,
+                1:n,
                 function(i,j) {
                     f(x0 + mdelta[, i] + mdelta[, j], ...) - grad[i] - grad[j]
                 })

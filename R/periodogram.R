@@ -79,12 +79,15 @@ periodogram <- function(y, plot = TRUE, include.taper = FALSE) {
   }
 
   lambda <- (2 * pi * (1:m)) / n
+  
   if (plot == TRUE) {
     plot(periodogram ~ lambda, bty = "n", las = 1,
       xlab = expression("Frequency"), ylab = expression("Periodogram"),
       xaxt = "n", type = "l")
+    
     graphics::axis(1, at = seq(0, pi, pi / 4),
       labels = expression(0, pi / 4, pi / 2, 3 * pi / 4, pi))
   }
+  
   return(list(periodogram = periodogram, lambda = lambda))
 }
