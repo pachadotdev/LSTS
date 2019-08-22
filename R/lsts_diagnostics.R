@@ -20,19 +20,19 @@
 #' # Executable in < 5 sec
 #'
 #' z <- rnorm(500)
-#' box_ljung_test(z, lag = 15)
-#' ts_diagnostics(z)
+#' lsts_bltp(z, lag = 15)
+#' lsts_diagnostics(z)
 #' @return
 #' ** COMPLETE **
 #'
-#' @seealso \code{\link{box_ljung_test}}
+#' @seealso \code{\link{lsts_bltp}}
 #'
 #' @importFrom stats sd acf na.pass
 #' @importFrom graphics plot abline par
 #'
 #' @export
 
-ts_diagnostics <- function(x, lag = 10, cex = 0.5) {
+lsts_diagnostics <- function(x, lag = 10, cex = 0.5) {
   Z <- (x - mean(x, na.rm = TRUE)) / stats::sd(x, na.rm = TRUE)
 
   op <- graphics::par(mfrow = c(3, 1), cex = cex)
@@ -40,7 +40,7 @@ ts_diagnostics <- function(x, lag = 10, cex = 0.5) {
   graphics::plot(Z ~ time(Z),
     ylim = c(-3.5, 3.5), type = "h", lwd = 1,
     main = expression("Standardized Residuals"), xlab = "", ylab = "",
-      bty = "n", las = 1
+    bty = "n", las = 1
   )
 
   graphics::abline(h = 0)
@@ -51,10 +51,10 @@ ts_diagnostics <- function(x, lag = 10, cex = 0.5) {
 
   stats::acf(x,
     lag.max = lag, main = expression("ACF of Residuals"), lwd = 1, las = 1,
-      col = 1, bty = "n", na.action = stats::na.pass
+    col = 1, bty = "n", na.action = stats::na.pass
   )
 
-  box_ljung_test(x, lag = lag)
+  lsts_bltp(x, lag = lag)
 
   return(par(op))
 }

@@ -1,10 +1,10 @@
 #' @title Locally Stationary Whittle Log-likelihood theta
 #'
 #' @description Calculate the log-likelihood with \eqn{\sigma} known, through
-#' \code{ls_whittle_loglik} function.
+#' \code{lsts_wl} function.
 #'
 #' @details
-#' This function computes \code{\link{ls_whittle_loglik}} with \code{x} as
+#' This function computes \code{\link{lsts_wl}} with \code{x} as
 #' \code{x = c(x, sd.par)}.
 #'
 #' @param x (type: numeric) parameter vector.
@@ -35,7 +35,7 @@
 #' taking the blocks or windows.
 #'
 #' @param include.taper (type: logical) logical argument that by default is
-#' \code{TRUE}. See \code{\link{periodogram}}.
+#' \code{TRUE}. See \code{\link{lsts_periodogram}}.
 #'
 #' @param sd.par (type: numeric) value corresponding to known variance.
 #'
@@ -47,12 +47,14 @@
 #'
 #' @export
 
-ls_whittle_loglik_theta <- function(x, series, order = c(p = 0, q = 0),
-  ar.order = NULL, ma.order = NULL, sd.order = NULL, d.order = NULL,
-  include.d = FALSE, N = NULL, S = NULL, include.taper = TRUE, sd.par = 1) {
+lsts_wlt <- function(x, series, order = c(p = 0, q = 0),
+                     ar.order = NULL, ma.order = NULL, sd.order = NULL, d.order = NULL,
+                     include.d = FALSE, N = NULL, S = NULL, include.taper = TRUE, sd.par = 1) {
   x <- c(x, sd.par)
-  
-  ls_whittle_loglik(x = x, series = series, order = order, ar.order = ar.order,
+
+  lsts_wl(
+    x = x, series = series, order = order, ar.order = ar.order,
     ma.order = ma.order, sd.order = sd.order, d.order = d.order,
-    include.d = include.d, N = N, S = S, include.taper = include.taper)
+    include.d = include.d, N = N, S = S, include.taper = include.taper
+  )
 }

@@ -31,10 +31,10 @@
 #' \eqn{\theta = (\alpha_0,\,\alpha_1,\,\ldots, \,\alpha_k)^{\prime}}.
 #' In this situation, estimating \eqn{\theta} involves determining \eqn{k} and
 #' estimating the coefficients \eqn{\alpha_0,\,\alpha_1,\,\ldots, \,\alpha_k}.
-#' \code{ls_whittle} optimizes \code{\link{ls_whittle_loglik}} as objective
+#' \code{ls_whittle} optimizes \code{\link{lsts_wl}} as objective
 #' function using \code{\link[stats]{nlminb}} function, for both LS-ARMA
 #' (\code{include.d=FALSE}) and LS-ARFIMA (\code{include.d=TRUE}) models.
-#' Also computes Kalman filter with \code{\link{ls_kalman}} and this values
+#' Also computes Kalman filter with \code{\link{lsts_kalman}} and this values
 #' are given in \code{var.coef} in the output.
 #'
 #' @param series (type: numeric) univariate time series.
@@ -66,7 +66,7 @@
 #' taking the blocks or windows.
 #'
 #' @param include.taper (type: logical) logical argument that by default is
-#' \code{TRUE}. See \code{\link{periodogram}}.
+#' \code{TRUE}. See \code{\link{lsts_periodogram}}.
 #'
 #' @param control (type: list) A list of control parameters. More details in
 #' \code{\link[stats]{nlminb}} .
@@ -80,7 +80,7 @@
 #' unconstrained.
 #'
 #' @param m (type: numeric) truncation order of the MA infinity process, by
-#' default \eqn{m = 0.25*n^{0.8}}. Parameter used in \code{ls_kalman}.
+#' default \eqn{m = 0.25*n^{0.8}}. Parameter used in \code{lsts_kalman}.
 #'
 #' @param n.ahead (type: numeric) The number of steps ahead for which prediction
 #' is required. By default is zero.
@@ -88,7 +88,6 @@
 #' @examples
 #' # Examples for CRAN checks:
 #' # Executable in < 5 sec
-#'
 #' @return
 #' A list with the following components:
 #' \item{coef }{The best set of parameters found.}
@@ -99,7 +98,7 @@
 #' \eqn{[\partial^2 \ell(\theta)/\partial\theta_i
 #' \partial\theta_j]_{i,j=1}^{k}}.}
 #' \item{loglik }{log-likelihood of \code{coef}, calculated with
-#' \code{\link{ls_whittle_loglik}}.}
+#' \code{\link{lsts_wl}}.}
 #' \item{aic }{Akaike's `An Information Criterion', for one fitted model LS-ARMA
 #' or LS-ARFIMA. The formula is -2*log-likelihood + 2*npar/n, where \emph{npar}
 #' represents the number of parameters in the fitted model and \emph{n} equal to
@@ -111,35 +110,39 @@
 #' \item{se}{the estimated standard errors.}
 #' \item{model }{A list representing the fitted model.}
 #'
-#' @seealso \code{\link[stats]{nlminb}}, \code{\link{ls_kalman}}
+#' @seealso \code{\link[stats]{nlminb}}, \code{\link{lsts_kalman}}
 #'
 #' @importFrom stats nlminb
 #'
 #' @export
 
-ls_whittle <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL,
-  ma.order = NULL, sd.order = NULL, d.order = NULL, include.d = FALSE, N = NULL,
-  S = NULL, include.taper = TRUE, control = list(), lower = -Inf, upper = Inf,
-  m = NULL, n.ahead = 0) {
+lsts_we <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL,
+                    ma.order = NULL, sd.order = NULL, d.order = NULL, include.d = FALSE, N = NULL,
+                    S = NULL, include.taper = TRUE, control = list(), lower = -Inf, upper = Inf,
+                    m = NULL, n.ahead = 0) {
   series <- c(series, rep(NA, n.ahead))
 
-  aux <- stats::nlminb(start = start, objective = ls_whittle_loglik,
+  aux <- stats::nlminb(
+    start = start, objective = lsts_wl,
     series = series, order = order, ar.order = ar.order, ma.order = ma.order,
     sd.order = sd.order, d.order = d.order, include.d = include.d, N = N, S = S,
     include.taper = include.taper, lower = lower, upper = upper,
-    control = control)
+    control = control
+  )
 
   T. <- length(series)
-  
+
   loglik <- -aux$objective
-  
+
   npar <- length(aux$par)
-  
+
   aic <- -2 * loglik + 2 * npar / T.
 
-  aux. <- ls_kalman(series = series - mean(series, na.rm = TRUE),
+  aux. <- lsts_kalman(
+    series = series - mean(series, na.rm = TRUE),
     start = aux$par, order = order, ar.order = ar.order, ma.order = ma.order,
-    sd.order = sd.order, d.order = d.order, include.d = include.d, m = m)
+    sd.order = sd.order, d.order = d.order, include.d = include.d, m = m
+  )
 
   x <- aux$par
   k <- npar
@@ -152,15 +155,19 @@ ls_whittle <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL,
     d.order <- 0
   }
 
-  G1 <- hessian(f = ls_whittle_loglik_theta, x0 = x[1:(k - d.order - 1)],
+  G1 <- lsts_hm(
+    f = lsts_wlt, x0 = x[1:(k - d.order - 1)],
     series = series, order = order, ar.order = ar.order, ma.order = ma.order,
     sd.order = sd.order, d.order = d.order, include.d = include.d, N = N, S = S,
-    include.taper = include.taper, sd.par = x[(k - d.order):k])
+    include.taper = include.taper, sd.par = x[(k - d.order):k]
+  )
 
-  G2 <- hessian(f = ls_whittle_loglik_sd, x0 = x[(k - d.order):k],
+  G2 <- lsts_hm(
+    f = lsts_wls, x0 = x[(k - d.order):k],
     series = series, order = order, ar.order = ar.order, ma.order = ma.order,
     sd.order = sd.order, d.order = d.order, include.d = include.d, N = N, S = S,
-    include.taper = include.taper, theta.par = x[1:(k - d.order - 1)])
+    include.taper = include.taper, theta.par = x[1:(k - d.order - 1)]
+  )
 
   G <- matrix(0, ncol = k, nrow = k)
   G[1:(k - d.order - 1), 1:(k - d.order - 1)] <- G1
@@ -176,9 +183,13 @@ ls_whittle <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL,
   se <- sqrt(aux.$delta)
   se[is.na(series) == 0] <- NA
 
-  list(coef = aux$par, var.coef = G, loglik = loglik, aic = aic,
+  list(
+    coef = aux$par, var.coef = G, loglik = loglik, aic = aic,
     series = series, residuals = aux.$residuals, fitted.values = fitted.values,
-    pred = pred, se = se, model = list(order = order, ar.order = ar.order,
-    ma.order = ma.order, sd.order = sd.order, d.order = d.order,
-    include.d = include.d, include.taper = include.taper))
+    pred = pred, se = se, model = list(
+      order = order, ar.order = ar.order,
+      ma.order = ma.order, sd.order = sd.order, d.order = d.order,
+      include.d = include.d, include.taper = include.taper
+    )
+  )
 }

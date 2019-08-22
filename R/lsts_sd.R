@@ -11,7 +11,7 @@
 #' {\bigg|\phi\bigg(\textmd{exp}\bigg(-i\lambda\bigg)\bigg)\bigg|^2}}
 #'
 #' With \eqn{-\pi \le \lambda \le \pi} and \eqn{-1 < d < 1/2}. \eqn{|x|} is the
-#' \code{\link[base]{Mod}} of \emph{x}. \code{spectral_density} returns the
+#' \code{\link[base]{Mod}} of \emph{x}. \code{lsts_sd} returns the
 #' values corresponding to \eqn{f(\lambda)}. When \code{d} is zero, the spectral
 #' density corresponds to an ARMA(p,q).
 #'
@@ -43,7 +43,7 @@
 #'
 #' ## Example 1: Spectral Density AR(1)
 #' lambda <- seq(0, pi, 0.01)
-#' f <- spectral_density(ar = 0.5, lambda = lambda)
+#' f <- lsts_sd(ar = 0.5, lambda = lambda)
 #' plot(f ~ lambda,
 #'   bty = "n", type = "l", las = 1, xlab = expression("Frequency"),
 #'   ylab = expression("Spectral Density")
@@ -51,7 +51,7 @@
 #'
 #' ## Example 2: Spectral Density AR(2)
 #' lambda <- seq(0, pi, 0.01)
-#' f <- spectral_density(ar = c(1.3, -0.6), lambda = lambda, sd = 10)
+#' f <- lsts_sd(ar = c(1.3, -0.6), lambda = lambda, sd = 10)
 #' plot(f ~ lambda,
 #'   bty = "n", type = "l", las = 1, xlab = expression("Frequency"),
 #'   ylab = expression("Spectral Density")
@@ -59,7 +59,7 @@
 #'
 #' ## Spectral Density ARMA(1,1)
 #' lambda <- seq(0, pi, 0.01)
-#' f <- spectral_density(ar = 0.5, ma = 0.8, lambda = lambda)
+#' f <- lsts_sd(ar = 0.5, ma = 0.8, lambda = lambda)
 #' plot(f ~ lambda,
 #'   bty = "n", type = "l", las = 1, xlab = expression("Frequency"),
 #'   ylab = expression("Spectral Density")
@@ -67,7 +67,7 @@
 #'
 #' ## Spectral Density ARFIMA(1,d,1)
 #' lambda <- seq(0, pi, 0.01)
-#' f <- spectral_density(ar = 0.5, ma = 0.8, d = 0.2, lambda = lambda)
+#' f <- lsts_sd(ar = 0.5, ma = 0.8, d = 0.2, lambda = lambda)
 #' plot(f ~ lambda,
 #'   bty = "n", type = "l", las = 1, xlab = expression("Frequency"),
 #'   ylab = expression("Spectral Density")
@@ -75,12 +75,12 @@
 #' @return
 #' ** COMPLETE **
 #'
-#' @seealso \code{\link{periodogram}}, \code{\link[graphics]{persp}}
+#' @seealso \code{\link{lsts_periodogram}}, \code{\link[graphics]{persp}}
 #'
 #' @export
 
-spectral_density <- function(ar = numeric(), ma = numeric(), d = 0, sd = 1,
-  lambda = NULL) {
+lsts_sd <- function(ar = numeric(), ma = numeric(), d = 0, sd = 1,
+                    lambda = NULL) {
   p <- length(ar)
 
   q <- length(ma)
@@ -92,22 +92,26 @@ spectral_density <- function(ar = numeric(), ma = numeric(), d = 0, sd = 1,
   if (is.null(lambda)) {
     lambda <- seq(0, pi, 0.01)
   }
-
+  
+  # que hace en el resto del codigo este n?
   n <- length(lambda)
 
   aux <- c()
 
-  for (k in 1:n) {
-    aux[k] <- (((2 * sin(lambda[k] / 2))^(-2))^d) *
-      (
-        sum((theta * exp(-1i * lambda[k] * c(0:q)))) *
-        sum((theta * exp(+1i * lambda[k] * c(0:q))))
-      ) /
-      (
-        sum((phi * exp(-1i * lambda[k] * c(0:p)))) *
-        sum((phi * exp(+1i * lambda[k] * c(0:p))))
-      )
-  }
+  sapply(
+    seq_along(lambda),
+    function(i) {
+      aux[i] <- (((2 * sin(lambda[i] / 2))^(-2))^d) *
+        (
+          sum((theta * exp(-1i * lambda[i] * c(0:q)))) *
+            sum((theta * exp(+1i * lambda[i] * c(0:q))))
+        ) /
+        (
+          sum((phi * exp(-1i * lambda[i] * c(0:p)))) *
+            sum((phi * exp(+1i * lambda[i] * c(0:p))))
+        )
+    }
+  )
 
   sigma <- sd
 

@@ -10,7 +10,7 @@
 #' \code{N}, if this value isn't entered by user then is computed as
 #' \eqn{N=\textmd{trunc}(n^{0.8})} (Dahlhaus).
 #'
-#' \code{smooth_periodogram_blocks} computes the periodogram in each of the
+#' \code{lsts_spb} computes the periodogram in each of the
 #' \emph{M} windows and then smoothes it two times with
 #' \code{\link[stats]{smooth.spline}} function; the first time using
 #' \code{spar.freq} parameter and the second time with \code{spar.time}. These
@@ -83,32 +83,32 @@
 #' set.seed(2015)
 #'
 #' ts.sim <- arima.sim(
-#'  n = 1000, model = list(order = c(2, 0, 0), ar = c(1.3, -0.6))
+#'   n = 1000, model = list(order = c(2, 0, 0), ar = c(1.3, -0.6))
 #' )
 #'
-#' smooth_periodogram_blocks(
+#' lsts_spb(
 #'   y = ts.sim, spar.freq = .9, spar.time = .9, theta = 30, phi = 0,
-#'   N = 500, S = 100, ylab = 'Time'
+#'   N = 500, S = 100, ylab = "Time"
 #' )
 #'
-#' smooth_periodogram_blocks(
+#' lsts_spb(
 #'   y = ts.sim, spar.freq = .9, spar.time = .9, theta = 0, phi = 0,
-#'   N = 500, S = 100, ylab = 'Time'
+#'   N = 500, S = 100, ylab = "Time"
 #' )
 #'
-#' smooth_periodogram_blocks(
+#' lsts_spb(
 #'   y = ts.sim, spar.freq = .9, spar.time = .9, theta = 90, phi = 0,
-#'   N = 500, S = 100, ylab = 'Time'
+#'   N = 500, S = 100, ylab = "Time"
 #' )
 #'
-#' smooth_periodogram_blocks(
+#' lsts_spb(
 #'   y = ts.sim, spar.freq = .9, spar.time = .9, theta = 45, phi = 15,
-#'   N = 500, S = 100, ylab = 'Time'
+#'   N = 500, S = 100, ylab = "Time"
 #' )
 #'
-#' smooth_periodogram_blocks(
+#' lsts_spb(
 #'   y = ts.sim, spar.freq = .9, spar.time = .9, theta = 45, phi = 15,
-#'   N = 500, S = 100, ylab = 'Time',
+#'   N = 500, S = 100, ylab = "Time",
 #'   palette.col = gray(level = seq(0.2, 0.9, 0.1))
 #' )
 #' @return
@@ -122,9 +122,9 @@
 #'
 #' @export
 
-smooth_periodogram_blocks <- function(y, x = NULL, N = NULL, S = NULL, p = 0.25,
-  spar.freq = 0, spar.time = 0, theta = 0, phi = 0, xlim = NULL, ylim = NULL,
-  zlim = NULL, ylab = "Time", palette.col = NULL) {
+lsts_spb <- function(y, x = NULL, N = NULL, S = NULL, p = 0.25,
+                     spar.freq = 0, spar.time = 0, theta = 0, phi = 0, xlim = NULL, ylim = NULL,
+                     zlim = NULL, ylab = "Time", palette.col = NULL) {
   T. <- length(y)
 
   if (is.null(N)) {
@@ -135,17 +135,19 @@ smooth_periodogram_blocks <- function(y, x = NULL, N = NULL, S = NULL, p = 0.25,
     S <- trunc(p * N)
   }
 
-  M <- trunc((T. - N)/S + 1)
+  M <- trunc((T. - N) / S + 1)
 
-  aux <- matrix(NA, ncol = M, nrow = trunc(N/2))
+  aux <- matrix(NA, ncol = M, nrow = trunc(N / 2))
 
   for (j in 1:M) {
-    aux[, j] <- periodogram(y[(S * (j - 1) + 1):(S * (j - 1) + N)],
-      plot = FALSE)$periodogram
+    aux[, j] <- lsts_periodogram(y[(S * (j - 1) + 1):(S * (j - 1) + N)],
+      plot = FALSE
+    )$periodogram
   }
 
-  lambda <- periodogram(y[(S * (j - 1) + 1):(S * (j - 1) + N)],
-    plot = FALSE)$lambda
+  lambda <- lsts_periodogram(y[(S * (j - 1) + 1):(S * (j - 1) + N)],
+    plot = FALSE
+  )$lambda
 
   aux2 <- aux
 
@@ -183,7 +185,7 @@ smooth_periodogram_blocks <- function(y, x = NULL, N = NULL, S = NULL, p = 0.25,
 
   j <- 1:M
 
-  t <- S * (j - 1) + N/2
+  t <- S * (j - 1) + N / 2
 
   if (is.null(x)) {
     t <- t
@@ -204,9 +206,11 @@ smooth_periodogram_blocks <- function(y, x = NULL, N = NULL, S = NULL, p = 0.25,
   }
 
   return(
-    graphics::persp(x = lambda, y = t, z = aux, theta = theta, phi = phi,
+    graphics::persp(
+      x = lambda, y = t, z = aux, theta = theta, phi = phi,
       col = color[facetcol], zlab = "Smooth Periodogram", xlab = "Frequency",
       ylab = ylab, expand = 0.5, ticktype = "detailed", ylim = ylim,
-      zlim = zlim, xlim = xlim)
+      zlim = zlim, xlim = xlim
+    )
   )
 }
