@@ -62,18 +62,15 @@ lsts_lbtp <- function(z, lag = 10, main = NULL) {
 
   aux <- stats::acf(z, plot = FALSE, lag.max = lag, na.action = stats::na.pass)
 
-  Q <- vector("numeric")
-  
-  p_value <- vector("numeric")
-
   iteration_seq <- seq_along(1:max(1,lag))
     
-  purrr::map_dbl(
+  p_value <- purrr::map_dbl(
     iteration_seq,
     function(i) {
-      rho <<- aux$acf[2:(i + 1), , 1]
-      Q[i] <<- sum(n * (n + 2) * rho^2 / (n - 1:i))
-      p_value[i] <<- 1 - stats::pchisq(Q[i], df = i)
+      rho <- aux$acf[2:(i + 1), , 1]
+      Q <- sum(n * (n + 2) * rho^2 / (n - 1:i))
+      p_value <- 1 - stats::pchisq(Q, df = i)
+      return(p_value)
     }
   )
 

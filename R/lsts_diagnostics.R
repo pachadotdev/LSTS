@@ -26,7 +26,7 @@
 #' @return
 #' ** COMPLETE **
 #'
-#' @seealso \code{\link{lsts_bltp}}
+#' @seealso \code{\link{lsts_lbtp}}
 #'
 #' @importFrom stats sd acf na.pass
 #' @importFrom graphics plot abline par

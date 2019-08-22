@@ -23,6 +23,7 @@ BugReports: https://github.com/pachamaltese/lsts/issues
 Imports:
   grDevices,
   graphics,
+  purrr,
   stats,
   Rdpack
 RdMacros: Rdpack

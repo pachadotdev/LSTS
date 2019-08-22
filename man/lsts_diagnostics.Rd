@@ -36,5 +36,5 @@ lsts_diagnostics(z)
 
 }
 \seealso{
-\code{\link{lsts_bltp}}
+\code{\link{lsts_lbtp}}
 }
