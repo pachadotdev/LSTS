@@ -31,8 +31,9 @@ residuals (ACF) and the p-values of the Ljung-Box Test for all lags up to
 # Executable in < 5 sec
 
 z <- rnorm(500)
-lsts_bltp(z, lag = 15)
+lsts_lbtp(z, lag = 15)
 lsts_diagnostics(z)
+
 }
 \seealso{
 \code{\link{lsts_bltp}}

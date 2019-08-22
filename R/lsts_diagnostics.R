@@ -20,8 +20,9 @@
 #' # Executable in < 5 sec
 #'
 #' z <- rnorm(500)
-#' lsts_bltp(z, lag = 15)
+#' lsts_lbtp(z, lag = 15)
 #' lsts_diagnostics(z)
+#' 
 #' @return
 #' ** COMPLETE **
 #'
@@ -33,11 +34,11 @@
 #' @export
 
 lsts_diagnostics <- function(x, lag = 10, cex = 0.5) {
-  Z <- (x - mean(x, na.rm = TRUE)) / stats::sd(x, na.rm = TRUE)
+  z <- (x - mean(x, na.rm = TRUE)) / stats::sd(x, na.rm = TRUE)
 
   op <- graphics::par(mfrow = c(3, 1), cex = cex)
 
-  graphics::plot(Z ~ time(Z),
+  graphics::plot(z ~ time(z),
     ylim = c(-3.5, 3.5), type = "h", lwd = 1,
     main = expression("Standardized Residuals"), xlab = "", ylab = "",
     bty = "n", las = 1
@@ -54,7 +55,7 @@ lsts_diagnostics <- function(x, lag = 10, cex = 0.5) {
     col = 1, bty = "n", na.action = stats::na.pass
   )
 
-  lsts_bltp(x, lag = lag)
+  lsts_lbtp(x, lag = lag)
 
   return(par(op))
 }

@@ -36,6 +36,7 @@
 #'
 #' @importFrom stats acf na.pass
 #' @importFrom graphics plot abline
+#' @importFrom purrr map_dbl
 #'
 #' @export
 
@@ -61,14 +62,14 @@ lsts_lbtp <- function(z, lag = 10, main = NULL) {
 
   aux <- stats::acf(z, plot = FALSE, lag.max = lag, na.action = stats::na.pass)
 
+  Q <- vector("numeric")
+  
   p_value <- vector("numeric")
 
-  Q <- vector("numeric")
-
-  iterate <- seq_along(1:max(1,lag))
+  iteration_seq <- seq_along(1:max(1,lag))
     
-  purrr::map(
-    iterate,
+  purrr::map_dbl(
+    iteration_seq,
     function(i) {
       rho <<- aux$acf[2:(i + 1), , 1]
       Q[i] <<- sum(n * (n + 2) * rho^2 / (n - 1:i))
@@ -76,7 +77,7 @@ lsts_lbtp <- function(z, lag = 10, main = NULL) {
     }
   )
 
-  graphics::plot(p_value ~ iterate,
+  graphics::plot(p_value ~ iteration_seq,
     ylim = c(0, 1), bty = "n", las = 1, lwd = 2,
     xlim = c(0, lag), main = main, xlab = "Lag", ylab = "p-value", pch = 20
   )
