@@ -64,6 +64,7 @@ block, \eqn{n =S(M-1)+N}, \eqn{S} is the shift from block to block,
 # Executable in < 5 sec
 
 # COMPLETE
+
 }
 \references{
 For more information on theoretical foundations and estimation methods see

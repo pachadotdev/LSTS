@@ -12,6 +12,8 @@
 #' @examples
 #' # Examples for CRAN checks:
 #' # Executable in < 5 sec
+#' 
+#' 
 #' @return
 #' A list with the following components:
 #' \item{summary}{a resume table with estimate, std. error, z-value and p-value
