@@ -14,10 +14,10 @@
 #' # Executable in < 5 sec
 #' @return
 #' A list with the following components:
-#' \item{summary }{a resume table with estimate, std. error, z-value and p-value
+#' \item{summary}{a resume table with estimate, std. error, z-value and p-value
 #' of the model.}
-#' \item{aic }{AIC of the model.}
-#' \item{npar }{number of parameters in the model.}
+#' \item{aic}{AIC of the model.}
+#' \item{npar}{number of parameters in the model.}
 #'
 #' @importFrom stats pnorm
 #'

@@ -43,7 +43,7 @@
 #' @param S (type: numeric) value corresponding to the lag with which will go
 #' taking the blocks or windows.
 #'
-#' @param include.taper (type: logical) logical argument that by default is
+#' @param include_taper (type: logical) logical argument that by default is
 #' \code{TRUE}. See \code{\link{lsts_periodogram}}.
 #'
 #' @references
@@ -54,8 +54,10 @@
 #' \insertRef{palma2010efficient}{lsts}
 #'
 #' @examples
-#' # Examples for CRAN checks:
+#' # Examples for CRAN checks
 #' # Executable in < 5 sec
+#'
+#' # COMPLETE
 #' @return
 #' # COMPLETE
 #'
@@ -65,17 +67,13 @@
 #'
 #' @export
 
-lsts_wl <- function(x, series, order = c(p = 0, q = 0),
-                    ar.order = NULL, ma.order = NULL, sd.order = NULL, d.order = NULL,
-                    include.d = FALSE, N = NULL, S = NULL, include.taper = TRUE) {
+lsts_wl <- function(x, series, order = c(p = 0, q = 0), ar.order = NULL, ma.order = NULL, sd.order = NULL, d.order = NULL, include.d = FALSE, N = NULL, S = NULL, include_taper = TRUE) {
   y <- series
-
   T. <- length(y)
 
   if (is.null(N)) {
     N <- trunc(T.^0.8)
   }
-
   if (is.null(S)) {
     S <- trunc(0.2 * N)
   }
@@ -85,21 +83,18 @@ lsts_wl <- function(x, series, order = c(p = 0, q = 0),
   if (is.null(ar.order)) {
     ar.order <- rep(0, order[1])
   }
-
   if (is.null(ma.order)) {
     ma.order <- rep(0, order[2])
   }
-
   if (is.null(sd.order)) {
     sd.order <- 0
   }
-
   if (is.null(d.order)) {
     d.order <- 0
   }
 
-  p <- stats::na.omit(c(ar.order, ma.order, sd.order))
 
+  p <- na.omit(c(ar.order, ma.order, sd.order))
   if (include.d == TRUE) {
     p <- na.omit(c(ar.order, ma.order, d.order, sd.order))
   }
@@ -110,62 +105,42 @@ lsts_wl <- function(x, series, order = c(p = 0, q = 0),
 
   else {
     lik <- 0
-
     for (j in 1:M) {
       u <- (N / 2 + S * (j - 1)) / T.
-
-      aux <- lsts_periodogram(y[(1 + S * (j - 1)):(N + S * (j - 1))],
-        include.taper = TRUE, plot = FALSE
-      )
-
+      aux <- lsts_periodogram(y[(1 + S * (j - 1)):(N + S * (j - 1))], include_taper = TRUE, plot = FALSE)
       I <- aux$periodogram
 
       X <- numeric()
-
       k <- 1
-
       for (i in 1:length(p)) {
         X[i] <- sum(x[k:(k + p[i])] * u^(0:p[i]))
-
         k <- k + p[i] + 1
       }
 
       phi <- numeric()
-
       k <- 1
-
       if (order[1] > 0) {
         phi[is.na(ar.order) == 1] <- 0
-
         phi[is.na(ar.order) == 0] <- X[k:(length(na.omit(ar.order)))]
-
         k <- length(na.omit(ar.order)) + 1
       }
 
       theta <- numeric()
-
       if (order[2] > 0) {
         theta[is.na(ma.order) == 1] <- 0
-
         theta[is.na(ma.order) == 0] <- X[k:(length(na.omit(ma.order)) + k - 1)]
-
         k <- length(na.omit(ma.order)) + k
       }
 
       d <- 0
-
       if (include.d == TRUE) {
         d <- X[k]
-
         k <- k + 1
       }
 
       sigma <- X[k]
 
-      f <- lsts_sd(
-        ar = phi, ma = theta, d = d, sd = sigma,
-        lambda = aux$lambda
-      )
+      f <- lsts_sd(ar = phi, ma = theta, d = d, sd = sigma, lambda = aux$lambda)
 
       lik <- sum(log(f) + I / f) / N + lik
     }

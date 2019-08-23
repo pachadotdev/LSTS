@@ -34,13 +34,13 @@
 #' @param S (type: numeric) value corresponding to the lag with which will go
 #' taking the blocks or windows.
 #'
-#' @param include.taper (type: logical) logical argument that by default is
+#' @param include_taper (type: logical) logical argument that by default is
 #' \code{TRUE}. See \code{\link{lsts_periodogram}}.
 #'
 #' @param sd.par (type: numeric) value corresponding to known variance.
 #'
 #' @examples
-#' # Examples for CRAN checks:
+#' # Examples for CRAN checks
 #' # Executable in < 5 sec
 #' @return
 #' ** COMPLETE **
@@ -49,12 +49,12 @@
 
 lsts_wlt <- function(x, series, order = c(p = 0, q = 0),
                      ar.order = NULL, ma.order = NULL, sd.order = NULL, d.order = NULL,
-                     include.d = FALSE, N = NULL, S = NULL, include.taper = TRUE, sd.par = 1) {
+                     include.d = FALSE, N = NULL, S = NULL, include_taper = TRUE, sd.par = 1) {
   x <- c(x, sd.par)
 
   lsts_wl(
     x = x, series = series, order = order, ar.order = ar.order,
     ma.order = ma.order, sd.order = sd.order, d.order = d.order,
-    include.d = include.d, N = N, S = S, include.taper = include.taper
+    include.d = include.d, N = N, S = S, include_taper = include_taper
   )
 }

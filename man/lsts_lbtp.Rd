@@ -28,13 +28,12 @@ coefficient in the sample when the lag is \emph{j}. \code{lsts_lbtp}
 computes \eqn{Q} and returns the p-values graph with lag \emph{j}.
 }
 \examples{
-# Example for CRAN checks:
+# Example for CRAN checks
 # Executable in < 5 sec
 
 z <- rnorm(500)
 lsts_lbtp(z, lag = 15)
 lsts_diagnostics(z)
-
 }
 \references{
 For more information on theoretical foundations and estimation methods see

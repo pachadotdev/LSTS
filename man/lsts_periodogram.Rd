@@ -4,7 +4,7 @@
 \alias{lsts_periodogram}
 \title{Periodogram function}
 \usage{
-lsts_periodogram(y, plot = TRUE, include.taper = FALSE)
+lsts_periodogram(y, plot = TRUE, include_taper = FALSE)
 }
 \arguments{
 \item{y}{(type: numeric) data vector}
@@ -12,8 +12,8 @@ lsts_periodogram(y, plot = TRUE, include.taper = FALSE)
 \item{plot}{(type: logical) logical argument which allows to plot the
 periodogram.}
 
-\item{include.taper}{(type: logical) logical argument which by default is
-\code{FALSE}. If \code{include.taper=TRUE} then \code{y} is multiplied by
+\item{include_taper}{(type: logical) logical argument which by default is
+\code{FALSE}. If \code{include_taper=TRUE} then \code{y} is multiplied by
 \eqn{0.5*(1 - cos(2\pi(n-1)/n))(\emph{cosine bell})}.}
 }
 \value{
@@ -40,10 +40,11 @@ $n-N$, where \eqn{N} is the amount of missing values of serie. The plot of
 the periodogram is \code{periodogram} values vs. \eqn{\lambda}.
 }
 \examples{
-# Examples for CRAN checks:
+# Examples for CRAN checks
 # Executable in < 5 sec
 
 # AR(1) simulated
+
 set.seed(1776)
 ts.sim <- arima.sim(n = 1000, model = list(order = c(1, 0, 0), ar = 0.7))
 lsts_periodogram(ts.sim)

@@ -6,7 +6,7 @@
 \usage{
 lsts_wl(x, series, order = c(p = 0, q = 0), ar.order = NULL,
   ma.order = NULL, sd.order = NULL, d.order = NULL,
-  include.d = FALSE, N = NULL, S = NULL, include.taper = TRUE)
+  include.d = FALSE, N = NULL, S = NULL, include_taper = TRUE)
 }
 \arguments{
 \item{x}{COMPLETE}
@@ -36,7 +36,7 @@ length of the \code{y} vector.}
 \item{S}{(type: numeric) value corresponding to the lag with which will go
 taking the blocks or windows.}
 
-\item{include.taper}{(type: logical) logical argument that by default is
+\item{include_taper}{(type: logical) logical argument that by default is
 \code{TRUE}. See \code{\link{lsts_periodogram}}.}
 }
 \value{
@@ -60,8 +60,10 @@ block, \eqn{n =S(M-1)+N}, \eqn{S} is the shift from block to block,
 (\eqn{2\,\pi\,k/N}, \eqn{k = 1,\ldots, N}).
 }
 \examples{
-# Examples for CRAN checks:
+# Examples for CRAN checks
 # Executable in < 5 sec
+
+# COMPLETE
 }
 \references{
 For more information on theoretical foundations and estimation methods see

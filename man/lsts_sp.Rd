@@ -38,15 +38,21 @@ If it presents problems with tol (\bold{tol}erance), see
 \code{\link[stats]{smooth.spline}}.
 }
 \examples{
-# Examples for CRAN checks:
+# Examples for CRAN checks
 # Executable in < 5 sec
 
 # AR(1) simulated
+
 set.seed(1776)
+
 ts.sim <- arima.sim(n = 1000, model = list(order = c(1, 0, 0), ar = 0.7))
+
 lsts_periodogram(ts.sim)
+
 aux <- lsts_sp(ts.sim, plot = FALSE, spar = .7)
+
 lines(aux$lsts_sp ~ aux$lambda, lwd = 2, col = "orange")
+
 lines(lsts_sd(ar = 0.7, lambda = aux$lambda) ~ aux$lambda,
   col = "red"
 )

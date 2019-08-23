@@ -18,11 +18,11 @@
 #' @param ... Additional arguments to be passed to the function.
 #'
 #' @examples
-#' # Examples for CRAN checks:
+#' # Examples for CRAN checks
 #' # Executable in < 5 sec
 #'
-#' ## Ex 1: Variance of the maximum likelihood estimator for mu parameter in
-#' ## gaussian data
+#' # Variance of the maximum likelihood estimator for mu parameter in
+#' # gaussian data
 #'
 #' loglik <- function(series, x, sd = 1) {
 #'   -sum(log(dnorm(series, mean = x, sd = sd)))
@@ -30,55 +30,14 @@
 #'
 #' n <- 500
 #'
+#' set.seed(1776)
 #' series <- rnorm(500, mean = 10, sd = 2)
 #'
 #' sqrt(c(var(series) / n, diag(solve(lsts_hm(
 #'   f = loglik, x = mean(series), series = series,
 #'   sd = sd(series)
 #' )))))
-#'
-#' ## Ex 2: Variance of the maximum likelihood estimator for phi parameter AR(1)
-#' ## in gaussian data
-#'
-#' loglik <- function(series, x, sd = 1) {
-#'   n <- length(series)
-#'   -(sum(log(dnorm(series[2:n], mean = x * series[1:(n - 1)], sd = sd))) +
-#'     log(dnorm(series[1], mean = 0, sd = sqrt(sd^2 / (1 - x^2)))))
-#' }
-#'
-#' n <- 1000
-#'
-#' series <- arima.sim(n, model = list(c(1, 0, 0), ar = 0.7))
-#'
-#' fit <- arima(series, c(1, 0, 0), include.mean = FALSE)
-#'
-#' round(
-#'   c(fit$var.coef, diag(solve(lsts_hm(
-#'     f = loglik, x = fit$coef, series = series,
-#'     sd = sqrt(fit$sigma2)
-#'   )))), 6
-#' )
-#'
-#' ## Ex 3:  Variance of the whittle maximum likelihood estimator for phi
-#' ## parameter AR(1) in gaussian data
-#'
-#' loglik <- function(series, x, sd = 1) {
-#'   n <- length(series)
-#'   aux <- lsts_periodogram(series, plot = FALSE)
-#'   lambda <- aux$lambda
-#'   I <- aux$periodogram
-#'   f <- lsts_sd(ar = x, sd = sd, lambda = lambda)
-#'   lik <- sum(log(f) + I / f)
-#'   lik <- lik / n
-#' }
-#'
-#' n <- 500
-#' series <- arima.sim(n, model = list(c(1, 0, 0), ar = 0.7))
-#' fit <- arima(series, c(1, 0, 0), include.mean = FALSE)
-#' round(c(fit$var.coef, diag(solve(lsts_hm(
-#'   f = loglik, x = fit$coef, series = series,
-#'   sd = sqrt(fit$sigma2)
-#' ))) / n), 4)
+#' 
 #' @return
 #' An \code{n x n} matrix of 2nd derivatives, where \emph{n} is the length of
 #' \code{x0}.
@@ -89,30 +48,39 @@
 
 lsts_hm <- function(f, x0, ...) {
   n <- length(x0)
-
+  
   grad <- rep(0, n)
-
-  mdelta <- matrix(0, nrow = n, ncol = n)
-
-  hess <- mdelta
-
+  
+  mdelta <- matrix(0., nrow = n, ncol = n)
+  
   delta <- 0.0001 * (sign(x0) + (x0 == 0.)) * pmax(abs(x0), 0.01)
-
+  
   diag(mdelta) <- delta
-
+  
   f0 <- f(x0, ...)
-
-  grad <- sapply(1:n, function(i) {
-    f(x0 + mdelta[, i], ...)
-  })
-
-  hess <- outer(
+  
+  grad <- sapply(
     1:n,
-    1:n,
-    function(i, j) {
-      f(x0 + mdelta[, i] + mdelta[, j], ...) - grad[i] - grad[j]
+    function(i) {
+      f(x0 + mdelta[, i], ...)
     }
   )
-
-  (hess + f0) / outer(delta, delta, "*")
+  
+  hess <- outer(
+    seq_along(grad),
+    seq_along(grad),
+    FUN = function(i,j) {
+      if (i >= j) {
+        f(x0 + mdelta[, i] + mdelta[, j], ...) - grad[i] - grad[j]
+      } else {
+        NA
+      }
+    }
+  )
+  
+  hess[upper.tri(hess)] <- t(hess)[upper.tri(hess)]
+  
+  return(
+    (hess + f0) / outer(delta, delta, "*")
+  )
 }

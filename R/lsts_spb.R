@@ -77,39 +77,13 @@
 #' \insertRef{dahlhaus1998optimal}{lsts}
 #'
 #' @examples
-#' # Examples for CRAN checks:
+#' # Examples for CRAN checks
 #' # Executable in < 5 sec
 #'
-#' set.seed(2015)
+#' set.seed(1776)
 #'
 #' ts.sim <- arima.sim(
 #'   n = 1000, model = list(order = c(2, 0, 0), ar = c(1.3, -0.6))
-#' )
-#'
-#' lsts_spb(
-#'   y = ts.sim, spar.freq = .9, spar.time = .9, theta = 30, phi = 0,
-#'   N = 500, S = 100, ylab = "Time"
-#' )
-#'
-#' lsts_spb(
-#'   y = ts.sim, spar.freq = .9, spar.time = .9, theta = 0, phi = 0,
-#'   N = 500, S = 100, ylab = "Time"
-#' )
-#'
-#' lsts_spb(
-#'   y = ts.sim, spar.freq = .9, spar.time = .9, theta = 90, phi = 0,
-#'   N = 500, S = 100, ylab = "Time"
-#' )
-#'
-#' lsts_spb(
-#'   y = ts.sim, spar.freq = .9, spar.time = .9, theta = 45, phi = 15,
-#'   N = 500, S = 100, ylab = "Time"
-#' )
-#'
-#' lsts_spb(
-#'   y = ts.sim, spar.freq = .9, spar.time = .9, theta = 45, phi = 15,
-#'   N = 500, S = 100, ylab = "Time",
-#'   palette.col = gray(level = seq(0.2, 0.9, 0.1))
 #' )
 #' @return
 #' ** COMPLETE **

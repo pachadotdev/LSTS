@@ -22,13 +22,12 @@
 #' \insertRef{ljung1978measure}{lsts}
 #'
 #' @examples
-#' # Example for CRAN checks:
+#' # Example for CRAN checks
 #' # Executable in < 5 sec
 #'
 #' z <- rnorm(500)
 #' lsts_lbtp(z, lag = 15)
 #' lsts_diagnostics(z)
-#' 
 #' @return
 #' ** COMPLETE **
 #'
@@ -36,7 +35,6 @@
 #'
 #' @importFrom stats acf na.pass
 #' @importFrom graphics plot abline
-#' @importFrom purrr map_dbl
 #'
 #' @export
 
@@ -45,11 +43,11 @@ lsts_lbtp <- function(z, lag = 10, main = NULL) {
   if (!is.numeric(z)) {
     stop("z must be numeric")
   }
-  
+
   if (lag <= 0 | lag != as.integer(lag)) {
     stop("lag must be a positive integer")
   }
-  
+
   if (is.null(main)) {
     main <- "P-Values for Ljung-Box Statistic"
   } else {
@@ -62,9 +60,9 @@ lsts_lbtp <- function(z, lag = 10, main = NULL) {
 
   aux <- stats::acf(z, plot = FALSE, lag.max = lag, na.action = stats::na.pass)
 
-  iteration_seq <- seq_along(1:max(1,lag))
-    
-  p_value <- purrr::map_dbl(
+  iteration_seq <- 1:max(1, lag)
+
+  p_value <- sapply(
     iteration_seq,
     function(i) {
       rho <- aux$acf[2:(i + 1), , 1]

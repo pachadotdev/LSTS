@@ -35,7 +35,7 @@ default \eqn{m = 0.25*n^{0.8}} where \code{n} the length of \code{series}.}
 \value{
 A list with:
 \item{residuals }{standard residuals.}
-\item{fitted.values }{model fitted values.}
+\item{fitted_values }{model fitted values.}
 \item{delta }{variance prediction error.}
 }
 \description{
@@ -49,8 +49,10 @@ Details about \code{ar.order, ma.order, sd.order} and \code{d.order} can be
 viewed in \code{\link{lsts_wl}}.
 }
 \examples{
-# Examples for CRAN checks:
+# Examples for CRAN checks
 # Executable in < 5 sec
+
+lsts_kalman(AirPassengers, start(AirPassengers))
 }
 \references{
 For more information on theoretical foundations and estimation methods see

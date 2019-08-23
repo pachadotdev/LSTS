@@ -38,40 +38,20 @@
 #' \insertRef{palma2007long}{lsts}
 #'
 #' @examples
-#' # Examples for CRAN checks:
+#' # Examples for CRAN checks
 #' # Executable in < 5 sec
 #'
-#' ## Example 1: Spectral Density AR(1)
+#' # Spectral Density AR(1)
+#'
 #' lambda <- seq(0, pi, 0.01)
+#'
 #' f <- lsts_sd(ar = 0.5, lambda = lambda)
-#' plot(f ~ lambda,
-#'   bty = "n", type = "l", las = 1, xlab = expression("Frequency"),
-#'   ylab = expression("Spectral Density")
-#' )
 #'
-#' ## Example 2: Spectral Density AR(2)
-#' lambda <- seq(0, pi, 0.01)
-#' f <- lsts_sd(ar = c(1.3, -0.6), lambda = lambda, sd = 10)
 #' plot(f ~ lambda,
 #'   bty = "n", type = "l", las = 1, xlab = expression("Frequency"),
 #'   ylab = expression("Spectral Density")
 #' )
-#'
-#' ## Spectral Density ARMA(1,1)
-#' lambda <- seq(0, pi, 0.01)
-#' f <- lsts_sd(ar = 0.5, ma = 0.8, lambda = lambda)
-#' plot(f ~ lambda,
-#'   bty = "n", type = "l", las = 1, xlab = expression("Frequency"),
-#'   ylab = expression("Spectral Density")
-#' )
-#'
-#' ## Spectral Density ARFIMA(1,d,1)
-#' lambda <- seq(0, pi, 0.01)
-#' f <- lsts_sd(ar = 0.5, ma = 0.8, d = 0.2, lambda = lambda)
-#' plot(f ~ lambda,
-#'   bty = "n", type = "l", las = 1, xlab = expression("Frequency"),
-#'   ylab = expression("Spectral Density")
-#' )
+#' 
 #' @return
 #' ** COMPLETE **
 #'
@@ -79,43 +59,25 @@
 #'
 #' @export
 
-lsts_sd <- function(ar = numeric(), ma = numeric(), d = 0, sd = 1,
-                    lambda = NULL) {
+lsts_sd <- function(ar = numeric(), ma = numeric(), d = 0, sd = 1, lambda = NULL) {
   p <- length(ar)
-
   q <- length(ma)
-
+  
   phi <- c(1, -ar)
-
   theta <- c(1, +ma)
-
+  
   if (is.null(lambda)) {
     lambda <- seq(0, pi, 0.01)
   }
   
-  # que hace en el resto del codigo este n?
-  n <- length(lambda)
-
-  aux <- c()
-
-  sapply(
+  aux <- sapply(
     seq_along(lambda),
-    function(i) {
-      aux[i] <- (((2 * sin(lambda[i] / 2))^(-2))^d) *
-        (
-          sum((theta * exp(-1i * lambda[i] * c(0:q)))) *
-            sum((theta * exp(+1i * lambda[i] * c(0:q))))
-        ) /
-        (
-          sum((phi * exp(-1i * lambda[i] * c(0:p)))) *
-            sum((phi * exp(+1i * lambda[i] * c(0:p))))
-        )
+    function(k) {
+      (((2 * sin(lambda[k]/2))^(-2))^d) * (sum((theta * exp(-1i*lambda[k]*c(0:q)))) * sum((theta * exp(+1i*lambda[k]*c(0:q))))) / (sum((phi * exp(-1i*lambda[k]*c(0:p))))*sum((phi * exp(+1i*lambda[k]*c(0:p)))))
     }
   )
-
+  
   sigma <- sd
-
   aux <- sigma^2 * Re(aux) / (2 * pi)
-
   return(aux)
 }
