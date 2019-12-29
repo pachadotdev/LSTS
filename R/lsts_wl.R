@@ -54,10 +54,6 @@
 #' \insertRef{palma2010efficient}{lsts}
 #'
 #' @examples
-#' # Examples for CRAN checks
-#' # Executable in < 5 sec
-#'
-#' # COMPLETE
 #' 
 #' @return
 #' # COMPLETE

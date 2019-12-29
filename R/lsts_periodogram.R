@@ -36,9 +36,6 @@
 #' \insertRef{dahlhaus1997fitting}{lsts}
 #'
 #' @examples
-#' # Examples for CRAN checks
-#' # Executable in < 5 sec
-#'
 #' # AR(1) simulated
 #'
 #' set.seed(1776)

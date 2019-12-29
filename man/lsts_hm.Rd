@@ -30,9 +30,6 @@ Usually needs to pass additional parameters (e.g. data).  N.B. this uses no
 numerical sophistication.
 }
 \examples{
-# Examples for CRAN checks
-# Executable in < 5 sec
-
 # Variance of the maximum likelihood estimator for mu parameter in
 # gaussian data
 

@@ -77,11 +77,7 @@
 #' \insertRef{dahlhaus1998optimal}{lsts}
 #'
 #' @examples
-#' # Examples for CRAN checks
-#' # Executable in < 5 sec
-#'
 #' set.seed(1776)
-#'
 #' ts.sim <- arima.sim(
 #'   n = 1000, model = list(order = c(2, 0, 0), ar = c(1.3, -0.6))
 #' )

@@ -22,9 +22,6 @@
 #' \insertRef{ljung1978measure}{lsts}
 #'
 #' @examples
-#' # Example for CRAN checks
-#' # Executable in < 5 sec
-#'
 #' z <- rnorm(500)
 #' lsts_lbtp(z, lag = 15)
 #' lsts_diagnostics(z)

@@ -42,9 +42,6 @@
 #' \insertRef{palma2013estimation}{lsts}
 #'
 #' @examples
-#' # Examples for CRAN checks
-#' # Executable in < 5 sec
-#'
 #' lsts_kalman(AirPassengers, start(AirPassengers))
 #' @return
 #' A list with:

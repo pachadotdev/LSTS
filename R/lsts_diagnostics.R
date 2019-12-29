@@ -16,9 +16,6 @@
 #' By default set to 0.5.
 #'
 #' @examples
-#' # Example for CRAN checks
-#' # Executable in < 5 sec
-#'
 #' z <- rnorm(500)
 #' lsts_lbtp(z, lag = 15)
 #' lsts_diagnostics(z)

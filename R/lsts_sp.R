@@ -27,9 +27,6 @@
 #' necessarily) in \eqn{(0,1].}
 #'
 #' @examples
-#' # Examples for CRAN checks
-#' # Executable in < 5 sec
-#'
 #' # AR(1) simulated
 #'
 #' set.seed(1776)

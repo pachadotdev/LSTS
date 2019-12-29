@@ -27,9 +27,6 @@ residuals (ACF) and the p-values of the Ljung-Box Test for all lags up to
 \code{lag}.
 }
 \examples{
-# Example for CRAN checks
-# Executable in < 5 sec
-
 z <- rnorm(500)
 lsts_lbtp(z, lag = 15)
 lsts_diagnostics(z)

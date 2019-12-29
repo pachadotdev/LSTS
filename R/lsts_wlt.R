@@ -40,8 +40,7 @@
 #' @param sd.par (type: numeric) value corresponding to known variance.
 #'
 #' @examples
-#' # Examples for CRAN checks
-#' # Executable in < 5 sec
+#' 
 #' @return
 #' ** COMPLETE **
 #'

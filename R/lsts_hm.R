@@ -18,9 +18,6 @@
 #' @param ... Additional arguments to be passed to the function.
 #'
 #' @examples
-#' # Examples for CRAN checks
-#' # Executable in < 5 sec
-#'
 #' # Variance of the maximum likelihood estimator for mu parameter in
 #' # gaussian data
 #'
