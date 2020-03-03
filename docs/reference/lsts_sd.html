@@ -111,8 +111,7 @@ ARFIMA processes." />
 ARFIMA processes.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>lsts_sd</span>(<span class='kw'>ar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>numeric</a></span>(), <span class='kw'>ma</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>numeric</a></span>(), <span class='kw'>d</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>lambda</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>lsts_sd</span>(<span class='kw'>ar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>numeric</a></span>(), <span class='kw'>ma</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>numeric</a></span>(), <span class='kw'>d</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>lambda</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -151,9 +150,9 @@ sequence between 0 and \(\pi\).</p></td>
 
     <p>The spectral density of an ARFIMA(p,d,q) processes is
 $$f(\lambda) = \frac{\sigma^2}{2\pi} \cdot \bigg(2\,
-\textmd{sin}(\lambda/2)\bigg)^{-2d} \cdot
-\frac{\bigg|\theta\bigg(\textmd{exp}\bigg(-i\lambda\bigg)\bigg)\bigg|^2}
-{\bigg|\phi\bigg(\textmd{exp}\bigg(-i\lambda\bigg)\bigg)\bigg|^2}$$</p>
+\sin(\lambda/2)\bigg)^{-2d} \cdot
+\frac{\bigg|\theta\bigg(\exp\bigg(-i\lambda\bigg)\bigg)\bigg|^2}
+{\bigg|\phi\bigg(\exp\bigg(-i\lambda\bigg)\bigg)\bigg|^2}$$</p>
 <p>With \(-\pi \le \lambda \le \pi\) and \(-1 &lt; d &lt; 1/2\). \(|x|\) is the
 <code><a href='https://rdrr.io/r/base/complex.html'>Mod</a></code> of <em>x</em>. <code>lsts_sd</code> returns the
 values corresponding to \(f(\lambda)\). When <code>d</code> is zero, the spectral
@@ -172,10 +171,7 @@ John Wiley \&amp; Sons.</p>
     <div class='dont-index'><p><code><a href='lsts_periodogram.html'>lsts_periodogram</a></code>, <code><a href='https://rdrr.io/r/graphics/persp.html'>persp</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Examples for CRAN checks</span>
-<span class='co'># Executable in &lt; 5 sec</span>
-
-<span class='co'># Spectral Density AR(1)</span>
+    <pre class="examples"><div class='input'><span class='co'># Spectral Density AR(1)</span>
 
 <span class='no'>lambda</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>0</span>, <span class='no'>pi</span>, <span class='fl'>0.01</span>)
 

@@ -113,9 +113,19 @@ LS-ARFIMA models, in data with mean zero. If mean is not zero, then it is
 subtracted to data.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>lsts_wl</span>(<span class='no'>x</span>, <span class='no'>series</span>, <span class='kw'>order</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>0</span>), <span class='kw'>ar.order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ma.order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sd.order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>d.order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>include.d</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>N</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>S</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>include_taper</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>lsts_wl</span>(
+  <span class='no'>x</span>,
+  <span class='no'>series</span>,
+  <span class='kw'>order</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>0</span>),
+  <span class='kw'>ar.order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>ma.order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>sd.order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>d.order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>include.d</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>N</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>S</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>include_taper</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -203,11 +213,7 @@ Springer.</p>
     <div class='dont-index'><p><code><a href='https://rdrr.io/r/stats/nlminb.html'>nlminb</a></code>, <code><a href='lsts_kalman.html'>lsts_kalman</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'># Examples for CRAN checks
-# Executable in < 5 sec
-
-# COMPLETE
-
+    <pre class="examples"><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

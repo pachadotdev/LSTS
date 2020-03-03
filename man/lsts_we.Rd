@@ -4,11 +4,24 @@
 \alias{lsts_we}
 \title{Whittle estimator to Locally Stationary Time Series}
 \usage{
-lsts_we(series, start, order = c(p = 0, q = 0), ar.order = NULL,
-  ma.order = NULL, sd.order = NULL, d.order = NULL,
-  include.d = FALSE, N = NULL, S = NULL, include.taper = TRUE,
-  control = list(), lower = -Inf, upper = Inf, m = NULL,
-  n.ahead = 0)
+lsts_we(
+  series,
+  start,
+  order = c(p = 0, q = 0),
+  ar.order = NULL,
+  ma.order = NULL,
+  sd.order = NULL,
+  d.order = NULL,
+  include.d = FALSE,
+  N = NULL,
+  S = NULL,
+  include.taper = TRUE,
+  control = list(),
+  lower = -Inf,
+  upper = Inf,
+  m = NULL,
+  n.ahead = 0
+)
 }
 \arguments{
 \item{series}{(type: numeric) univariate time series.}
@@ -120,8 +133,7 @@ Also computes Kalman filter with \code{\link{lsts_kalman}} and this values
 are given in \code{var.coef} in the output.
 }
 \examples{
-# Examples for CRAN checks:
-# Executable in < 5 sec
+
 }
 \seealso{
 \code{\link[stats]{nlminb}}, \code{\link{lsts_kalman}}

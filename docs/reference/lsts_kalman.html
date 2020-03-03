@@ -111,9 +111,17 @@ infinite of moving average in processes LS-ARMA or LS-ARFIMA." />
 infinite of moving average in processes LS-ARMA or LS-ARFIMA.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>lsts_kalman</span>(<span class='no'>series</span>, <span class='no'>start</span>, <span class='kw'>order</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>0</span>), <span class='kw'>ar.order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ma.order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sd.order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>d.order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>include.d</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>m</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>lsts_kalman</span>(
+  <span class='no'>series</span>,
+  <span class='no'>start</span>,
+  <span class='kw'>order</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>0</span>),
+  <span class='kw'>ar.order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>ma.order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>sd.order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>d.order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>include.d</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>m</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -188,10 +196,7 @@ John Wiley \&amp; Sons.</p>
 <em>Journal of Forecasting</em>, <b>32</b>(1), 86--96.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Examples for CRAN checks</span>
-<span class='co'># Executable in &lt; 5 sec</span>
-
-<span class='fu'>lsts_kalman</span>(<span class='no'>AirPassengers</span>, <span class='fu'><a href='https://rdrr.io/r/stats/start.html'>start</a></span>(<span class='no'>AirPassengers</span>))</div><div class='output co'>#&gt; $residuals
+    <pre class="examples"><div class='input'><span class='fu'>lsts_kalman</span>(<span class='no'>AirPassengers</span>, <span class='fu'><a href='https://rdrr.io/r/stats/start.html'>start</a></span>(<span class='no'>AirPassengers</span>))</div><div class='output co'>#&gt; $residuals
 #&gt;             Jan        Feb        Mar        Apr        May        Jun
 #&gt; 1949 0.05746537 0.06054387 0.06772704 0.06618779 0.06208312 0.06926629
 #&gt; 1950 0.05900462 0.06464854 0.07234479 0.06926629 0.06413545 0.07644946

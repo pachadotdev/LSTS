@@ -40,9 +40,6 @@ $n-N$, where \eqn{N} is the amount of missing values of serie. The plot of
 the periodogram is \code{periodogram} values vs. \eqn{\lambda}.
 }
 \examples{
-# Examples for CRAN checks
-# Executable in < 5 sec
-
 # AR(1) simulated
 
 set.seed(1776)

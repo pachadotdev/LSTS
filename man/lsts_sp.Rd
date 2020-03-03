@@ -38,9 +38,6 @@ If it presents problems with tol (\bold{tol}erance), see
 \code{\link[stats]{smooth.spline}}.
 }
 \examples{
-# Examples for CRAN checks
-# Executable in < 5 sec
-
 # AR(1) simulated
 
 set.seed(1776)

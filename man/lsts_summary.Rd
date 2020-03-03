@@ -25,8 +25,5 @@ function).
 ** COMPLETE **
 }
 \examples{
-# Examples for CRAN checks:
-# Executable in < 5 sec
-
 
 }

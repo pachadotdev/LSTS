@@ -4,9 +4,19 @@
 \alias{lsts_wl}
 \title{Locally Stationary Whittle log-likelihood Function}
 \usage{
-lsts_wl(x, series, order = c(p = 0, q = 0), ar.order = NULL,
-  ma.order = NULL, sd.order = NULL, d.order = NULL,
-  include.d = FALSE, N = NULL, S = NULL, include_taper = TRUE)
+lsts_wl(
+  x,
+  series,
+  order = c(p = 0, q = 0),
+  ar.order = NULL,
+  ma.order = NULL,
+  sd.order = NULL,
+  d.order = NULL,
+  include.d = FALSE,
+  N = NULL,
+  S = NULL,
+  include_taper = TRUE
+)
 }
 \arguments{
 \item{x}{COMPLETE}
@@ -60,10 +70,6 @@ block, \eqn{n =S(M-1)+N}, \eqn{S} is the shift from block to block,
 (\eqn{2\,\pi\,k/N}, \eqn{k = 1,\ldots, N}).
 }
 \examples{
-# Examples for CRAN checks
-# Executable in < 5 sec
-
-# COMPLETE
 
 }
 \references{

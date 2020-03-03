@@ -4,10 +4,20 @@
 \alias{lsts_wls}
 \title{Locally Stationary Whittle Log-likelihood sigma}
 \usage{
-lsts_wls(x, series, order = c(p = 0, q = 0), ar.order = NULL,
-  ma.order = NULL, sd.order = NULL, d.order = NULL,
-  include.d = FALSE, N = NULL, S = NULL, include_taper = TRUE,
-  theta.par = numeric())
+lsts_wls(
+  x,
+  series,
+  order = c(p = 0, q = 0),
+  ar.order = NULL,
+  ma.order = NULL,
+  sd.order = NULL,
+  d.order = NULL,
+  include.d = FALSE,
+  N = NULL,
+  S = NULL,
+  include_taper = TRUE,
+  theta.par = numeric()
+)
 }
 \arguments{
 \item{x}{(type: numeric) parameter vector.}
@@ -55,6 +65,5 @@ This function computes \code{\link{lsts_wl}} with \code{x} as
 \code{x = c(theta.par, x)}.
 }
 \examples{
-# Examples for CRAN checks
-# Executable in < 5 sec
+
 }

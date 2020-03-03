@@ -4,9 +4,22 @@
 \alias{lsts_spb}
 \title{Smooth Periodogram by Blocks}
 \usage{
-lsts_spb(y, x = NULL, N = NULL, S = NULL, p = 0.25,
-  spar.freq = 0, spar.time = 0, theta = 0, phi = 0, xlim = NULL,
-  ylim = NULL, zlim = NULL, ylab = "Time", palette.col = NULL)
+lsts_spb(
+  y,
+  x = NULL,
+  N = NULL,
+  S = NULL,
+  p = 0.25,
+  spar.freq = 0,
+  spar.time = 0,
+  theta = 0,
+  phi = 0,
+  xlim = NULL,
+  ylim = NULL,
+  zlim = NULL,
+  ylab = "Time",
+  palette.col = NULL
+)
 }
 \arguments{
 \item{y}{(type: numeric) data vector}
@@ -83,11 +96,7 @@ the viewing direction is directly down the negative y axis. Changing
 \code{theta} will vary the azimuth and changing \code{phi} the colatitude.
 }
 \examples{
-# Examples for CRAN checks
-# Executable in < 5 sec
-
 set.seed(1776)
-
 ts.sim <- arima.sim(
   n = 1000, model = list(order = c(2, 0, 0), ar = c(1.3, -0.6))
 )

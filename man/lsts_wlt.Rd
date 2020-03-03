@@ -4,10 +4,20 @@
 \alias{lsts_wlt}
 \title{Locally Stationary Whittle Log-likelihood theta}
 \usage{
-lsts_wlt(x, series, order = c(p = 0, q = 0), ar.order = NULL,
-  ma.order = NULL, sd.order = NULL, d.order = NULL,
-  include.d = FALSE, N = NULL, S = NULL, include_taper = TRUE,
-  sd.par = 1)
+lsts_wlt(
+  x,
+  series,
+  order = c(p = 0, q = 0),
+  ar.order = NULL,
+  ma.order = NULL,
+  sd.order = NULL,
+  d.order = NULL,
+  include.d = FALSE,
+  N = NULL,
+  S = NULL,
+  include_taper = TRUE,
+  sd.par = 1
+)
 }
 \arguments{
 \item{x}{(type: numeric) parameter vector.}
@@ -54,6 +64,5 @@ This function computes \code{\link{lsts_wl}} with \code{x} as
 \code{x = c(x, sd.par)}.
 }
 \examples{
-# Examples for CRAN checks
-# Executable in < 5 sec
+
 }

@@ -58,7 +58,7 @@ lsts_kalman <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL,
                         include.d = FALSE, m = NULL) {
   x <- start
   T. <- length(series)
-
+  
   if (is.null(ar.order)) {
     ar.order <- rep(0, order[1])
   }
@@ -78,19 +78,19 @@ lsts_kalman <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL,
   if (is.null(m)) {
     m <- trunc(0.25 * T.^0.8)
   }
-
+  
   u <- (1:T.) / T.
-
+  
   p <- na.omit(c(ar.order, ma.order, sd.order))
   if (include.d == TRUE) {
     p <- na.omit(c(ar.order, ma.order, d.order, sd.order))
   }
-
+  
   phi. <- numeric()
   theta. <- numeric()
   sigma. <- numeric()
   d. <- numeric()
-
+  
   for (j in 1:length(u)) {
     X <- numeric()
     
@@ -121,7 +121,7 @@ lsts_kalman <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL,
         }
       }
     )
-
+    
     phi <- numeric()
     
     k <- 1
@@ -135,8 +135,8 @@ lsts_kalman <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL,
       
       phi. <- rbind(phi., phi)
     }
-
-
+    
+    
     theta <- numeric()
     
     if (order[2] > 0) {
@@ -148,7 +148,7 @@ lsts_kalman <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL,
       
       theta. <- rbind(theta., theta)
     }
-
+    
     d <- 0
     
     if (include.d == TRUE) {
@@ -158,16 +158,16 @@ lsts_kalman <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL,
       
       d. <- c(d., d)
     }
-
+    
     sigma <- X[k]
     sigma. <- c(sigma., sigma)
   }
-
+  
   sigma <- sigma.
-
+  
   Omega <- matrix(0, nrow = m + 1, ncol = m + 1)
   diag(Omega) <- 1
-
+  
   X <- rep(0, m + 1)
   
   delta <- vector("numeric")

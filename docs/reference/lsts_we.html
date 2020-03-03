@@ -111,11 +111,24 @@ LS-ARFIMA models." />
 LS-ARFIMA models.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>lsts_we</span>(<span class='no'>series</span>, <span class='no'>start</span>, <span class='kw'>order</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>0</span>), <span class='kw'>ar.order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ma.order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sd.order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>d.order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>include.d</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>N</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>S</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>include.taper</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>control</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(), <span class='kw'>lower</span> <span class='kw'>=</span> -<span class='fl'>Inf</span>, <span class='kw'>upper</span> <span class='kw'>=</span> <span class='fl'>Inf</span>, <span class='kw'>m</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>n.ahead</span> <span class='kw'>=</span> <span class='fl'>0</span>)</pre>
+    <pre class="usage"><span class='fu'>lsts_we</span>(
+  <span class='no'>series</span>,
+  <span class='no'>start</span>,
+  <span class='kw'>order</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>0</span>),
+  <span class='kw'>ar.order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>ma.order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>sd.order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>d.order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>include.d</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>N</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>S</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>include.taper</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>control</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  <span class='kw'>lower</span> <span class='kw'>=</span> -<span class='fl'>Inf</span>,
+  <span class='kw'>upper</span> <span class='kw'>=</span> <span class='fl'>Inf</span>,
+  <span class='kw'>m</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>n.ahead</span> <span class='kw'>=</span> <span class='fl'>0</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -264,8 +277,7 @@ are given in <code>var.coef</code> in the output.</p>
     <div class='dont-index'><p><code><a href='https://rdrr.io/r/stats/nlminb.html'>nlminb</a></code>, <code><a href='lsts_kalman.html'>lsts_kalman</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'># Examples for CRAN checks:
-# Executable in < 5 sec
+    <pre class="examples"><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

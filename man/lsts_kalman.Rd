@@ -4,9 +4,17 @@
 \alias{lsts_kalman}
 \title{Kalman filter for locally stationary processes}
 \usage{
-lsts_kalman(series, start, order = c(p = 0, q = 0), ar.order = NULL,
-  ma.order = NULL, sd.order = NULL, d.order = NULL,
-  include.d = FALSE, m = NULL)
+lsts_kalman(
+  series,
+  start,
+  order = c(p = 0, q = 0),
+  ar.order = NULL,
+  ma.order = NULL,
+  sd.order = NULL,
+  d.order = NULL,
+  include.d = FALSE,
+  m = NULL
+)
 }
 \arguments{
 \item{series}{(type: numeric) univariate time series.}
@@ -49,9 +57,6 @@ Details about \code{ar.order, ma.order, sd.order} and \code{d.order} can be
 viewed in \code{\link{lsts_wl}}.
 }
 \examples{
-# Examples for CRAN checks
-# Executable in < 5 sec
-
 lsts_kalman(AirPassengers, start(AirPassengers))
 }
 \references{

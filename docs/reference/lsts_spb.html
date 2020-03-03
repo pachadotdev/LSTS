@@ -111,9 +111,22 @@ blocks or windows." />
 blocks or windows.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>lsts_spb</span>(<span class='no'>y</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>N</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>S</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>0.25</span>,
-  <span class='kw'>spar.freq</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>spar.time</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>theta</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>phi</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ylim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>zlim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"Time"</span>, <span class='kw'>palette.col</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>lsts_spb</span>(
+  <span class='no'>y</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>N</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>S</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>0.25</span>,
+  <span class='kw'>spar.freq</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>spar.time</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>theta</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>phi</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>ylim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>zlim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"Time"</span>,
+  <span class='kw'>palette.col</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -230,11 +243,7 @@ the viewing direction is directly down the negative y axis. Changing
     <div class='dont-index'><p><code><a href='https://rdrr.io/r/stats/arima.sim.html'>arima.sim</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Examples for CRAN checks</span>
-<span class='co'># Executable in &lt; 5 sec</span>
-
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>1776</span>)
-
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>1776</span>)
 <span class='no'>ts.sim</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/arima.sim.html'>arima.sim</a></span>(
   <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>model</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>order</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>0</span>, <span class='fl'>0</span>), <span class='kw'>ar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1.3</span>, -<span class='fl'>0.6</span>))
 )</div></pre>

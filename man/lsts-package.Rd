@@ -23,7 +23,7 @@ Authors:
 \itemize{
   \item Wilfredo Palma \email{wilfredo@mat.puc.cl} [copyright holder]
   \item Pilar Rubio \email{parubio@puc.cl}
-  \item Mauricio Vargas \email{mvargas@dcc.uchile.cl} (0000-0003-1017-7574)
+  \item Mauricio Vargas \email{mvargas@dcc.uchile.cl} (\href{https://orcid.org/0000-0003-1017-7574}{ORCID})
 }
 
 }

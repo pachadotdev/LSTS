@@ -4,8 +4,7 @@
 \alias{lsts_sd}
 \title{Spectral Density}
 \usage{
-lsts_sd(ar = numeric(), ma = numeric(), d = 0, sd = 1,
-  lambda = NULL)
+lsts_sd(ar = numeric(), ma = numeric(), d = 0, sd = 1, lambda = NULL)
 }
 \arguments{
 \item{ar}{(type: numeric) AR vector. If the time serie doesn't have AR term
@@ -33,9 +32,9 @@ ARFIMA processes.
 \details{
 The spectral density of an ARFIMA(p,d,q) processes is
 \deqn{f(\lambda) = \frac{\sigma^2}{2\pi} \cdot \bigg(2\,
-\textmd{sin}(\lambda/2)\bigg)^{-2d} \cdot
-\frac{\bigg|\theta\bigg(\textmd{exp}\bigg(-i\lambda\bigg)\bigg)\bigg|^2}
-{\bigg|\phi\bigg(\textmd{exp}\bigg(-i\lambda\bigg)\bigg)\bigg|^2}}
+\sin(\lambda/2)\bigg)^{-2d} \cdot
+\frac{\bigg|\theta\bigg(\exp\bigg(-i\lambda\bigg)\bigg)\bigg|^2}
+{\bigg|\phi\bigg(\exp\bigg(-i\lambda\bigg)\bigg)\bigg|^2}}
 
 With \eqn{-\pi \le \lambda \le \pi} and \eqn{-1 < d < 1/2}. \eqn{|x|} is the
 \code{\link[base]{Mod}} of \emph{x}. \code{lsts_sd} returns the
@@ -43,9 +42,6 @@ values corresponding to \eqn{f(\lambda)}. When \code{d} is zero, the spectral
 density corresponds to an ARMA(p,q).
 }
 \examples{
-# Examples for CRAN checks
-# Executable in < 5 sec
-
 # Spectral Density AR(1)
 
 lambda <- seq(0, pi, 0.01)
