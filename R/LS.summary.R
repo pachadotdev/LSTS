@@ -10,13 +10,20 @@
 #' @param object (type: COMPLETE) \code{\link{LS.whittle}} function
 #'
 #' @examples
-#' 
+#' fit_whittle <- LS.whittle(
+#'   series = malleco, start = c(1, 1, 1, 1),
+#'   order = c(p = 1, q = 0), ar.order = 1, sd.order = 1, N = 180, n.ahead = 10
+#' )
+#'
+#' LS.summary(fit_whittle)
 #' @return
 #' A list with the following components:
 #' \item{summary}{a resume table with estimate, std. error, z-value and p-value
 #' of the model.}
 #' \item{aic}{AIC of the model.}
 #' \item{npar}{number of parameters in the model.}
+#'
+#' @seealso \code{\link{LS.whittle}}
 #'
 #' @importFrom stats pnorm
 #'

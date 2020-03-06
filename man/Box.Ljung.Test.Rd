@@ -28,9 +28,7 @@ coefficient in the sample when the lag is \emph{j}. \code{lsts_lbtp}
 computes \eqn{Q} and returns the p-values graph with lag \emph{j}.
 }
 \examples{
-z <- rnorm(500)
-Box.Ljung.Test(z, lag = 15)
-
+Box.Ljung.Test(malleco, lag = 5)
 }
 \references{
 For more information on theoretical foundations and estimation methods see

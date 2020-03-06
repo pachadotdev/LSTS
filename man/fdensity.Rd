@@ -44,15 +44,12 @@ density corresponds to an ARMA(p,q).
 \examples{
 # Spectral Density AR(1)
 
-lambda <- seq(0, pi, 0.01)
+f <- fdensity(ar = 0.5, lambda = malleco)
 
-f <- fdensity(ar = 0.5, lambda = lambda)
-
-plot(f ~ lambda,
+plot(f ~ malleco,
   bty = "n", type = "l", las = 1, xlab = expression("Frequency"),
   ylab = expression("Spectral Density")
 )
-
 }
 \references{
 For more information on theoretical foundations and estimation methods see

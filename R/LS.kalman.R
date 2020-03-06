@@ -42,8 +42,7 @@
 #' \insertRef{palma2013estimation}{lsts}
 #'
 #' @examples
-#' LS.kalman(AirPassengers, start(AirPassengers))
-#' 
+#' LS.kalman(malleco, start(malleco))
 #' @return
 #' A list with:
 #' \item{residuals }{standard residuals.}

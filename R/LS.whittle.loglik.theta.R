@@ -40,7 +40,7 @@
 #' @param sd.par (type: numeric) value corresponding to known variance.
 #'
 #' @examples
-#' 
+#' # COMPLETE
 #' @return
 #' ** COMPLETE **
 #'

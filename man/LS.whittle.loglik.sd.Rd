@@ -65,5 +65,5 @@ This function computes \code{\link{LS.whittle.loglik}} with \code{x} as
 \code{x = c(theta.par, x)}.
 }
 \examples{
-
+# COMPLETE
 }

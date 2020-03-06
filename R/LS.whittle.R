@@ -86,7 +86,33 @@
 #' is required. By default is zero.
 #'
 #' @examples
-#' 
+#' # Analysis by blocks of phi and sigma parameters
+#' N <- 200
+#' S <- 100
+#' M <- trunc((length(malleco) - N) / S + 1)
+#' table <- c()
+#' for (j in 1:M) {
+#'   x <- malleco[(1 + S * (j - 1)):(N + S * (j - 1))]
+#'   table <- rbind(table, nlminb(
+#'     start = c(0.65, 0.15), N = N,
+#'     objective = LS.whittle.loglik,
+#'     series = x, order = c(p = 1, q = 0)
+#'   )$par)
+#' }
+#' u <- (N / 2 + S * (1:M - 1)) / length(malleco)
+#' table <- as.data.frame(cbind(u, table))
+#' colnames(table) <- c("u", "phi", "sigma")
+#'
+#' # Start parameters
+#' phi <- smooth.spline(table$phi, spar = 1, tol = 0.01)$y
+#' fit.1 <- nls(phi ~ a0 + a1 * u, start = list(a0 = 0.65, a1 = 0.00))
+#' sigma <- smooth.spline(table$sigma, spar = 1)$y
+#' fit.2 <- nls(sigma ~ b0 + b1 * u, start = list(b0 = 0.65, b1 = 0.00))
+#'
+#' fit_whittle <- LS.whittle(
+#'   series = malleco, start = c(coef(fit.1), coef(fit.2)), order = c(p = 1, q = 0),
+#'   ar.order = 1, sd.order = 1, N = 180, n.ahead = 10
+#' )
 #' @return
 #' A list with the following components:
 #' \item{coef }{The best set of parameters found.}

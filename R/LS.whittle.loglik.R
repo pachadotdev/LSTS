@@ -54,7 +54,7 @@
 #' \insertRef{palma2010efficient}{lsts}
 #'
 #' @examples
-#' 
+#' # COMPLETE
 #' @return
 #' # COMPLETE
 #'

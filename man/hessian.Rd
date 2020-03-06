@@ -37,16 +37,10 @@ loglik <- function(series, x, sd = 1) {
   -sum(log(dnorm(series, mean = x, sd = sd)))
 }
 
-n <- 500
-
-set.seed(1776)
-series <- rnorm(500, mean = 10, sd = 2)
-
-sqrt(c(var(series) / n, diag(solve(hessian(
-  f = loglik, x = mean(series), series = series,
-  sd = sd(series)
+sqrt(c(var(malleco) / length(malleco), diag(solve(hessian(
+  f = loglik, x = mean(malleco), series = malleco,
+  sd = sd(malleco)
 )))))
-
 }
 \seealso{
 \code{\link{arima.sim}}

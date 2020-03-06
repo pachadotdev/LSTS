@@ -96,10 +96,7 @@ the viewing direction is directly down the negative y axis. Changing
 \code{theta} will vary the azimuth and changing \code{phi} the colatitude.
 }
 \examples{
-set.seed(1776)
-ts.sim <- arima.sim(
-  n = 1000, model = list(order = c(2, 0, 0), ar = c(1.3, -0.6))
-)
+block.smooth.periodogram(malleco)
 }
 \references{
 For more information on theoretical foundations and estimation methods see

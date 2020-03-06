@@ -70,7 +70,7 @@ block, \eqn{n =S(M-1)+N}, \eqn{S} is the shift from block to block,
 (\eqn{2\,\pi\,k/N}, \eqn{k = 1,\ldots, N}).
 }
 \examples{
-
+# COMPLETE
 }
 \references{
 For more information on theoretical foundations and estimation methods see

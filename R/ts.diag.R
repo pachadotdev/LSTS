@@ -19,7 +19,6 @@
 #' z <- rnorm(500)
 #' Box.Ljung.Test(z, lag = 15)
 #' ts.diag(z)
-#' 
 #' @return
 #' ** COMPLETE **
 #'

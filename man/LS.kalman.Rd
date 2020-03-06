@@ -57,8 +57,7 @@ Details about \code{ar.order, ma.order, sd.order} and \code{d.order} can be
 viewed in \code{\link{LS.whittle}}.
 }
 \examples{
-LS.kalman(AirPassengers, start(AirPassengers))
-
+LS.kalman(malleco, start(malleco))
 }
 \references{
 For more information on theoretical foundations and estimation methods see

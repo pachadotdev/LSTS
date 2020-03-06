@@ -30,7 +30,6 @@ residuals (ACF) and the p-values of the Ljung-Box Test for all lags up to
 z <- rnorm(500)
 Box.Ljung.Test(z, lag = 15)
 ts.diag(z)
-
 }
 \seealso{
 \code{\link{Box.Ljung.Test}}

@@ -41,7 +41,7 @@
 #' model.
 #'
 #' @examples
-#' 
+#' # COMPLETE
 #' @return
 #' ** COMPLETE **
 #'

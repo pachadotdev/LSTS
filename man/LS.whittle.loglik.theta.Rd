@@ -64,5 +64,5 @@ This function computes \code{\link{LS.whittle.loglik}} with \code{x} as
 \code{x = c(x, sd.par)}.
 }
 \examples{
-
+# COMPLETE
 }

@@ -50,8 +50,7 @@ aux <- smooth.periodogram(ts.sim, plot = FALSE, spar = .7)
 
 lines(aux$smooth.periodogram ~ aux$lambda, lwd = 2, col = "orange")
 
-lines(fdensity(ar = 0.7, lambda = aux$lambda)~aux$lambda, col = "red")
-
+lines(fdensity(ar = 0.7, lambda = aux$lambda) ~ aux$lambda, col = "red")
 }
 \seealso{
 \code{\link{smooth.spline}}, \code{\link{periodogram}}

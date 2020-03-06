@@ -22,9 +22,7 @@
 #' \insertRef{ljung1978measure}{lsts}
 #'
 #' @examples
-#' z <- rnorm(500)
-#' Box.Ljung.Test(z, lag = 15)
-#' 
+#' Box.Ljung.Test(malleco, lag = 5)
 #' @return
 #' ** COMPLETE **
 #'
