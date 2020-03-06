@@ -13,7 +13,7 @@
 #' \code{lsts_spb} computes the periodogram in each of the
 #' \emph{M} windows and then smoothes it two times with
 #' \code{\link[stats]{smooth.spline}} function; the first time using
-#' \code{spar.freq} parameter and the second time with \code{spar.time}. These
+#' \code{spar_freq} parameter and the second time with \code{spar_time}. These
 #' windows overlap between them.
 #'
 #' The surface is then viewed by looking at the origin from a direction defined
@@ -42,10 +42,10 @@
 #' proportional to \code{N}. By default \code{p=0.25}, if \code{S} and \code{N}
 #' are not entered.
 #'
-#' @param spar.freq (type: numeric) smoothing parameter, typically (but not
+#' @param spar_freq (type: numeric) smoothing parameter, typically (but not
 #' necessarily) in \eqn{(0,1]}.
 #'
-#' @param spar.time (type: numeric) smoothing parameter, typically (but not
+#' @param spar_time (type: numeric) smoothing parameter, typically (but not
 #' necessarily) in \eqn{(0,1]}.
 #'
 #' @param theta (type: numeric) angle defining the viewing direction, gives the
@@ -67,7 +67,7 @@
 #' \code{ylab='Time'} and is an optional
 #' parameter.
 #'
-#' @param palette.col (type: character) colors palette.
+#' @param palette_col (type: character) colors palette.
 #'
 #' @references
 #' For more information on theoretical foundations and estimation methods see
@@ -93,8 +93,8 @@
 #' @export
 
 lsts_spb <- function(y, x = NULL, N = NULL, S = NULL, p = 0.25,
-                     spar.freq = 0, spar.time = 0, theta = 0, phi = 0, xlim = NULL, ylim = NULL,
-                     zlim = NULL, ylab = "Time", palette.col = NULL) {
+                     spar_freq = 0, spar_time = 0, theta = 0, phi = 0, xlim = NULL, ylim = NULL,
+                     zlim = NULL, ylab = "Time", palette_col = NULL) {
   T. <- length(y)
 
   if (is.null(N)) {
@@ -122,13 +122,13 @@ lsts_spb <- function(y, x = NULL, N = NULL, S = NULL, p = 0.25,
   aux2 <- aux
 
   for (j in 1:M) {
-    aux2[, j] <- stats::smooth.spline(aux[, j], spar = spar.freq)$y
+    aux2[, j] <- stats::smooth.spline(aux[, j], spar = spar_freq)$y
   }
 
   aux3 <- aux
 
   for (i in 1:(dim(aux)[1])) {
-    aux3[i, ] <- stats::smooth.spline(aux2[i, ], spar = spar.time)$y
+    aux3[i, ] <- stats::smooth.spline(aux2[i, ], spar = spar_time)$y
   }
 
   aux <- aux3
@@ -137,11 +137,11 @@ lsts_spb <- function(y, x = NULL, N = NULL, S = NULL, p = 0.25,
 
   ncz <- ncol(aux)
 
-  if (is.null(palette.col)) {
-    palette.col <- c("green", "lightgreen", "yellow", "orange", "darkred")
+  if (is.null(palette_col)) {
+    palette_col <- c("green", "lightgreen", "yellow", "orange", "darkred")
   }
 
-  jet.colors <- grDevices::colorRampPalette(palette.col)
+  jet.colors <- grDevices::colorRampPalette(palette_col)
 
   nbcol <- 100
 

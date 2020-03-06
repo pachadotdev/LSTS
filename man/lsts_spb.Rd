@@ -10,15 +10,15 @@ lsts_spb(
   N = NULL,
   S = NULL,
   p = 0.25,
-  spar.freq = 0,
-  spar.time = 0,
+  spar_freq = 0,
+  spar_time = 0,
   theta = 0,
   phi = 0,
   xlim = NULL,
   ylim = NULL,
   zlim = NULL,
   ylab = "Time",
-  palette.col = NULL
+  palette_col = NULL
 )
 }
 \arguments{
@@ -43,10 +43,10 @@ taking the blocks or windows to calculate the periodogram.}
 proportional to \code{N}. By default \code{p=0.25}, if \code{S} and \code{N}
 are not entered.}
 
-\item{spar.freq}{(type: numeric) smoothing parameter, typically (but not
+\item{spar_freq}{(type: numeric) smoothing parameter, typically (but not
 necessarily) in \eqn{(0,1]}.}
 
-\item{spar.time}{(type: numeric) smoothing parameter, typically (but not
+\item{spar_time}{(type: numeric) smoothing parameter, typically (but not
 necessarily) in \eqn{(0,1]}.}
 
 \item{theta}{(type: numeric) angle defining the viewing direction, gives the
@@ -68,7 +68,7 @@ optional parameter.}
 \code{ylab='Time'} and is an optional
 parameter.}
 
-\item{palette.col}{(type: character) colors palette.}
+\item{palette_col}{(type: character) colors palette.}
 }
 \value{
 ** COMPLETE **
@@ -87,7 +87,7 @@ the length of the vector \code{y}. All windows are of the same length
 \code{lsts_spb} computes the periodogram in each of the
 \emph{M} windows and then smoothes it two times with
 \code{\link[stats]{smooth.spline}} function; the first time using
-\code{spar.freq} parameter and the second time with \code{spar.time}. These
+\code{spar_freq} parameter and the second time with \code{spar_time}. These
 windows overlap between them.
 
 The surface is then viewed by looking at the origin from a direction defined
