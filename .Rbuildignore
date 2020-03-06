@@ -2,4 +2,5 @@
 ^\.Rproj\.user$
 docs
 ^LICENSE\.md$
-dev
+data-raw
+^CODE_OF_CONDUCT\.md$
