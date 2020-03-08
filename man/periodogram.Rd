@@ -13,7 +13,7 @@ periodogram(y, plot = TRUE, include.taper = FALSE)
 periodogram.}
 
 \item{include.taper}{(type: logical) logical argument which by default is
-\code{FALSE}. If \code{include_taper=TRUE} then \code{y} is multiplied by
+\code{FALSE}. If \code{include.taper=TRUE} then \code{y} is multiplied by
 \eqn{0.5*(1 - cos(2\pi(n-1)/n))(\emph{cosine bell})}.}
 }
 \value{

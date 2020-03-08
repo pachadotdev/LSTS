@@ -46,7 +46,7 @@ hessian <- function(f, x0, ...) {
   f0 <- f(x0, ...)
 
   grad <- sapply(
-    1:n,
+    seq_len(n),
     function(i) {
       f(x0 + mdelta[, i], ...)
     }
