@@ -36,7 +36,7 @@
 
 
 <meta property="og:title" content="Diagnostic Plots for Time Series fits — ts.diag" />
-<meta property="og:description" content="Plot time-series diagnostics." />
+<meta property="og:description" content="ts_diag() replaces this function" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -106,54 +106,26 @@
     </div>
 
     <div class="ref-description">
-    <p>Plot time-series diagnostics.</p>
+    <p><code><a href='ts_diag.html'>ts_diag()</a></code> replaces this function</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ts.diag</span>(<span class='no'>x</span>, <span class='kw'>lag</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>cex</span> <span class='kw'>=</span> <span class='fl'>0.5</span>)</pre>
+    <pre class="usage"><span class='fu'>ts.diag</span>(<span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>(type: numeric) residuals of the fitted time series model.</p></td>
-    </tr>
-    <tr>
-      <th>lag</th>
-      <td><p>(type: numeric) maximum lag at which to calculate the acf and
-Ljung-Box test. By default set to 10.</p></td>
-    </tr>
-    <tr>
-      <th>cex</th>
-      <td><p>(type: numeric) optional argument of <code><a href='https://rdrr.io/r/graphics/par.html'>par</a></code>.
-By default set to 0.5.</p></td>
+      <th>...</th>
+      <td><p>old parameters</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>** COMPLETE **</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>This function plot the residuals, the autocorrelation function of the
-residuals (ACF) and the p-values of the Ljung-Box Test for all lags up to
-<code>lag</code>.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='Box.Ljung.Test.html'>Box.Ljung.Test</a></code></p></div>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>500</span>)
-<span class='fu'><a href='Box.Ljung.Test.html'>Box.Ljung.Test</a></span>(<span class='no'>z</span>, <span class='kw'>lag</span> <span class='kw'>=</span> <span class='fl'>15</span>)</div><div class='img'><img src='ts.diag-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>ts.diag</span>(<span class='no'>z</span>)</div><div class='img'><img src='ts.diag-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

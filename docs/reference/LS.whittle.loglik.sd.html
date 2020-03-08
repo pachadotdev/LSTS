@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Locally Stationary Whittle Log-likelihood sigma — LS.whittle.loglik.sd • lsts</title>
+<title>Whittle estimator to Locally Stationary Time Series — LS.whittle.loglik.sd • lsts</title>
 
 
 <!-- jquery -->
@@ -35,9 +35,8 @@
 
 
 
-<meta property="og:title" content="Locally Stationary Whittle Log-likelihood sigma — LS.whittle.loglik.sd" />
-<meta property="og:description" content="This function calculates log-likelihood with known \(\theta\),
-through LS.whittle.loglik function." />
+<meta property="og:title" content="Whittle estimator to Locally Stationary Time Series — LS.whittle.loglik.sd" />
+<meta property="og:description" content="ls_whittle_loglik_theta() replaces this function" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -101,112 +100,32 @@ through LS.whittle.loglik function." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Locally Stationary Whittle Log-likelihood sigma</h1>
+    <h1>Whittle estimator to Locally Stationary Time Series</h1>
     
     <div class="hidden name"><code>LS.whittle.loglik.sd.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function calculates log-likelihood with known \(\theta\),
-through <code>LS.whittle.loglik</code> function.</p>
+    <p><code><a href='ls_whittle_loglik_theta.html'>ls_whittle_loglik_theta()</a></code> replaces this function</p>
     </div>
 
-    <pre class="usage"><span class='fu'>LS.whittle.loglik.sd</span>(
-  <span class='no'>x</span>,
-  <span class='no'>series</span>,
-  <span class='kw'>order</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>0</span>),
-  <span class='kw'>ar.order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ma.order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>sd.order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>d.order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>include.d</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>N</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>S</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>include.taper</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>theta.par</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>numeric</a></span>()
-)</pre>
+    <pre class="usage"><span class='fu'>LS.whittle.loglik.sd</span>(<span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>(type: numeric) parameter vector.</p></td>
-    </tr>
-    <tr>
-      <th>series</th>
-      <td><p>(type: numeric) univariate time series.</p></td>
-    </tr>
-    <tr>
-      <th>order</th>
-      <td><p>(type: numeric) vector corresponding to <code>ARMA</code> model
-entered.</p></td>
-    </tr>
-    <tr>
-      <th>ar.order</th>
-      <td><p>(type: numeric) AR polimonial order.</p></td>
-    </tr>
-    <tr>
-      <th>ma.order</th>
-      <td><p>(type: numeric) MA polimonial order.</p></td>
-    </tr>
-    <tr>
-      <th>sd.order</th>
-      <td><p>(type: numeric) polinomial order noise scale factor.</p></td>
-    </tr>
-    <tr>
-      <th>d.order</th>
-      <td><p>(type: numeric) <code>d</code> polinomial order, where <code>d</code> is
-the <code>ARFIMA</code> parameter.</p></td>
-    </tr>
-    <tr>
-      <th>include.d</th>
-      <td><p>(type: numeric) logical argument for <code>ARFIMA</code> models.
-If <code>include.d=FALSE</code> then the model is an ARMA process.</p></td>
-    </tr>
-    <tr>
-      <th>N</th>
-      <td><p>(type: numeric) value corresponding to the length of the window to
-compute periodogram. If <code>N=NULL</code> then the function will use
-\(N = \textmd{trunc}(n^{0.8})\), see Dahlhaus (1998) where \(n\) is the
-length of the <code>y</code> vector.</p></td>
-    </tr>
-    <tr>
-      <th>S</th>
-      <td><p>(type: numeric) value corresponding to the lag with which will go
-taking the blocks or windows.</p></td>
-    </tr>
-    <tr>
-      <th>include.taper</th>
-      <td><p>(type: logical) logical argument that by default is
-<code>TRUE</code>. See <code><a href='periodogram.html'>periodogram</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>theta.par</th>
-      <td><p>(type: numeric) vector with the known parameters of the
-model.</p></td>
+      <th>...</th>
+      <td><p>old parameters</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>** COMPLETE **</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>This function computes <code><a href='LS.whittle.loglik.html'>LS.whittle.loglik</a></code> with <code>x</code> as
-<code>x = c(theta.par, x)</code>.</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'># COMPLETE
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

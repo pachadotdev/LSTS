@@ -46,7 +46,15 @@
 #' ** COMPLETE **
 #'
 #' @export
-LS.whittle.loglik.sd <- function(x, series, order = c(p = 0, q = 0), ar.order = NULL, ma.order = NULL, sd.order = NULL, d.order = NULL, include.d = FALSE, N = NULL, S = NULL, include.taper = TRUE, theta.par = numeric()) {
+ls_whittle_loglik_sd <- function(x, series, order = c(p = 0, q = 0), ar.order = NULL, ma.order = NULL, sd.order = NULL, d.order = NULL, include.d = FALSE, N = NULL, S = NULL, include.taper = TRUE, theta.par = numeric()) {
   x <- c(theta.par, x)
-  LS.whittle.loglik(x = x, series = series, order = order, ar.order = ar.order, ma.order = ma.order, sd.order = sd.order, d.order = d.order, include.d = include.d, N = N, S = S, include.taper = include.taper)
+  ls_whittle_loglik(x = x, series = series, order = order, ar.order = ar.order, ma.order = ma.order, sd.order = sd.order, d.order = d.order, include.d = include.d, N = N, S = S, include.taper = include.taper)
+}
+
+#' Whittle estimator to Locally Stationary Time Series
+#' @description \code{ls_whittle_loglik_theta()} replaces this function
+#' @param ... old parameters
+#' @export
+LS.whittle.loglik.sd <- function(...) {
+  .Deprecated("")
 }

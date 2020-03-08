@@ -31,10 +31,10 @@
 #' \eqn{\theta = (\alpha_0,\,\alpha_1,\,\ldots, \,\alpha_k)^{\prime}}.
 #' In this situation, estimating \eqn{\theta} involves determining \eqn{k} and
 #' estimating the coefficients \eqn{\alpha_0,\,\alpha_1,\,\ldots, \,\alpha_k}.
-#' \code{LS.whittle} optimizes \code{\link{LS.whittle.loglik}} as objective
+#' \code{LS.whittle} optimizes \code{\link{ls_whittle_loglik}} as objective
 #' function using \code{\link[stats]{nlminb}} function, for both LS-ARMA
 #' (\code{include.d=FALSE}) and LS-ARFIMA (\code{include.d=TRUE}) models.
-#' Also computes Kalman filter with \code{\link{LS.kalman}} and this values
+#' Also computes Kalman filter with \code{\link{ls_kalman}} and this values
 #' are given in \code{var.coef} in the output.
 #'
 #' @param series (type: numeric) univariate time series.
@@ -95,7 +95,7 @@
 #'   x <- malleco[(1 + S * (j - 1)):(N + S * (j - 1))]
 #'   table <- rbind(table, nlminb(
 #'     start = c(0.65, 0.15), N = N,
-#'     objective = LS.whittle.loglik,
+#'     objective = ls_whittle_loglik,
 #'     series = x, order = c(p = 1, q = 0)
 #'   )$par)
 #' }
@@ -109,10 +109,11 @@
 #' sigma <- smooth.spline(table$sigma, spar = 1)$y
 #' fit.2 <- nls(sigma ~ b0 + b1 * u, start = list(b0 = 0.65, b1 = 0.00))
 #'
-#' fit_whittle <- LS.whittle(
+#' fit_whittle <- ls_whittle(
 #'   series = malleco, start = c(coef(fit.1), coef(fit.2)), order = c(p = 1, q = 0),
 #'   ar.order = 1, sd.order = 1, N = 180, n.ahead = 10
 #' )
+#' 
 #' @return
 #' A list with the following components:
 #' \item{coef }{The best set of parameters found.}
@@ -135,22 +136,22 @@
 #' \item{se}{the estimated standard errors.}
 #' \item{model }{A list representing the fitted model.}
 #'
-#' @seealso \code{\link[stats]{nlminb}}, \code{\link{LS.kalman}}
+#' @seealso \code{\link[stats]{nlminb}}, \code{\link{ls_kalman}}
 #'
 #' @importFrom stats nlminb
 #'
 #' @export
-LS.whittle <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL, ma.order = NULL, sd.order = NULL, d.order = NULL, include.d = FALSE, N = NULL, S = NULL, include.taper = TRUE, control = list(), lower = -Inf, upper = Inf, m = NULL, n.ahead = 0) {
+ls_whittle <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL, ma.order = NULL, sd.order = NULL, d.order = NULL, include.d = FALSE, N = NULL, S = NULL, include.taper = TRUE, control = list(), lower = -Inf, upper = Inf, m = NULL, n.ahead = 0) {
   series <- c(series, rep(NA, n.ahead))
 
-  aux <- nlminb(start = start, objective = LS.whittle.loglik, series = series, order = order, ar.order = ar.order, ma.order = ma.order, sd.order = sd.order, d.order = d.order, include.d = include.d, N = N, S = S, include.taper = include.taper, lower = lower, upper = upper, control = control)
+  aux <- nlminb(start = start, objective = ls_whittle_loglik, series = series, order = order, ar.order = ar.order, ma.order = ma.order, sd.order = sd.order, d.order = d.order, include.d = include.d, N = N, S = S, include.taper = include.taper, lower = lower, upper = upper, control = control)
 
   T. <- length(series)
   loglik <- -aux$objective
   npar <- length(aux$par)
   aic <- -2 * loglik + 2 * npar / T.
 
-  aux. <- LS.kalman(series = series - mean(series, na.rm = TRUE), start = aux$par, order = order, ar.order = ar.order, ma.order = ma.order, sd.order = sd.order, d.order = d.order, include.d = include.d, m = m)
+  aux. <- ls_kalman(series = series - mean(series, na.rm = TRUE), start = aux$par, order = order, ar.order = ar.order, ma.order = ma.order, sd.order = sd.order, d.order = d.order, include.d = include.d, m = m)
 
   x <- aux$par
   k <- npar
@@ -160,8 +161,8 @@ LS.whittle <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL, 
   if (is.null(d.order)) {
     d.order <- 0
   }
-  G1 <- hessian(f = LS.whittle.loglik.theta, x0 = x[1:(k - d.order - 1)], series = series, order = order, ar.order = ar.order, ma.order = ma.order, sd.order = sd.order, d.order = d.order, include.d = include.d, N = N, S = S, include.taper = include.taper, sd.par = x[(k - d.order):k])
-  G2 <- hessian(f = LS.whittle.loglik.sd, x0 = x[(k - d.order):k], series = series, order = order, ar.order = ar.order, ma.order = ma.order, sd.order = sd.order, d.order = d.order, include.d = include.d, N = N, S = S, include.taper = include.taper, theta.par = x[1:(k - d.order - 1)])
+  G1 <- hessian(f = ls_whittle_loglik_theta, x0 = x[1:(k - d.order - 1)], series = series, order = order, ar.order = ar.order, ma.order = ma.order, sd.order = sd.order, d.order = d.order, include.d = include.d, N = N, S = S, include.taper = include.taper, sd.par = x[(k - d.order):k])
+  G2 <- hessian(f = ls_whittle_loglik_sd, x0 = x[(k - d.order):k], series = series, order = order, ar.order = ar.order, ma.order = ma.order, sd.order = sd.order, d.order = d.order, include.d = include.d, N = N, S = S, include.taper = include.taper, theta.par = x[1:(k - d.order - 1)])
   G <- matrix(0, ncol = k, nrow = k)
   G[1:(k - d.order - 1), 1:(k - d.order - 1)] <- G1
   G[(k - d.order):k, (k - d.order):k] <- G2
@@ -175,4 +176,12 @@ LS.whittle <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL, 
   se[is.na(series) == 0] <- NA
 
   list(coef = aux$par, var.coef = G, loglik = loglik, aic = aic, series = series, residuals = aux.$residuals, fitted.values = fitted.values, pred = pred, se = se, model = list(order = order, ar.order = ar.order, ma.order = ma.order, sd.order = sd.order, d.order = d.order, include.d = include.d, include.taper = include.taper))
+}
+
+#' Whittle estimator to Locally Stationary Time Series
+#' @description \code{ls_summary()} replaces this function
+#' @param ... old parameters
+#' @export
+LS.whittle <- function(...) {
+  .Deprecated("")
 }

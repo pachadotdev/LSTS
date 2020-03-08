@@ -16,19 +16,18 @@
 #' By default set to 0.5.
 #'
 #' @examples
-#' z <- rnorm(500)
-#' Box.Ljung.Test(z, lag = 15)
-#' ts.diag(z)
+#' ts_diag(malleco)
+#' 
 #' @return
 #' ** COMPLETE **
 #'
-#' @seealso \code{\link{Box.Ljung.Test}}
+#' @seealso \code{\link{box_ljung_test}}
 #'
 #' @importFrom stats sd acf na.pass
 #' @importFrom graphics plot abline par
 #'
 #' @export
-ts.diag <- function(x, lag = 10, cex = 0.5) {
+ts_diag <- function(x, lag = 10, cex = 0.5) {
   Z <- (x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE)
   op <- par(mfrow = c(3, 1), cex = cex)
   plot(Z ~ time(Z), ylim = c(-3.5, 3.5), type = "h", lwd = 1, main = expression("Standardized Residuals"), xlab = "", ylab = "", bty = "n", las = 1)
@@ -38,6 +37,14 @@ ts.diag <- function(x, lag = 10, cex = 0.5) {
   abline(h = +3, col = 4, lwd = 1, lty = 3)
   abline(h = -3, col = 4, lwd = 1, lty = 3)
   acf(x, lag.max = lag, main = expression("ACF of Residuals"), lwd = 1, las = 1, col = 1, bty = "n", na.action = na.pass)
-  Box.Ljung.Test(x, lag = lag)
+  box_ljung_test(x, lag = lag)
   par(op)
+}
+
+#' Diagnostic Plots for Time Series fits
+#' @description \code{ts_diag()} replaces this function
+#' @param ... old parameters
+#' @export
+ts.diag <- function(...) {
+  .Deprecated("")
 }

@@ -55,15 +55,16 @@
 #'
 #' @examples
 #' # COMPLETE
+#' 
 #' @return
 #' # COMPLETE
 #'
-#' @seealso \code{\link[stats]{nlminb}}, \code{\link{LS.kalman}}
+#' @seealso \code{\link[stats]{nlminb}}, \code{\link{ls_kalman}}
 #'
 #' @importFrom stats na.omit
 #'
 #' @export
-LS.whittle.loglik <- function(x, series, order = c(p = 0, q = 0), ar.order = NULL, ma.order = NULL, sd.order = NULL, d.order = NULL, include.d = FALSE, N = NULL, S = NULL, include.taper = TRUE) {
+ls_whittle_loglik <- function(x, series, order = c(p = 0, q = 0), ar.order = NULL, ma.order = NULL, sd.order = NULL, d.order = NULL, include.d = FALSE, N = NULL, S = NULL, include.taper = TRUE) {
   y <- series
   T. <- length(y)
 
@@ -89,7 +90,6 @@ LS.whittle.loglik <- function(x, series, order = c(p = 0, q = 0), ar.order = NUL
     d.order <- 0
   }
 
-
   p <- na.omit(c(ar.order, ma.order, sd.order))
   if (include.d == TRUE) {
     p <- na.omit(c(ar.order, ma.order, d.order, sd.order))
@@ -97,9 +97,7 @@ LS.whittle.loglik <- function(x, series, order = c(p = 0, q = 0), ar.order = NUL
 
   if (length(x) != sum(p + 1)) {
     stop("error in the number of parameters")
-  }
-
-  else {
+  } else {
     lik <- 0
     for (j in 1:M) {
       u <- (N / 2 + S * (j - 1)) / T.
@@ -136,7 +134,7 @@ LS.whittle.loglik <- function(x, series, order = c(p = 0, q = 0), ar.order = NUL
 
       sigma <- X[k]
 
-      f <- fdensity(ar = phi, ma = theta, d = d, sd = sigma, lambda = aux$lambda)
+      f <- spectral_density(ar = phi, ma = theta, d = d, sd = sigma, lambda = aux$lambda)
 
       lik <- sum(log(f) + I / f) / N + lik
     }
@@ -149,4 +147,12 @@ LS.whittle.loglik <- function(x, series, order = c(p = 0, q = 0), ar.order = NUL
 
     lik
   }
+}
+
+#' Locally Stationary Whittle log-likelihood Function
+#' @description \code{ls_whittle_loglik()} replaces this function
+#' @param ... old parameters
+#' @export
+LS.whittle.loglik <- function(...) {
+  .Deprecated("")
 }

@@ -1,7 +1,7 @@
 #' @title Locally Stationary Whittle Log-likelihood theta
 #'
 #' @description Calculate the log-likelihood with \eqn{\sigma} known, through
-#' \code{LS.whittle.loglik} function.
+#' \code{ls_whittle_loglik} function.
 #'
 #' @details
 #' This function computes \code{\link{LS.whittle.loglik}} with \code{x} as
@@ -41,11 +41,20 @@
 #'
 #' @examples
 #' # COMPLETE
+#' 
 #' @return
 #' ** COMPLETE **
 #'
 #' @export
-LS.whittle.loglik.theta <- function(x, series, order = c(p = 0, q = 0), ar.order = NULL, ma.order = NULL, sd.order = NULL, d.order = NULL, include.d = FALSE, N = NULL, S = NULL, include.taper = TRUE, sd.par = 1) {
+ls_whittle_loglik_theta <- function(x, series, order = c(p = 0, q = 0), ar.order = NULL, ma.order = NULL, sd.order = NULL, d.order = NULL, include.d = FALSE, N = NULL, S = NULL, include.taper = TRUE, sd.par = 1) {
   x <- c(x, sd.par)
-  LS.whittle.loglik(x = x, series = series, order = order, ar.order = ar.order, ma.order = ma.order, sd.order = sd.order, d.order = d.order, include.d = include.d, N = N, S = S, include.taper = include.taper)
+  ls_whittle_loglik(x = x, series = series, order = order, ar.order = ar.order, ma.order = ma.order, sd.order = sd.order, d.order = d.order, include.d = include.d, N = N, S = S, include.taper = include.taper)
+}
+
+#' Whittle estimator to Locally Stationary Time Series
+#' @description \code{ls_whittle_loglik_theta()} replaces this function
+#' @param ... old parameters
+#' @export
+LS.whittle.loglik.theta <- function(...) {
+  .Deprecated("")
 }

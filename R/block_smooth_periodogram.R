@@ -77,7 +77,8 @@
 #' \insertRef{dahlhaus1998optimal}{lsts}
 #'
 #' @examples
-#' block.smooth.periodogram(malleco)
+#' block_smooth_periodogram(malleco)
+#' 
 #' @return
 #' ** COMPLETE **
 #'
@@ -88,7 +89,7 @@
 #' @importFrom grDevices colorRampPalette
 #'
 #' @export
-block.smooth.periodogram <- function(y, x = NULL, N = NULL, S = NULL, p = 0.25, spar.freq = 0, spar.time = 0, theta = 0, phi = 0, xlim = NULL, ylim = NULL, zlim = NULL, ylab = "Time", palette.col = NULL) {
+block_smooth_periodogram <- function(y, x = NULL, N = NULL, S = NULL, p = 0.25, spar.freq = 0, spar.time = 0, theta = 0, phi = 0, xlim = NULL, ylim = NULL, zlim = NULL, ylab = "Time", palette.col = NULL) {
   T. <- length(y)
   if (is.null(N)) {
     N <- trunc(T.^0.8)
@@ -144,4 +145,12 @@ block.smooth.periodogram <- function(y, x = NULL, N = NULL, S = NULL, p = 0.25, 
     zlim <- range(aux, na.rm = TRUE)
   }
   persp(x = lambda, y = t, z = aux, theta = theta, phi = phi, col = color[facetcol], zlab = "Smooth Periodogram", xlab = "Frequency", ylab = ylab, expand = 0.5, ticktype = "detailed", ylim = ylim, zlim = zlim, xlim = xlim)
+}
+
+#' Smooth Periodogram by Blocks
+#' @description \code{block_smooth_periodogram()} replaces this function
+#' @param ... old parameters
+#' @export
+block.smooth.periodogram <- function(...) {
+  .Deprecated("")
 }

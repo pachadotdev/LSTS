@@ -36,9 +36,7 @@
 
 
 <meta property="og:title" content="Summary for Locally Stationary Time Series — LS.summary" />
-<meta property="og:description" content="Function used to produce summaries of the results to Whittle
-estimator to Locally Stationary Time Series (LS.whittle
-function)." />
+<meta property="og:description" content="ls_summary() replaces this function" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -108,65 +106,26 @@ function)." />
     </div>
 
     <div class="ref-description">
-    <p>Function used to produce summaries of the results to Whittle
-estimator to Locally Stationary Time Series (<code><a href='LS.whittle.html'>LS.whittle</a></code>
-function).</p>
+    <p><code><a href='ls_summary.html'>ls_summary()</a></code> replaces this function</p>
     </div>
 
-    <pre class="usage"><span class='fu'>LS.summary</span>(<span class='no'>object</span>)</pre>
+    <pre class="usage"><span class='fu'>LS.summary</span>(<span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>object</th>
-      <td><p>(type: COMPLETE) <code><a href='LS.whittle.html'>LS.whittle</a></code> function</p></td>
+      <th>...</th>
+      <td><p>old parameters</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list with the following components:</p>
-<dt>summary</dt><dd><p>a resume table with estimate, std. error, z-value and p-value
-of the model.</p></dd>
-<dt>aic</dt><dd><p>AIC of the model.</p></dd>
-<dt>npar</dt><dd><p>number of parameters in the model.</p></dd>
-
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>** COMPLETE **</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='LS.whittle.html'>LS.whittle</a></code></p></div>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>fit_whittle</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='LS.whittle.html'>LS.whittle</a></span>(
-  <span class='kw'>series</span> <span class='kw'>=</span> <span class='no'>malleco</span>, <span class='kw'>start</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>),
-  <span class='kw'>order</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>0</span>), <span class='kw'>ar.order</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>sd.order</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>N</span> <span class='kw'>=</span> <span class='fl'>180</span>, <span class='kw'>n.ahead</span> <span class='kw'>=</span> <span class='fl'>10</span>
-)
-
-<span class='fu'>LS.summary</span>(<span class='no'>fit_whittle</span>)</div><div class='output co'>#&gt; $summary
-#&gt;      Estimate Std. Error  z-value Pr(&gt;|z|)
-#&gt; [1,]   1.9793     0.1178  16.7983        0
-#&gt; [2,]  -0.7406     0.1604  -4.6176        0
-#&gt; [3,]   0.2225     0.0086  25.8035        0
-#&gt; [4,]  -0.1004     0.0075 -13.3115        0
-#&gt; 
-#&gt; $aic
-#&gt; [1] -5.314372
-#&gt; 
-#&gt; $npar
-#&gt; [1] 4
-#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

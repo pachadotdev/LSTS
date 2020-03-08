@@ -40,19 +40,20 @@
 #' @examples
 #' # Spectral Density AR(1)
 #'
-#' f <- fdensity(ar = 0.5, lambda = malleco)
+#' f <- spectral_density(ar = 0.5, lambda = malleco)
 #'
 #' plot(f ~ malleco,
 #'   bty = "n", type = "l", las = 1, xlab = expression("Frequency"),
 #'   ylab = expression("Spectral Density")
 #' )
+#' 
 #' @return
 #' ** COMPLETE **
 #'
 #' @seealso \code{\link{periodogram}}, \code{\link[graphics]{persp}}
 #'
 #' @export
-fdensity <- function(ar = numeric(), ma = numeric(), d = 0, sd = 1, lambda = NULL) {
+spectral_density <- function(ar = numeric(), ma = numeric(), d = 0, sd = 1, lambda = NULL) {
   p <- length(ar)
   q <- length(ma)
   phi <- c(1, -ar)
@@ -68,4 +69,12 @@ fdensity <- function(ar = numeric(), ma = numeric(), d = 0, sd = 1, lambda = NUL
   sigma <- sd
   aux <- sigma^2 * Re(aux) / (2 * pi)
   aux
+}
+
+#' Spectral Density
+#' @description \code{spectral_density()} replaces this function
+#' @param ... old parameters
+#' @export
+fdensity <- function(...) {
+  .Deprecated("spectral_density")
 }

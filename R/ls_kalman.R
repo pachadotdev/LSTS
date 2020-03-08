@@ -42,7 +42,8 @@
 #' \insertRef{palma2013estimation}{lsts}
 #'
 #' @examples
-#' LS.kalman(malleco, start(malleco))
+#' ls_kalman(malleco, start(malleco))
+#'
 #' @return
 #' A list with:
 #' \item{residuals }{standard residuals.}
@@ -52,7 +53,7 @@
 #' @importFrom stats na.omit ARMAtoMA
 #'
 #' @export
-LS.kalman <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL, ma.order = NULL, sd.order = NULL, d.order = NULL, include.d = FALSE, m = NULL) {
+ls_kalman <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL, ma.order = NULL, sd.order = NULL, d.order = NULL, include.d = FALSE, m = NULL) {
   x <- start
   T. <- length(series)
 
@@ -175,4 +176,12 @@ LS.kalman <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL, m
   residuals <- (series - hat.y) / sqrt(delta[1:T.])
   fitted.values <- hat.y
   return(list(residuals = residuals, fitted.values = fitted.values, delta = delta))
+}
+
+#' Kalman filter for locally stationary processes
+#' @description \code{ls_kalman()} replaces this function
+#' @param ... old parameters
+#' @export
+LS.kalman <- function(...) {
+  .Deprecated("")
 }

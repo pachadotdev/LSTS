@@ -22,7 +22,8 @@
 #' \insertRef{ljung1978measure}{lsts}
 #'
 #' @examples
-#' Box.Ljung.Test(malleco, lag = 5)
+#' box_ljung_test(malleco, lag = 5)
+#' 
 #' @return
 #' ** COMPLETE **
 #'
@@ -32,7 +33,7 @@
 #' @importFrom graphics plot abline
 #'
 #' @export
-Box.Ljung.Test <- function(z, lag = NULL, main = NULL) {
+box_ljung_test <- function(z, lag = NULL, main = NULL) {
   if (is.null(lag)) {
     lag <- 10
   }
@@ -51,4 +52,12 @@ Box.Ljung.Test <- function(z, lag = NULL, main = NULL) {
   }
   plot(p.value ~ c(1:k), ylim = c(0, 1), bty = "n", las = 1, lwd = 2, xlim = c(0, k), main = main, xlab = "Lag", ylab = "p-value", pch = 20)
   abline(h = 0.05, lty = 2, col = "blue")
+}
+
+#' Ljung-Box Test Plot
+#' @description \code{box_ljung_test()} replaces this function
+#' @param ... old parameters
+#' @export
+Box.Ljung.Test <- function(...) {
+  .Deprecated("box_ljung_test")
 }

@@ -36,9 +36,7 @@
 
 
 <meta property="og:title" content="Locally Stationary Whittle log-likelihood Function — LS.whittle.loglik" />
-<meta property="og:description" content="This function computes Whittle estimator for LS-ARMA and
-LS-ARFIMA models, in data with mean zero. If mean is not zero, then it is
-subtracted to data." />
+<meta property="og:description" content="ls_whittle_loglik() replaces this function" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -108,123 +106,26 @@ subtracted to data." />
     </div>
 
     <div class="ref-description">
-    <p>This function computes Whittle estimator for LS-ARMA and
-LS-ARFIMA models, in data with mean zero. If mean is not zero, then it is
-subtracted to data.</p>
+    <p><code><a href='ls_whittle_loglik.html'>ls_whittle_loglik()</a></code> replaces this function</p>
     </div>
 
-    <pre class="usage"><span class='fu'>LS.whittle.loglik</span>(
-  <span class='no'>x</span>,
-  <span class='no'>series</span>,
-  <span class='kw'>order</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>0</span>),
-  <span class='kw'>ar.order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ma.order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>sd.order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>d.order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>include.d</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>N</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>S</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>include.taper</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>LS.whittle.loglik</span>(<span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>COMPLETE</p></td>
-    </tr>
-    <tr>
-      <th>series</th>
-      <td><p>(type: numeric) univariate time series.</p></td>
-    </tr>
-    <tr>
-      <th>order</th>
-      <td><p>(type: numeric) vector corresponding to <code>ARMA</code> model
-entered.</p></td>
-    </tr>
-    <tr>
-      <th>ar.order</th>
-      <td><p>(type: numeric) AR polimonial order.</p></td>
-    </tr>
-    <tr>
-      <th>ma.order</th>
-      <td><p>(type: numeric) MA polimonial order.</p></td>
-    </tr>
-    <tr>
-      <th>sd.order</th>
-      <td><p>(type: numeric) polinomial order noise scale factor.</p></td>
-    </tr>
-    <tr>
-      <th>d.order</th>
-      <td><p>(type: numeric) <code>d</code> polinomial order, where <code>d</code> is
-the <code>ARFIMA</code> parameter.</p></td>
-    </tr>
-    <tr>
-      <th>include.d</th>
-      <td><p>(type: numeric) logical argument for <code>ARFIMA</code> models.
-If <code>include.d=FALSE</code> then the model is an ARMA process.</p></td>
-    </tr>
-    <tr>
-      <th>N</th>
-      <td><p>(type: numeric) value corresponding to the length of the window to
-compute periodogram. If <code>N=NULL</code> then the function will use
-\(N = \textmd{trunc}(n^{0.8})\), see Dahlhaus (1998) where \(n\) is the
-length of the <code>y</code> vector.</p></td>
-    </tr>
-    <tr>
-      <th>S</th>
-      <td><p>(type: numeric) value corresponding to the lag with which will go
-taking the blocks or windows.</p></td>
-    </tr>
-    <tr>
-      <th>include.taper</th>
-      <td><p>(type: logical) logical argument that by default is
-<code>TRUE</code>. See <code><a href='periodogram.html'>periodogram</a></code>.</p></td>
+      <th>...</th>
+      <td><p>old parameters</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p># COMPLETE</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>The estimation of the time-varying parameters can be carried out by means of
-the Whittle log-likelihood function proposed by Dahlhaus (1997),
-$$L_n(\theta) = \frac{1}{4\pi}\frac{1}{M} \int_{-\pi}^{\pi}
-\bigg\{log f_{\theta}(u_j,\lambda) +
-\frac{I_N(u_j, \lambda)}{f_{\theta}(u_j,\lambda)}\bigg\}\,d\lambda$$
-where \(M\) is the number of blocks, \(N\) the length of the series per
-block, \(n =S(M-1)+N\), \(S\) is the shift from block to block,
-\(u_j =t_j/n\), \(t_j =S(j-1)+N/2\), \(j =1,\ldots,M\) and
-\(\lambda\) the Fourier frequencies in the block
-(\(2\,\pi\,k/N\), \(k = 1,\ldots, N\)).</p>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p>For more information on theoretical foundations and estimation methods see</p>
-<p>Brockwell PJ, Davis RA, Calder MV (2002).
-<em>Introduction to time series and forecasting</em>, volume 2.
-Springer.</p>
-<p>Palma W, Olea R, others (2010).
-&#8220;An efficient estimator for locally stationary Gaussian long-memory processes.&#8221;
-<em>The Annals of Statistics</em>, <b>38</b>(5), 2958--2997.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='https://rdrr.io/r/stats/nlminb.html'>nlminb</a></code>, <code><a href='LS.kalman.html'>LS.kalman</a></code></p></div>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'># COMPLETE
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#references">References</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

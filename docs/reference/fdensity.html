@@ -36,8 +36,7 @@
 
 
 <meta property="og:title" content="Spectral Density — fdensity" />
-<meta property="og:description" content="Returns theoretical spectral density evaluated in ARMA and
-ARFIMA processes." />
+<meta property="og:description" content="spectral_density() replaces this function" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -107,88 +106,26 @@ ARFIMA processes." />
     </div>
 
     <div class="ref-description">
-    <p>Returns theoretical spectral density evaluated in ARMA and
-ARFIMA processes.</p>
+    <p><code><a href='spectral_density.html'>spectral_density()</a></code> replaces this function</p>
     </div>
 
-    <pre class="usage"><span class='fu'>fdensity</span>(<span class='kw'>ar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>numeric</a></span>(), <span class='kw'>ma</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>numeric</a></span>(), <span class='kw'>d</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>lambda</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>fdensity</span>(<span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>ar</th>
-      <td><p>(type: numeric) AR vector. If the time serie doesn't have AR term
-then omit it. For more details see the examples.</p></td>
-    </tr>
-    <tr>
-      <th>ma</th>
-      <td><p>(type: numeric) MA vector. If the time serie doesn't have MA term
-then omit it. For more details see the examples.</p></td>
-    </tr>
-    <tr>
-      <th>d</th>
-      <td><p>(type: numeric) Long-memory parameter. If d is zero, then the
-process is ARMA(p,q).</p></td>
-    </tr>
-    <tr>
-      <th>sd</th>
-      <td><p>(type: numeric) Noise scale factor, by default is 1.</p></td>
-    </tr>
-    <tr>
-      <th>lambda</th>
-      <td><p>(type: numeric) \(\lambda\) parameter on which the spectral
-density is calculated/computed. If <code>lambda=NULL</code> then it is considered a
-sequence between 0 and \(\pi\).</p></td>
+      <th>...</th>
+      <td><p>old parameters</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>** COMPLETE **</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>The spectral density of an ARFIMA(p,d,q) processes is
-$$f(\lambda) = \frac{\sigma^2}{2\pi} \cdot \bigg(2\,
-\sin(\lambda/2)\bigg)^{-2d} \cdot
-\frac{\bigg|\theta\bigg(\exp\bigg(-i\lambda\bigg)\bigg)\bigg|^2}
-{\bigg|\phi\bigg(\exp\bigg(-i\lambda\bigg)\bigg)\bigg|^2}$$</p>
-<p>With \(-\pi \le \lambda \le \pi\) and \(-1 &lt; d &lt; 1/2\). \(|x|\) is the
-<code><a href='https://rdrr.io/r/base/complex.html'>Mod</a></code> of <em>x</em>. <code>lsts_sd</code> returns the
-values corresponding to \(f(\lambda)\). When <code>d</code> is zero, the spectral
-density corresponds to an ARMA(p,q).</p>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p>For more information on theoretical foundations and estimation methods see</p>
-<p>Brockwell PJ, Davis RA, Calder MV (2002).
-<em>Introduction to time series and forecasting</em>, volume 2.
-Springer.</p>
-<p>Palma W (2007).
-<em>Long-memory time series: theory and methods</em>, volume 662.
-John Wiley \&amp; Sons.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='periodogram.html'>periodogram</a></code>, <code><a href='https://rdrr.io/r/graphics/persp.html'>persp</a></code></p></div>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Spectral Density AR(1)</span>
-
-<span class='no'>f</span> <span class='kw'>&lt;-</span> <span class='fu'>fdensity</span>(<span class='kw'>ar</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>lambda</span> <span class='kw'>=</span> <span class='no'>malleco</span>)
-
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>f</span> ~ <span class='no'>malleco</span>,
-  <span class='kw'>bty</span> <span class='kw'>=</span> <span class='st'>"n"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"l"</span>, <span class='kw'>las</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span>(<span class='st'>"Frequency"</span>),
-  <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span>(<span class='st'>"Spectral Density"</span>)
-)</div><div class='img'><img src='fdensity-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#references">References</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>
