@@ -54,8 +54,8 @@
 #' @export
 LS.kalman <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL, ma.order = NULL, sd.order = NULL, d.order = NULL, include.d = FALSE, m = NULL) {
   x <- start
-  len_s <- length(series)
-
+  T. <- length(series)
+  
   if (is.null(ar.order)) {
     ar.order <- rep(0, order[1])
   }
@@ -69,89 +69,68 @@ LS.kalman <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL, m
     d.order <- 0
   }
   if (is.null(m)) {
-    m <- trunc(0.25 * len_s^0.8)
+    m <- trunc(0.25 * T.^0.8)
   }
-
+  
   M <- m + 1
-  u <- seq_len(len_s) / len_s
-
+  u <- (1:T.) / T.
+  
   p <- na.omit(c(ar.order, ma.order, sd.order))
   if (include.d == TRUE) {
     p <- na.omit(c(ar.order, ma.order, d.order, sd.order))
   }
-
+  
   phi. <- numeric()
   theta. <- numeric()
   sigma. <- numeric()
   d. <- numeric()
-
+  
   for (j in 1:length(u)) {
-    k <- sapply(
-      seq_along(p),
-      function(i) {
-        k0 <- 1
-        k1 <- k0 + p[i] + 1
-        
-        if (i == 1) {
-          k <- numeric()
-          k[i] <- k1
-        } else {
-          k[i] <- k[i - 1] + p[i] + 1
-        }
-        
-        return(k[i])
-      }
-    )
+    X <- numeric()
+    k <- 1
+    for (i in 1:length(p)) {
+      X[i] <- sum(x[k:(k + p[i])] * u[j]^(0:p[i]))
+      k <- k + p[i] + 1
+    }
     
-    X <- sapply(
-      seq_along(p),
-      function(i) {
-        if (i == 1) {
-          sum(x[1:(1 + p[i])] * u[j]^(0:p[i]))
-        } else {
-          sum(x[k[i - 1]:(k[i - 1] + p[i])] * u[j]^(0:p[i]))
-        }
-      }
-    )
-
     phi <- numeric()
-    l <- 1
+    k <- 1
     if (order[1] > 0) {
       phi[is.na(ar.order) == 1] <- 0
-      phi[is.na(ar.order) == 0] <- X[l:(length(na.omit(ar.order)))]
-      l <- length(na.omit(ar.order)) + 1
+      phi[is.na(ar.order) == 0] <- X[k:(length(na.omit(ar.order)))]
+      k <- length(na.omit(ar.order)) + 1
       phi. <- rbind(phi., phi)
     }
-
+    
+    
     theta <- numeric()
     if (order[2] > 0) {
       theta[is.na(ma.order) == 1] <- 0
-      theta[is.na(ma.order) == 0] <- X[l:(length(na.omit(ma.order)) + l - 1)]
-      l <- length(na.omit(ma.order)) + l
+      theta[is.na(ma.order) == 0] <- X[k:(length(na.omit(ma.order)) + k - 1)]
+      k <- length(na.omit(ma.order)) + k
       theta. <- rbind(theta., theta)
     }
-
+    
     d <- 0
     if (include.d == TRUE) {
-      d <- X[l]
-      l <- l + 1
+      d <- X[k]
+      k <- k + 1
       d. <- c(d., d)
     }
-
-    sigma <- X[l]
+    
+    sigma <- X[k]
     sigma. <- c(sigma., sigma)
   }
-
+  
   sigma <- sigma.
-
+  
   Omega <- matrix(0, nrow = M, ncol = M)
   diag(Omega) <- 1
-
+  
   X <- rep(0, M)
   delta <- vector("numeric")
   hat.y <- vector("numeric")
-  
-  for (i in seq_len(len_s)) {
+  for (i in 1:T.) {
     if (is.null(dim(phi.)) == 1 & is.null(dim(theta.)) == 1) {
       psi <- c(1, ARMAtoMA(ar = numeric(), ma = numeric(), lag.max = m))
     }
@@ -164,50 +143,36 @@ LS.kalman <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL, m
     if (is.null(dim(phi.)) == 0 & is.null(dim(theta.)) == 0) {
       psi <- c(1, ARMAtoMA(ar = phi.[i, ], ma = theta.[i, ], lag.max = m))
     }
-    
+    psi. <- numeric()
     if (include.d == TRUE) {
       eta <- gamma(0:m + d.[i]) / (gamma(0:m + 1) * gamma(d.[i]))
-      
-      psi <- sapply(
-        seq_len(m+1),
-        function(i) {
-          k0 <- psi[1] * eta[1]
-          
-          if (i == 1) {
-            k <- numeric()
-            k[i] <- k0
-          } else {
-            k[i] <- sum(psi[1:i] * rev(eta[1:i]))
-          }
-          
-          return(k[i])
-        })
+      for (k in 0:m) {
+        psi.[k + 1] <- sum(psi[1:(k + 1)] * rev(eta[1:(k + 1)]))
+      }
+      psi <- psi.
     }
-    
     g <- sigma[i] * rev(psi)
     aux <- Omega %*% g
     delta[i] <- g %*% aux
-    N <- matrix(0, M - 1, M - 1)
-    diag(N) <- 1
-    N <- cbind(0, N)
-    N <- rbind(N, 0)
-    Theta <- c(N %*% aux)
+    F. <- matrix(0, M - 1, M - 1)
+    diag(F.) <- 1
+    F. <- cbind(0, F.)
+    F. <- rbind(F., 0)
+    Theta <- c(F. %*% aux)
     Q <- matrix(0, M, M)
     Q[M, M] <- 1
-    
     if (is.na(series[i])) {
-      Omega <- N %*% Omega %*% t(N) + Q
+      Omega <- F. %*% Omega %*% t(F.) + Q
       hat.y[i] <- t(g) %*% X
-      X <- N %*% X
+      X <- F. %*% X
     }
     else {
-      Omega <- N %*% Omega %*% t(N) + Q - Theta %*% solve(delta[i]) %*% Theta
+      Omega <- F. %*% Omega %*% t(F.) + Q - Theta %*% solve(delta[i]) %*% Theta
       hat.y[i] <- t(g) %*% X
-      X <- N %*% X + Theta %*% solve(delta[i]) %*% (series[i] - hat.y[i])
+      X <- F. %*% X + Theta %*% solve(delta[i]) %*% (series[i] - hat.y[i])
     }
   }
-  
-  residuals <- (series - hat.y) / sqrt(delta[seq_len(len_s)])
+  residuals <- (series - hat.y) / sqrt(delta[1:T.])
   fitted.values <- hat.y
   return(list(residuals = residuals, fitted.values = fitted.values, delta = delta))
 }
