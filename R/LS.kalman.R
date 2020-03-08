@@ -55,7 +55,7 @@
 LS.kalman <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL, ma.order = NULL, sd.order = NULL, d.order = NULL, include.d = FALSE, m = NULL) {
   x <- start
   T. <- length(series)
-  
+
   if (is.null(ar.order)) {
     ar.order <- rep(0, order[1])
   }
@@ -71,20 +71,20 @@ LS.kalman <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL, m
   if (is.null(m)) {
     m <- trunc(0.25 * T.^0.8)
   }
-  
+
   M <- m + 1
   u <- (1:T.) / T.
-  
+
   p <- na.omit(c(ar.order, ma.order, sd.order))
   if (include.d == TRUE) {
     p <- na.omit(c(ar.order, ma.order, d.order, sd.order))
   }
-  
+
   phi. <- numeric()
   theta. <- numeric()
   sigma. <- numeric()
   d. <- numeric()
-  
+
   for (j in 1:length(u)) {
     X <- numeric()
     k <- 1
@@ -92,7 +92,7 @@ LS.kalman <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL, m
       X[i] <- sum(x[k:(k + p[i])] * u[j]^(0:p[i]))
       k <- k + p[i] + 1
     }
-    
+
     phi <- numeric()
     k <- 1
     if (order[1] > 0) {
@@ -101,8 +101,8 @@ LS.kalman <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL, m
       k <- length(na.omit(ar.order)) + 1
       phi. <- rbind(phi., phi)
     }
-    
-    
+
+
     theta <- numeric()
     if (order[2] > 0) {
       theta[is.na(ma.order) == 1] <- 0
@@ -110,23 +110,23 @@ LS.kalman <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL, m
       k <- length(na.omit(ma.order)) + k
       theta. <- rbind(theta., theta)
     }
-    
+
     d <- 0
     if (include.d == TRUE) {
       d <- X[k]
       k <- k + 1
       d. <- c(d., d)
     }
-    
+
     sigma <- X[k]
     sigma. <- c(sigma., sigma)
   }
-  
+
   sigma <- sigma.
-  
+
   Omega <- matrix(0, nrow = M, ncol = M)
   diag(Omega) <- 1
-  
+
   X <- rep(0, M)
   delta <- vector("numeric")
   hat.y <- vector("numeric")
