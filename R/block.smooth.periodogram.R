@@ -88,7 +88,11 @@
 #' @importFrom grDevices colorRampPalette
 #'
 #' @export
-block.smooth.periodogram <- function(y, x = NULL, N = NULL, S = NULL, p = 0.25, spar.freq = 0, spar.time = 0, theta = 0, phi = 0, xlim = NULL, ylim = NULL, zlim = NULL, ylab = "Time", palette.col = NULL) {
+block.smooth.periodogram <- function(y, x = NULL, N = NULL, S = NULL, p = 0.25,
+                                     spar.freq = 0, spar.time = 0, theta = 0,
+                                     phi = 0, xlim = NULL, ylim = NULL,
+                                     zlim = NULL, ylab = "Time",
+                                     palette.col = NULL) {
   if (is.null(N)) {
     N <- trunc(length(y)^0.8)
   }
@@ -101,17 +105,22 @@ block.smooth.periodogram <- function(y, x = NULL, N = NULL, S = NULL, p = 0.25, 
   
   aux <- sapply(seq_len(M),
                 function(j) {
-                  periodogram(y[(S * (j - 1) + 1):(S * (j - 1) + N)], plot = FALSE)$periodogram
+                  periodogram(y[(S * (j - 1) + 1):(S * (j - 1) + N)],
+                              plot = FALSE)$periodogram
                 })
   
-  lambda <- periodogram(y[(S * (M - 1) + 1):(S * (M - 1) + N)], plot = FALSE)$lambda
+  lambda <- periodogram(y[(S * (M - 1) + 1):(S * (M - 1) + N)],
+                        plot = FALSE)$lambda
 
   aux2 <- sapply(seq_len(M),
                  function(j) {
                    smooth.spline(aux[, j], spar = spar.freq)$y
                   })
 
-  aux3 <- t(sapply(seq_len(dim(aux)[1]), function(i) smooth.spline(aux2[i, ], spar = spar.time)$y))
+  aux3 <- t(sapply(seq_len(dim(aux)[1]),
+                   function(i) {
+                     smooth.spline(aux2[i, ], spar = spar.time)$y
+                   }))
   
   if (is.null(palette.col)) {
     palette.col <- c("green", "lightgreen", "yellow", "orange", "darkred")
@@ -120,7 +129,8 @@ block.smooth.periodogram <- function(y, x = NULL, N = NULL, S = NULL, p = 0.25, 
   jet.colors <- colorRampPalette(palette.col)
   nbcol <- 100
   color <- jet.colors(nbcol)
-  facetcol <- cut(aux3[-1, -1] + aux3[-1, -ncol(aux3)] + aux3[-nrow(aux3), -1] + aux3[-nrow(aux3), -ncol(aux3)], nbcol)
+  facetcol <- cut(aux3[-1, -1] + aux3[-1, -ncol(aux3)] + aux3[-nrow(aux3), -1] +
+                    aux3[-nrow(aux3), -ncol(aux3)], nbcol)
   
   if (is.null(x)) {
     t <- S * (seq_len(M) - 1) + N / 2
@@ -140,5 +150,8 @@ block.smooth.periodogram <- function(y, x = NULL, N = NULL, S = NULL, p = 0.25, 
     zlim <- range(aux3, na.rm = TRUE)
   }
   
-  persp(x = lambda, y = t, z = aux3, theta = theta, phi = phi, col = color[facetcol], zlab = "Smooth Periodogram", xlab = "Frequency", ylab = ylab, expand = 0.5, ticktype = "detailed", ylim = ylim, zlim = zlim, xlim = xlim)
+  persp(x = lambda, y = t, z = aux3, theta = theta, phi = phi,
+        col = color[facetcol], zlab = "Smooth Periodogram", xlab = "Frequency",
+        ylab = ylab, expand = 0.5, ticktype = "detailed", ylim = ylim,
+        zlim = zlim, xlim = xlim)
 }
