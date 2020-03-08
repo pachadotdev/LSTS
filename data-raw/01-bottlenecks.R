@@ -4,7 +4,8 @@ library(profvis)
 library(lsts)
 
 p <- profvis({
-  block.smooth.periodogram(malleco)
+  # block.smooth.periodogram(malleco)
+  Box.Ljung.Test(malleco, lag = 5)
 })
 
 p
