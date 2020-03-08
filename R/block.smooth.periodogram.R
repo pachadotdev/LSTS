@@ -96,62 +96,76 @@ block.smooth.periodogram <- function(y, x = NULL, N = NULL, S = NULL, p = 0.25,
   if (is.null(N)) {
     N <- trunc(length(y)^0.8)
   }
-  
+
   if (is.null(S)) {
     S <- trunc(p * N)
   }
-  
+
   M <- trunc((length(y) - N) / S + 1)
-  
-  aux <- sapply(seq_len(M),
-                function(j) {
-                  periodogram(y[(S * (j - 1) + 1):(S * (j - 1) + N)],
-                              plot = FALSE)$periodogram
-                })
-  
+
+  aux <- sapply(
+    seq_len(M),
+    function(j) {
+      periodogram(y[(S * (j - 1) + 1):(S * (j - 1) + N)],
+        plot = FALSE
+      )$periodogram
+    }
+  )
+
   lambda <- periodogram(y[(S * (M - 1) + 1):(S * (M - 1) + N)],
-                        plot = FALSE)$lambda
+    plot = FALSE
+  )$lambda
 
-  aux2 <- sapply(seq_len(M),
-                 function(j) {
-                   smooth.spline(aux[, j], spar = spar.freq)$y
-                  })
+  aux2 <- sapply(
+    seq_len(M),
+    function(j) {
+      smooth.spline(aux[, j], spar = spar.freq)$y
+    }
+  )
 
-  aux3 <- t(sapply(seq_len(dim(aux)[1]),
-                   function(i) {
-                     smooth.spline(aux2[i, ], spar = spar.time)$y
-                   }))
-  
+  aux3 <- t(sapply(
+    seq_len(dim(aux)[1]),
+    function(i) {
+      smooth.spline(aux2[i, ], spar = spar.time)$y
+    }
+  ))
+
   if (is.null(palette.col)) {
     palette.col <- c("green", "lightgreen", "yellow", "orange", "darkred")
   }
-  
+
   jet.colors <- colorRampPalette(palette.col)
   nbcol <- 100
   color <- jet.colors(nbcol)
-  facetcol <- cut(aux3[-1, -1] + aux3[-1, -ncol(aux3)] + aux3[-nrow(aux3), -1] +
-                    aux3[-nrow(aux3), -ncol(aux3)], nbcol)
-  
+  nr <- nrow(aux3)
+  nc <- ncol(aux3)
+  facetcol <- cut(
+    aux3[-1, -1] + aux3[-1, -nc] + aux3[-nr, -1] + aux3[-nr, -nc],
+    nbcol
+  )
+
   if (is.null(x)) {
     t <- S * (seq_len(M) - 1) + N / 2
   } else {
     t <- x[t]
   }
-  
+
   if (is.null(xlim)) {
     xlim <- range(lambda)
   }
-  
+
   if (is.null(ylim)) {
     ylim <- range(t)
   }
-  
+
   if (is.null(zlim)) {
     zlim <- range(aux3, na.rm = TRUE)
   }
-  
-  persp(x = lambda, y = t, z = aux3, theta = theta, phi = phi,
-        col = color[facetcol], zlab = "Smooth Periodogram", xlab = "Frequency",
-        ylab = ylab, expand = 0.5, ticktype = "detailed", ylim = ylim,
-        zlim = zlim, xlim = xlim)
+
+  persp(
+    x = lambda, y = t, z = aux3, theta = theta, phi = phi,
+    col = color[facetcol], zlab = "Smooth Periodogram", xlab = "Frequency",
+    ylab = ylab, expand = 0.5, ticktype = "detailed", ylim = ylim,
+    zlim = zlim, xlim = xlim
+  )
 }

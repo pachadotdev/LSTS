@@ -36,24 +36,28 @@ Box.Ljung.Test <- function(z, lag = NULL, main = NULL) {
   if (is.null(lag)) {
     lag <- 10
   }
-  
+
   aux <- acf(z, plot = FALSE, lag.max = lag, na.action = na.pass)
-  
+
   rho <- sapply(seq_len(lag), function(j) aux$acf[2:(j + 1), , 1])
-  
-  Q <- sapply(seq_len(lag),
-              function(j) {
-                sum(length(z) * (length(z) + 2) * rho[[j]]^2 /
-                      (length(z) - seq_len(j)))
-              })
-  
+
+  n <- length(z)
+  Q <- sapply(
+    seq_len(lag),
+    function(j) {
+      sum(n * (n + 2) * rho[[j]]^2 / (n - seq_len(j)))
+    }
+  )
+
   p.value <- sapply(seq_len(lag), function(j) 1 - pchisq(Q[j], df = j))
-  
+
   if (is.null(main)) {
     main <- expression("p values for Ljung-Box statistic")
   }
-  
-  plot(p.value ~ seq_len(lag), ylim = c(0, 1), bty = "n", las = 1, lwd = 2,
-       xlim = c(0, lag), main = main, xlab = "Lag", ylab = "p-value", pch = 20)
+
+  plot(p.value ~ seq_len(lag),
+    ylim = c(0, 1), bty = "n", las = 1, lwd = 2,
+    xlim = c(0, lag), main = main, xlab = "Lag", ylab = "p-value", pch = 20
+  )
   abline(h = 0.05, lty = 2, col = "blue")
 }
