@@ -70,7 +70,7 @@
 #' @seealso \code{\link{arima.sim}}
 #'
 #' @importFrom stats smooth.spline reshape
-#' @importFrom ggplot2 ggplot aes after_stat geom_contour scale_color_viridis_c 
+#' @importFrom ggplot2 ggplot aes stat geom_contour scale_color_viridis_c 
 #'  labs theme_minimal
 #'
 #' @export
