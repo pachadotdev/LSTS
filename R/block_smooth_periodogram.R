@@ -119,7 +119,7 @@ block_smooth_periodogram <- function(y, x = NULL, N = NULL, S = NULL, p = 0.25,
   d <- round(d, 5)
  
   g <- ggplot(data = d, aes(x = x, y = y, z = z)) +
-    geom_contour(binwidth = 0.005, aes(colour = after_stat(level))) + 
+    geom_contour(binwidth = 0.005, aes(colour = stat(level))) + 
     scale_color_viridis_c(name = "Smooth Periodogram", option = "C") +
     labs(x = "Frequency", y = "Time", title = "Smooth Periodogram 2d Contours") +
     theme_minimal()
