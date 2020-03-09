@@ -54,21 +54,6 @@
 #' @param phi (type: numeric) angle defining the viewing direction, gives the
 #' colatitude.
 #'
-#' @param xlim (type: numeric) x-axis limits, \code{NULL} by default and
-#' optional parameter.
-#'
-#' @param ylim (type: numeric) y-axis limits, \code{NULL} by default and
-#' optional parameter.
-#'
-#' @param zlim (type: numeric) z-axis limits, \code{NULL} by default and
-#' optional parameter.
-#'
-#' @param ylab (type: character) title for the y-axis. By default is
-#' \code{ylab='Time'} and is an optional
-#' parameter.
-#'
-#' @param palette.col (type: character) colors palette.
-#'
 #' @references
 #' For more information on theoretical foundations and estimation methods see
 #'
@@ -84,67 +69,62 @@
 #'
 #' @seealso \code{\link{arima.sim}}
 #'
-#' @importFrom stats smooth.spline
-#' @importFrom graphics persp
-#' @importFrom grDevices colorRampPalette
+#' @importFrom stats smooth.spline reshape
+#' @importFrom ggplot2 ggplot aes after_stat geom_contour scale_color_viridis_c 
+#'  labs theme_minimal
 #'
 #' @export
-block_smooth_periodogram <- function(y, x = NULL, N = NULL, S = NULL, p = 0.25, spar.freq = 0, spar.time = 0, theta = 0, phi = 0, xlim = NULL, ylim = NULL, zlim = NULL, ylab = "Time", palette.col = NULL) {
-  T. <- length(y)
+block_smooth_periodogram <- function(y, x = NULL, N = NULL, S = NULL, p = 0.25,
+                                     spar.freq = 0, spar.time = 0, theta = 0,
+                                     phi = 0) {
+  len_y <- length(y)
+  
   if (is.null(N)) {
-    N <- trunc(T.^0.8)
+    N <- trunc(len_y^0.8)
   }
   if (is.null(S)) {
     S <- trunc(p * N)
   }
-  M <- trunc((T. - N) / S + 1)
+  
+  M <- trunc((len_y - N) / S + 1)
   aux <- matrix(NA, ncol = M, nrow = trunc(N / 2))
+  
   for (j in 1:M) {
     aux[, j] <- periodogram(y[(S * (j - 1) + 1):(S * (j - 1) + N)], plot = FALSE)$periodogram
   }
+  
   lambda <- periodogram(y[(S * (j - 1) + 1):(S * (j - 1) + N)], plot = FALSE)$lambda
 
-  aux2 <- aux
-  for (j in 1:M) {
-    aux2[, j] <- smooth.spline(aux[, j], spar = spar.freq)$y
-  }
-
-  aux3 <- aux
-  for (i in 1:(dim(aux)[1])) {
-    aux3[i, ] <- smooth.spline(aux2[i, ], spar = spar.time)$y
-  }
-  aux <- aux3
-
-  nrz <- nrow(aux)
-  ncz <- ncol(aux)
-  if (is.null(palette.col)) {
-    palette.col <- c("green", "lightgreen", "yellow", "orange", "darkred")
-  }
-  jet.colors <- colorRampPalette(palette.col)
-  nbcol <- 100
-  color <- jet.colors(nbcol)
-  z <- aux
-  zfacet <- z[-1, -1] + z[-1, -ncz] + z[-nrz, -1] + z[-nrz, -ncz]
-  facetcol <- cut(zfacet, nbcol)
-
-  j <- 1:M
+  j <- seq_len(M)
   t <- S * (j - 1) + N / 2
+  
   if (is.null(x)) {
     t <- t
-  }
-  else {
+  } else {
     t <- x[t]
   }
-  if (is.null(xlim)) {
-    xlim <- range(lambda)
-  }
-  if (is.null(ylim)) {
-    ylim <- range(t)
-  }
-  if (is.null(zlim)) {
-    zlim <- range(aux, na.rm = TRUE)
-  }
-  persp(x = lambda, y = t, z = aux, theta = theta, phi = phi, col = color[facetcol], zlab = "Smooth Periodogram", xlab = "Frequency", ylab = ylab, expand = 0.5, ticktype = "detailed", ylim = ylim, zlim = zlim, xlim = xlim)
+  
+  d <- as.data.frame(aux)
+  d$x <- lambda
+  d <- reshape(d, 
+                 direction = "long",
+                 varying = list(names(d)[1:(ncol(d) - 1)]),
+                 v.names = "z",
+                 idvar = "y",
+                 timevar = "key")
+  d$y <- NULL
+  
+  d <- merge(x = d, y = data.frame(key = seq_along(t), y = t), by = "key", all.x = TRUE)
+  d <- d[ , c("x","y", "z")]
+  d <- round(d, 5)
+ 
+  g <- ggplot(data = d, aes(x = x, y = y, z = z)) +
+    geom_contour(binwidth = 0.005, aes(colour = after_stat(level))) + 
+    scale_color_viridis_c(name = "Smooth Periodogram", option = "C") +
+    labs(x = "Frequency", y = "Time", title = "Smooth Periodogram 2d Contours") +
+    theme_minimal()
+  
+  return(g)
 }
 
 #' Smooth Periodogram by Blocks

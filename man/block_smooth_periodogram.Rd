@@ -13,12 +13,7 @@ block_smooth_periodogram(
   spar.freq = 0,
   spar.time = 0,
   theta = 0,
-  phi = 0,
-  xlim = NULL,
-  ylim = NULL,
-  zlim = NULL,
-  ylab = "Time",
-  palette.col = NULL
+  phi = 0
 )
 }
 \arguments{
@@ -54,21 +49,6 @@ azimuthal direction.}
 
 \item{phi}{(type: numeric) angle defining the viewing direction, gives the
 colatitude.}
-
-\item{xlim}{(type: numeric) x-axis limits, \code{NULL} by default and
-optional parameter.}
-
-\item{ylim}{(type: numeric) y-axis limits, \code{NULL} by default and
-optional parameter.}
-
-\item{zlim}{(type: numeric) z-axis limits, \code{NULL} by default and
-optional parameter.}
-
-\item{ylab}{(type: character) title for the y-axis. By default is
-\code{ylab='Time'} and is an optional
-parameter.}
-
-\item{palette.col}{(type: character) colors palette.}
 }
 \value{
 ** COMPLETE **

@@ -21,10 +21,11 @@ Description: A set of functions that allows stationary analysis and locally stat
 URL: http://pachamaltese.github.io/lsts
 BugReports: https://github.com/pachamaltese/lsts/issues
 Imports:
-  grDevices,
-  graphics,
-  stats,
-  Rdpack
+    grDevices,
+    graphics,
+    stats,
+    Rdpack,
+    ggplot2
 RdMacros: Rdpack
 Depends: R(>= 3.4.0)
 License: GPL-3

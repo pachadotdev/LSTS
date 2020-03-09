@@ -30,7 +30,8 @@
 #' @seealso \code{\link{periodogram}}, \code{\link[graphics]{persp}}
 #'
 #' @importFrom stats acf na.pass pchisq
-#' @importFrom graphics plot abline
+#' @importFrom ggplot2 aes ggplot geom_point geom_hline scale_x_continuous
+#'  scale_y_continuous labs theme_minimal
 #'
 #' @export
 box_ljung_test <- function(z, lag = NULL, main = NULL) {
@@ -50,8 +51,16 @@ box_ljung_test <- function(z, lag = NULL, main = NULL) {
   if (is.null(main)) {
     main <- expression("p values for Ljung-Box statistic")
   }
-  plot(p.value ~ c(1:k), ylim = c(0, 1), bty = "n", las = 1, lwd = 2, xlim = c(0, k), main = main, xlab = "Lag", ylab = "p-value", pch = 20)
-  abline(h = 0.05, lty = 2, col = "blue")
+
+  g <- ggplot(data = data.frame(x = 1:k, y = p.value), aes(x = x, y = y)) +
+    geom_point() +
+    geom_hline(yintercept = 0.05, linetype="dashed", color = "blue") +
+    scale_x_continuous(limits = c(0,k)) +
+    scale_y_continuous(limits = c(0,1)) +
+    labs(x = "Lag", y = "p-value", title = "p-values for Ljung-Box statistic") +
+    theme_minimal()
+  
+  return(g)
 }
 
 #' Ljung-Box Test Plot
