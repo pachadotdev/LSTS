@@ -25,7 +25,8 @@ Imports:
     graphics,
     stats,
     Rdpack,
-    ggplot2
+    ggplot2,
+    patchwork
 RdMacros: Rdpack
 Depends: R(>= 3.4.0)
 License: GPL-3

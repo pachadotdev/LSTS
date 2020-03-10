@@ -11,10 +11,7 @@
 #'
 #' @param lag (type: numeric) maximum lag at which to calculate the acf and
 #' Ljung-Box test. By default set to 10.
-#'
-#' @param cex (type: numeric) optional argument of \code{\link[graphics]{par}}.
-#' By default set to 0.5.
-#'
+#' 
 #' @examples
 #' ts_diag(malleco)
 #' 
@@ -23,22 +20,36 @@
 #'
 #' @seealso \code{\link{box_ljung_test}}
 #'
-#' @importFrom stats sd acf na.pass
-#' @importFrom graphics plot abline par
+#' @importFrom stats sd acf na.pass time
+#' @importFrom ggplot2 ggplot aes geom_col geom_segment geom_hline labs
+#'  theme_minimal
+#' @importFrom patchwork plot_layout
 #'
 #' @export
-ts_diag <- function(x, lag = 10, cex = 0.5) {
+ts_diag <- function(x, lag = 10) {
   Z <- (x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE)
-  op <- par(mfrow = c(3, 1), cex = cex)
-  plot(Z ~ time(Z), ylim = c(-3.5, 3.5), type = "h", lwd = 1, main = expression("Standardized Residuals"), xlab = "", ylab = "", bty = "n", las = 1)
-  abline(h = 0)
-  abline(h = +2, col = 4, lwd = 1, lty = 2)
-  abline(h = -2, col = 4, lwd = 1, lty = 2)
-  abline(h = +3, col = 4, lwd = 1, lty = 3)
-  abline(h = -3, col = 4, lwd = 1, lty = 3)
-  acf(x, lag.max = lag, main = expression("ACF of Residuals"), lwd = 1, las = 1, col = 1, bty = "n", na.action = na.pass)
-  box_ljung_test(x, lag = lag)
-  par(op)
+  x_acf <- acf(x, plot = FALSE)
+  x_acf <- with(x_acf, data.frame(lag, acf))
+
+  g1 <- ggplot() +
+    geom_col(data = data.frame(x = time(Z), y = Z), aes(x = x, y = y)) +
+    geom_hline(yintercept = 0, linetype="solid", color = "blue") +
+    geom_hline(yintercept = c(-2,2), linetype="dashed", color = "blue") +
+    geom_hline(yintercept = c(-3,3), linetype="dotted", color = "blue") +
+    labs(x = "time(Z)", y = "Z", title = "Standardized Residuals") +
+    theme_minimal()
+  
+  g2 <- ggplot(data = x_acf, mapping = aes(x = lag, y = acf)) +
+    geom_segment(mapping = aes(xend = lag, yend = 0)) +
+    geom_hline(yintercept = 0, linetype="solid", color = "blue") +
+    geom_hline(yintercept = c(-0.05,0.05), linetype="dashed", color = "blue") +
+    labs(x = "Lag", y = "ACF", title = "ACF of Residuals") +
+    theme_minimal()
+  
+  g3 <- box_ljung_test(x, lag = lag)
+  
+  g <- g1 + g2 + g3 + plot_layout(nrow = 3, byrow = FALSE)
+  return(g)
 }
 
 #' Diagnostic Plots for Time Series fits

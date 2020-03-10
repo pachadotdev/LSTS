@@ -4,16 +4,13 @@
 \alias{ts_diag}
 \title{Diagnostic Plots for Time Series fits}
 \usage{
-ts_diag(x, lag = 10, cex = 0.5)
+ts_diag(x, lag = 10)
 }
 \arguments{
 \item{x}{(type: numeric) residuals of the fitted time series model.}
 
 \item{lag}{(type: numeric) maximum lag at which to calculate the acf and
 Ljung-Box test. By default set to 10.}
-
-\item{cex}{(type: numeric) optional argument of \code{\link[graphics]{par}}.
-By default set to 0.5.}
 }
 \value{
 ** COMPLETE **
