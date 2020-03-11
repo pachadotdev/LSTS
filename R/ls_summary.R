@@ -16,7 +16,9 @@
 #' )
 #'
 #' ls_summary(fit_whittle)
+#' 
 #' @return
+#' **COMPLETE**
 #' 
 #' A list with the following components:
 #' \item{summary}{a resume table with estimate, std. error, z-value and p-value

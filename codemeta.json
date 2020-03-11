@@ -14,10 +14,10 @@
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.6.2",
+    "version": "3.6.1",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.6.2 (2019-12-12)",
+  "runtimePlatform": "R version 3.6.1 (2019-07-05)",
   "author": [
     {
       "@type": "Person",
@@ -169,7 +169,7 @@
     }
   ],
   "readme": "https://github.com/pachamaltese/lsts/blob/master/README.md",
-  "fileSize": "45.945KB",
+  "fileSize": "50.521KB",
   "contIntegration": "https://codecov.io/gh/pachamaltese/lsts?branch=master",
   "developmentStatus": "https://www.tidyverse.org/lifecycle/#stable"
 }

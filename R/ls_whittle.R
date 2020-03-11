@@ -146,10 +146,10 @@ ls_whittle <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL, 
 
   aux <- nlminb(start = start, objective = ls_whittle_loglik, series = series, order = order, ar.order = ar.order, ma.order = ma.order, sd.order = sd.order, d.order = d.order, include.d = include.d, N = N, S = S, include.taper = include.taper, lower = lower, upper = upper, control = control)
 
-  T. <- length(series)
+  len_s <- length(series)
   loglik <- -aux$objective
   npar <- length(aux$par)
-  aic <- -2 * loglik + 2 * npar / T.
+  aic <- -2 * loglik + 2 * npar / len_s
 
   aux. <- ls_kalman(series = series - mean(series, na.rm = TRUE), start = aux$par, order = order, ar.order = ar.order, ma.order = ma.order, sd.order = sd.order, d.order = d.order, include.d = include.d, m = m)
 
@@ -166,7 +166,7 @@ ls_whittle <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL, 
   G <- matrix(0, ncol = k, nrow = k)
   G[1:(k - d.order - 1), 1:(k - d.order - 1)] <- G1
   G[(k - d.order):k, (k - d.order):k] <- G2
-  G <- solve(G) / T.
+  G <- solve(G) / len_s
 
   fitted.values <- aux.$fitted.values + mean(series, na.rm = TRUE)
   fitted.values[is.na(series) == 1] <- NA

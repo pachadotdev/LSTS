@@ -10,6 +10,8 @@ ls_summary(object)
 \item{object}{(type: COMPLETE) \code{\link{LS.whittle}} function}
 }
 \value{
+**COMPLETE**
+
 A list with the following components:
 \item{summary}{a resume table with estimate, std. error, z-value and p-value
 of the model.}
@@ -31,6 +33,7 @@ fit_whittle <- ls_whittle(
 )
 
 ls_summary(fit_whittle)
+
 }
 \seealso{
 \code{\link{ls_whittle}}
