@@ -4,7 +4,9 @@
 \name{malleco}
 \alias{malleco}
 \title{Malleco (PROVIDE DETAILS)}
-\format{A time series object with 734 elements}
+\format{
+A time series object with 734 elements
+}
 \source{
 Datos Ricardo Olea
 }
