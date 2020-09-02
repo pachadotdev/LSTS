@@ -20,11 +20,10 @@ An \code{n x n} matrix of 2nd derivatives, where \emph{n} is the length of
 \code{x0}.
 }
 \description{
-Plots in 3D the smoothing periodogram of a time series,
-by blocks or windows.
+Numerical aproximation of the Hessian of a function.
 }
 \details{
-Computes numerical approximation to Hessian of \code{f}, evaluated at
+Computes the numerical approximation of the Hessian of \code{f}, evaluated at
 \code{x0}.
 Usually needs to pass additional parameters (e.g. data).  N.B. this uses no
 numerical sophistication.

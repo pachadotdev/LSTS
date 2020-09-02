@@ -1,6 +1,6 @@
 #' @title Smooth Periodogram by Blocks
 #'
-#' @description Plots in 3D the smoothing periodogram of a time series, by
+#' @description Plots the contour plot of the smoothing periodogram of a time series, by
 #' blocks or windows.
 #'
 #' @details
@@ -65,7 +65,7 @@
 #' block_smooth_periodogram(malleco)
 #' 
 #' @return
-#' ** COMPLETE **
+#' A ggplot object
 #'
 #' @seealso \code{\link{arima.sim}}
 #'

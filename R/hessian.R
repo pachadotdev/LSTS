@@ -1,10 +1,9 @@
 #' @title Hessian Matrix
 #'
-#' @description Plots in 3D the smoothing periodogram of a time series,
-#' by blocks or windows.
+#' @description Numerical aproximation of the Hessian of a function.
 #'
 #' @details
-#' Computes numerical approximation to Hessian of \code{f}, evaluated at
+#' Computes the numerical approximation of the Hessian of \code{f}, evaluated at
 #' \code{x0}.
 #' Usually needs to pass additional parameters (e.g. data).  N.B. this uses no
 #' numerical sophistication.

@@ -10,9 +10,9 @@
 #' coefficient in the sample when the lag is \emph{j}. \code{lsts_lbtp}
 #' computes \eqn{Q} and returns the p-values graph with lag \emph{j}.
 #'
-#' @param z COMPLETE
-#' @param lag COMPLETE
-#' @param main COMPLETE
+#' @param z (type: numeric) data vector
+#' @param lag (type: numeric) the number of periods for the autocorrelation
+#' @param main (type: character) a title for the returned plot
 #'
 #' @references
 #' For more information on theoretical foundations and estimation methods see
@@ -25,7 +25,7 @@
 #' box_ljung_test(malleco, lag = 5)
 #' 
 #' @return
-#' ** COMPLETE **
+#' A ggplot object
 #'
 #' @seealso \code{\link{periodogram}}, \code{\link[graphics]{persp}}
 #'

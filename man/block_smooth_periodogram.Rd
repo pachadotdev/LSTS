@@ -51,10 +51,10 @@ azimuthal direction.}
 colatitude.}
 }
 \value{
-** COMPLETE **
+A ggplot object
 }
 \description{
-Plots in 3D the smoothing periodogram of a time series, by
+Plots the contour plot of the smoothing periodogram of a time series, by
 blocks or windows.
 }
 \details{

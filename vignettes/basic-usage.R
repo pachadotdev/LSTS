@@ -1,33 +1,17 @@
----
-title: "Basic usage -- COMPLETE"
-author: "Ricardo Olea"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Basic usage}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
----
-
-```{r, include = FALSE}
+## ---- include = FALSE---------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-```
 
-## Malleco data
+## -----------------------------------------------------------------------------
+y <- malleco
+op <- par(mfrow = c(1, 2), cex = 0.9)
+acf(y, lag = 10, ylim = c(-0.1, 1), bty = "n", las = 1, main = "")
+pacf(y, lag = 10, xlim = c(0, 10), ylim = c(-0.1, 1), bty = "n", las = 1, main = "")
+par(op)
 
-It has has AR(1) structure.
-
-```{r}
-# y <- malleco
-# op <- par(mfrow = c(1, 2), cex = 0.9)
-# acf(y, lag = 10, ylim = c(-0.1, 1), bty = "n", las = 1, main = "")
-# pacf(y, lag = 10, xlim = c(0, 10), ylim = c(-0.1, 1), bty = "n", las = 1, main = "")
-# par(op)
-```
-
-```{r}
+## -----------------------------------------------------------------------------
 # y1 <- y[1:250]
 # y2 <- y[243:492]
 # y3 <- y[485:734]
@@ -39,15 +23,11 @@ It has has AR(1) structure.
 # pacf(y2, lag = 10, xlim = c(0, 10), ylim = c(-0.1, 1), bty = "n", las = 1, main = "")
 # pacf(y3, lag = 10, xlim = c(0, 10), ylim = c(-0.1, 1), bty = "n", las = 1, main = "")
 # par(op)
-```
 
-## Analysis by blocks of phi and sigma parameters
-
-```{r}
+## -----------------------------------------------------------------------------
 # block_smooth_periodogram(y, spar.freq = 0.8, spar.time = 0.8, theta = 90, phi = 0)
-```
 
-```{r}
+## -----------------------------------------------------------------------------
 # len_y <- length(y)
 # N <- 200
 # S <- 100
@@ -75,11 +55,8 @@ It has has AR(1) structure.
 #   xlim = c(0, 1), las = 1, bty = "n", ylab = expression(phi(u))
 # )
 # par(op)
-```
 
-## Start parameters
-
-```{r}
+## -----------------------------------------------------------------------------
 # phi <- smooth.spline(table$phi, spar = spar)$y
 # fit.1 <- nls(phi ~ a0 + a1 * u, start = list(a0 = 0.65, a1 = 0.00))
 # sigma <- smooth.spline(table$sigma, spar = spar)$y
@@ -89,4 +66,4 @@ It has has AR(1) structure.
 #   series = y, start = c(coef(fit.1), coef(fit.2)), order = c(p = 1, q = 0),
 #   ar.order = c(1), sd.order = 1, N = 180, n.ahead = 10
 # )
-```
+

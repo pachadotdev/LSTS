@@ -7,14 +7,14 @@
 box_ljung_test(z, lag = NULL, main = NULL)
 }
 \arguments{
-\item{z}{COMPLETE}
+\item{z}{(type: numeric) data vector}
 
-\item{lag}{COMPLETE}
+\item{lag}{(type: numeric) the number of periods for the autocorrelation}
 
-\item{main}{COMPLETE}
+\item{main}{(type: character) a title for the returned plot}
 }
 \value{
-** COMPLETE **
+A ggplot object
 }
 \description{
 Plots the p-values Ljung-Box test.
