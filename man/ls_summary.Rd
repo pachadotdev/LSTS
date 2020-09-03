@@ -7,10 +7,10 @@
 ls_summary(object)
 }
 \arguments{
-\item{object}{(type: COMPLETE) \code{\link{LS.whittle}} function}
+\item{object}{(type: list) the output of \code{\link{LS.whittle}} function}
 }
 \value{
-**COMPLETE**
+A list with the estimates, AIC and number of parameters
 
 A list with the following components:
 \item{summary}{a resume table with estimate, std. error, z-value and p-value
@@ -22,9 +22,6 @@ of the model.}
 Function used to produce summaries of the results to Whittle
 estimator to Locally Stationary Time Series (\code{\link{LS.whittle}}
 function).
-}
-\details{
-** COMPLETE **
 }
 \examples{
 fit_whittle <- ls_whittle(

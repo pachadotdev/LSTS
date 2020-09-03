@@ -16,7 +16,7 @@
 #' \eqn{\lambda} the Fourier frequencies in the block
 #' (\eqn{2\,\pi\,k/N}, \eqn{k = 1,\ldots, N}).
 #'
-#' @param x COMPLETE
+#' @param x (type: numeric) parameter vector.
 #'
 #' @param series (type: numeric) univariate time series.
 #'

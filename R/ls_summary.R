@@ -5,9 +5,9 @@
 #' function).
 #'
 #' @details
-#' ** COMPLETE **
-#'
-#' @param object (type: COMPLETE) \code{\link{LS.whittle}} function
+#' ** COMPLETE IF NEEDED**
+#' 
+#' @param object (type: list) the output of \code{\link{LS.whittle}} function
 #'
 #' @examples
 #' fit_whittle <- ls_whittle(
@@ -18,7 +18,7 @@
 #' ls_summary(fit_whittle)
 #' 
 #' @return
-#' **COMPLETE**
+#' A list with the estimates, AIC and number of parameters
 #' 
 #' A list with the following components:
 #' \item{summary}{a resume table with estimate, std. error, z-value and p-value

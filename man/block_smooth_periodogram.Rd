@@ -11,9 +11,7 @@ block_smooth_periodogram(
   S = NULL,
   p = 0.25,
   spar.freq = 0,
-  spar.time = 0,
-  theta = 0,
-  phi = 0
+  spar.time = 0
 )
 }
 \arguments{
@@ -43,12 +41,6 @@ necessarily) in \eqn{(0,1]}.}
 
 \item{spar.time}{(type: numeric) smoothing parameter, typically (but not
 necessarily) in \eqn{(0,1]}.}
-
-\item{theta}{(type: numeric) angle defining the viewing direction, gives the
-azimuthal direction.}
-
-\item{phi}{(type: numeric) angle defining the viewing direction, gives the
-colatitude.}
 }
 \value{
 A ggplot object
@@ -69,11 +61,6 @@ the length of the vector \code{y}. All windows are of the same length
 \code{\link[stats]{smooth.spline}} function; the first time using
 \code{spar_freq} parameter and the second time with \code{spar_time}. These
 windows overlap between them.
-
-The surface is then viewed by looking at the origin from a direction defined
-by \code{theta} and \code{phi}. If \code{theta} and \code{phi} are both zero
-the viewing direction is directly down the negative y axis. Changing
-\code{theta} will vary the azimuth and changing \code{phi} the colatitude.
 }
 \examples{
 block_smooth_periodogram(malleco)

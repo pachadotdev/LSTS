@@ -16,11 +16,6 @@
 #' \code{spar_freq} parameter and the second time with \code{spar_time}. These
 #' windows overlap between them.
 #'
-#' The surface is then viewed by looking at the origin from a direction defined
-#' by \code{theta} and \code{phi}. If \code{theta} and \code{phi} are both zero
-#' the viewing direction is directly down the negative y axis. Changing
-#' \code{theta} will vary the azimuth and changing \code{phi} the colatitude.
-#'
 #' @param y (type: numeric) data vector
 #'
 #' @param x (type: numeric) optional vector, if \code{x = NULL} then the
@@ -48,12 +43,6 @@
 #' @param spar.time (type: numeric) smoothing parameter, typically (but not
 #' necessarily) in \eqn{(0,1]}.
 #'
-#' @param theta (type: numeric) angle defining the viewing direction, gives the
-#' azimuthal direction.
-#'
-#' @param phi (type: numeric) angle defining the viewing direction, gives the
-#' colatitude.
-#'
 #' @references
 #' For more information on theoretical foundations and estimation methods see
 #'
@@ -75,8 +64,7 @@
 #'
 #' @export
 block_smooth_periodogram <- function(y, x = NULL, N = NULL, S = NULL, p = 0.25,
-                                     spar.freq = 0, spar.time = 0, theta = 0,
-                                     phi = 0) {
+                                     spar.freq = 0, spar.time = 0) {
   len_y <- length(y)
   
   if (is.null(N)) {
@@ -121,7 +109,7 @@ block_smooth_periodogram <- function(y, x = NULL, N = NULL, S = NULL, p = 0.25,
   g <- ggplot(data = d, aes(x = x, y = y, z = z)) +
     geom_contour(binwidth = 0.005, aes(colour = stat(level))) + 
     scale_color_viridis_c(name = "Smooth Periodogram", option = "C") +
-    labs(x = "Frequency", y = "Time", title = "Smooth Periodogram 2d Contours") +
+    labs(x = "Frequency", y = "Time", title = "Smooth Periodogram 2D Contours") +
     theme_minimal()
   
   return(g)
