@@ -53,17 +53,11 @@ taking the blocks or windows.}
 \item{theta.par}{(type: numeric) vector with the known parameters of the
 model.}
 }
-\value{
-** COMPLETE **
-}
 \description{
 This function calculates log-likelihood with known \eqn{\theta},
-through \code{LS.whittle.loglik} function.
+through \code{ls_whittle_loglik} function.
 }
 \details{
-This function computes \code{\link{LS.whittle.loglik}} with \code{x} as
+This function computes \code{\link{ls_whittle_loglik}} with \code{x} as
 \code{x = c(theta.par, x)}.
-}
-\examples{
-# COMPLETE
 }

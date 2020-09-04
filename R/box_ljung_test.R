@@ -62,11 +62,3 @@ box_ljung_test <- function(z, lag = NULL, main = NULL) {
   
   return(g)
 }
-
-#' Ljung-Box Test Plot
-#' @description \code{box_ljung_test()} replaces this function
-#' @param ... old parameters
-#' @export
-Box.Ljung.Test <- function(...) {
-  .Deprecated("box_ljung_test")
-}

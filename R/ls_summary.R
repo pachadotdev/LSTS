@@ -1,13 +1,14 @@
 #' @title Summary for Locally Stationary Time Series
 #'
-#' @description Function used to produce summaries of the results to Whittle
-#' estimator to Locally Stationary Time Series (\code{\link{LS.whittle}}
+#' @description Produces a summary of the results to Whittle
+#' estimator to Locally Stationary Time Series (\code{\link{ls_whittle}}
 #' function).
 #'
 #' @details
-#' ** COMPLETE IF NEEDED**
+#' Calls the output from \code{\link{ls_whittle}} and computes the standard 
+#' error and p-values to provide a detailed summary.
 #' 
-#' @param object (type: list) the output of \code{\link{LS.whittle}} function
+#' @param object (type: list) the output of \code{\link{ls_whittle}} function
 #'
 #' @examples
 #' fit_whittle <- ls_whittle(
@@ -39,12 +40,4 @@ ls_summary <- function(object) {
   Table <- cbind(aux1, aux2, aux3, aux4)
   colnames(Table) <- c("Estimate", "Std. Error", "z-value", "Pr(>|z|)")
   list(summary = round(Table, 4), aic = object$aic, npar = length(aux1))
-}
-
-#' Summary for Locally Stationary Time Series
-#' @description \code{ls_summary()} replaces this function
-#' @param ... old parameters
-#' @export
-LS.summary <- function(...) {
-  .Deprecated("")
 }

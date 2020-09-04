@@ -59,11 +59,3 @@ smooth_periodogram <- function(y, plot = TRUE, spar = 0) {
   }
   return(list(smooth_periodogram = smooth_periodogram, lambda = lambda))
 }
-
-#' Smoothing periodogram
-#' @description \code{smooth_periodogram()} replaces this function
-#' @param ... old parameters
-#' @export
-smooth.periodogram <- function(...) {
-  .Deprecated("")
-}

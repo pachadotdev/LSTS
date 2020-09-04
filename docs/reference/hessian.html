@@ -40,8 +40,7 @@
 
 
 <meta property="og:title" content="Hessian Matrix — hessian" />
-<meta property="og:description" content="Plots in 3D the smoothing periodogram of a time series,
-by blocks or windows." />
+<meta property="og:description" content="Numerical aproximation of the Hessian of a function." />
 
 
 
@@ -88,18 +87,6 @@ by blocks or windows." />
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/basic-usage.html">Basic usage</a>
-    </li>
-  </ul>
-</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -127,8 +114,7 @@ by blocks or windows." />
     </div>
 
     <div class="ref-description">
-    <p>Plots in 3D the smoothing periodogram of a time series,
-by blocks or windows.</p>
+    <p>Numerical aproximation of the Hessian of a function.</p>
     </div>
 
     <pre class="usage"><span class='fu'>hessian</span>(<span class='no'>f</span>, <span class='no'>x0</span>, <span class='no'>...</span>)</pre>
@@ -158,7 +144,7 @@ at which you want the hessian estimated (usually will be the mle).</p></td>
 <code>x0</code>.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Computes numerical approximation to Hessian of <code>f</code>, evaluated at
+    <p>Computes the numerical approximation of the Hessian of <code>f</code>, evaluated at
 <code>x0</code>.
 Usually needs to pass additional parameters (e.g. data).  N.B. this uses no
 numerical sophistication.</p>

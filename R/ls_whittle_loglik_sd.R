@@ -1,10 +1,10 @@
 #' @title Locally Stationary Whittle Log-likelihood sigma
 #'
 #' @description This function calculates log-likelihood with known \eqn{\theta},
-#' through \code{LS.whittle.loglik} function.
+#' through \code{ls_whittle_loglik} function.
 #'
 #' @details
-#' This function computes \code{\link{LS.whittle.loglik}} with \code{x} as
+#' This function computes \code{\link{ls_whittle_loglik}} with \code{x} as
 #' \code{x = c(theta.par, x)}.
 #'
 #' @param x (type: numeric) parameter vector.
@@ -40,21 +40,8 @@
 #' @param theta.par (type: numeric) vector with the known parameters of the
 #' model.
 #'
-#' @examples
-#' # COMPLETE
-#' @return
-#' ** COMPLETE **
-#'
 #' @export
 ls_whittle_loglik_sd <- function(x, series, order = c(p = 0, q = 0), ar.order = NULL, ma.order = NULL, sd.order = NULL, d.order = NULL, include.d = FALSE, N = NULL, S = NULL, include.taper = TRUE, theta.par = numeric()) {
   x <- c(theta.par, x)
   ls_whittle_loglik(x = x, series = series, order = order, ar.order = ar.order, ma.order = ma.order, sd.order = sd.order, d.order = d.order, include.d = include.d, N = N, S = S, include.taper = include.taper)
-}
-
-#' Whittle estimator to Locally Stationary Time Series
-#' @description \code{ls_whittle_loglik_theta()} replaces this function
-#' @param ... old parameters
-#' @export
-LS.whittle.loglik.sd <- function(...) {
-  .Deprecated("")
 }

@@ -31,7 +31,7 @@
 #' \eqn{\theta = (\alpha_0,\,\alpha_1,\,\ldots, \,\alpha_k)^{\prime}}.
 #' In this situation, estimating \eqn{\theta} involves determining \eqn{k} and
 #' estimating the coefficients \eqn{\alpha_0,\,\alpha_1,\,\ldots, \,\alpha_k}.
-#' \code{LS.whittle} optimizes \code{\link{ls_whittle_loglik}} as objective
+#' \code{ls_whittle} optimizes \code{\link{ls_whittle_loglik}} as objective
 #' function using \code{\link[stats]{nlminb}} function, for both LS-ARMA
 #' (\code{include.d=FALSE}) and LS-ARFIMA (\code{include.d=TRUE}) models.
 #' Also computes Kalman filter with \code{\link{ls_kalman}} and this values
@@ -124,11 +124,11 @@
 #' \eqn{[\partial^2 \ell(\theta)/\partial\theta_i
 #' \partial\theta_j]_{i,j=1}^{k}}.}
 #' \item{loglik }{log-likelihood of \code{coef}, calculated with
-#' \code{\link{LS.whittle}}.}
+#' \code{\link{ls_whittle}}.}
 #' \item{aic }{Akaike's `An Information Criterion', for one fitted model LS-ARMA
-#' or LS-ARFIMA. The formula is -2*log-likelihood + 2*npar/n, where \emph{npar}
-#' represents the number of parameters in the fitted model and \emph{n} equal to
-#' the length of the \code{series}.}
+#' or LS-ARFIMA. The formula is \eqn{-2L + 2k/n}, where \emph{L} represents the
+#' log-likelihood, \emph{k} represents the number of parameters in the fitted 
+#' model and \emph{n} is equal to the length of the \code{series}.}
 #' \item{series }{original time serie.}
 #' \item{residuals }{standard residuals.}
 #' \item{fitted.values }{model fitted values.}
@@ -176,12 +176,4 @@ ls_whittle <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL, 
   se[is.na(series) == 0] <- NA
 
   list(coef = aux$par, var.coef = G, loglik = loglik, aic = aic, series = series, residuals = aux.$residuals, fitted.values = fitted.values, pred = pred, se = se, model = list(order = order, ar.order = ar.order, ma.order = ma.order, sd.order = sd.order, d.order = d.order, include.d = include.d, include.taper = include.taper))
-}
-
-#' Whittle estimator to Locally Stationary Time Series
-#' @description \code{ls_summary()} replaces this function
-#' @param ... old parameters
-#' @export
-LS.whittle <- function(...) {
-  .Deprecated("")
 }

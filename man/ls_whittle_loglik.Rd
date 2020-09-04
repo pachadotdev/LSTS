@@ -19,7 +19,7 @@ ls_whittle_loglik(
 )
 }
 \arguments{
-\item{x}{COMPLETE}
+\item{x}{(type: numeric) parameter vector.}
 
 \item{series}{(type: numeric) univariate time series.}
 
@@ -49,9 +49,6 @@ taking the blocks or windows.}
 \item{include.taper}{(type: logical) logical argument that by default is
 \code{TRUE}. See \code{\link{periodogram}}.}
 }
-\value{
-# COMPLETE
-}
 \description{
 This function computes Whittle estimator for LS-ARMA and
 LS-ARFIMA models, in data with mean zero. If mean is not zero, then it is
@@ -68,10 +65,6 @@ block, \eqn{n =S(M-1)+N}, \eqn{S} is the shift from block to block,
 \eqn{u_j =t_j/n}, \eqn{t_j =S(j-1)+N/2}, \eqn{j =1,\ldots,M} and
 \eqn{\lambda} the Fourier frequencies in the block
 (\eqn{2\,\pi\,k/N}, \eqn{k = 1,\ldots, N}).
-}
-\examples{
-# COMPLETE
-
 }
 \references{
 For more information on theoretical foundations and estimation methods see

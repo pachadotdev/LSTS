@@ -88,18 +88,6 @@ LS-ARFIMA models." />
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/basic-usage.html">Basic usage</a>
-    </li>
-  </ul>
-</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -246,11 +234,11 @@ approximated by \(H^{-1}/n\), where \(H\) is the Hessian matrix
 \([\partial^2 \ell(\theta)/\partial\theta_i
 \partial\theta_j]_{i,j=1}^{k}\).</p></dd>
 <dt>loglik </dt><dd><p>log-likelihood of <code>coef</code>, calculated with
-<code><a href='LS.whittle.html'>LS.whittle</a></code>.</p></dd>
+<code>ls_whittle</code>.</p></dd>
 <dt>aic </dt><dd><p>Akaike's `An Information Criterion', for one fitted model LS-ARMA
-or LS-ARFIMA. The formula is -2*log-likelihood + 2*npar/n, where <em>npar</em>
-represents the number of parameters in the fitted model and <em>n</em> equal to
-the length of the <code>series</code>.</p></dd>
+or LS-ARFIMA. The formula is \(-2L + 2k/n\), where <em>L</em> represents the
+log-likelihood, <em>k</em> represents the number of parameters in the fitted 
+model and <em>n</em> is equal to the length of the <code>series</code>.</p></dd>
 <dt>series </dt><dd><p>original time serie.</p></dd>
 <dt>residuals </dt><dd><p>standard residuals.</p></dd>
 <dt>fitted.values </dt><dd><p>model fitted values.</p></dd>
@@ -287,7 +275,7 @@ for unknown values of \(k\) and
 \(\theta = (\alpha_0,\,\alpha_1,\,\ldots, \,\alpha_k)^{\prime}\).
 In this situation, estimating \(\theta\) involves determining \(k\) and
 estimating the coefficients \(\alpha_0,\,\alpha_1,\,\ldots, \,\alpha_k\).
-<code>LS.whittle</code> optimizes <code><a href='ls_whittle_loglik.html'>ls_whittle_loglik</a></code> as objective
+<code>ls_whittle</code> optimizes <code><a href='ls_whittle_loglik.html'>ls_whittle_loglik</a></code> as objective
 function using <code><a href='https://rdrr.io/r/stats/nlminb.html'>nlminb</a></code> function, for both LS-ARMA
 (<code>include.d=FALSE</code>) and LS-ARFIMA (<code>include.d=TRUE</code>) models.
 Also computes Kalman filter with <code><a href='ls_kalman.html'>ls_kalman</a></code> and this values

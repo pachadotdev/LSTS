@@ -40,7 +40,7 @@
 
 
 <meta property="og:title" content="Smooth Periodogram by Blocks — block_smooth_periodogram" />
-<meta property="og:description" content="Plots in 3D the smoothing periodogram of a time series, by
+<meta property="og:description" content="Plots the contour plot of the smoothing periodogram of a time series, by
 blocks or windows." />
 
 
@@ -88,18 +88,6 @@ blocks or windows." />
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/basic-usage.html">Basic usage</a>
-    </li>
-  </ul>
-</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -127,7 +115,7 @@ blocks or windows." />
     </div>
 
     <div class="ref-description">
-    <p>Plots in 3D the smoothing periodogram of a time series, by
+    <p>Plots the contour plot of the smoothing periodogram of a time series, by
 blocks or windows.</p>
     </div>
 
@@ -138,9 +126,7 @@ blocks or windows.</p>
   <span class='kw'>S</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>0.25</span>,
   <span class='kw'>spar.freq</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>spar.time</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>theta</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>phi</span> <span class='kw'>=</span> <span class='fl'>0</span>
+  <span class='kw'>spar.time</span> <span class='kw'>=</span> <span class='fl'>0</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -188,21 +174,11 @@ necessarily) in \((0,1]\).</p></td>
       <td><p>(type: numeric) smoothing parameter, typically (but not
 necessarily) in \((0,1]\).</p></td>
     </tr>
-    <tr>
-      <th>theta</th>
-      <td><p>(type: numeric) angle defining the viewing direction, gives the
-azimuthal direction.</p></td>
-    </tr>
-    <tr>
-      <th>phi</th>
-      <td><p>(type: numeric) angle defining the viewing direction, gives the
-colatitude.</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>** COMPLETE **</p>
+    <p>A ggplot object</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The number of windows of the function is \(M = \textmd{trunc}((n-N)/S+1)\),
@@ -215,10 +191,6 @@ the length of the vector <code>y</code>. All windows are of the same length
 <code><a href='https://rdrr.io/r/stats/smooth.spline.html'>smooth.spline</a></code> function; the first time using
 <code>spar_freq</code> parameter and the second time with <code>spar_time</code>. These
 windows overlap between them.</p>
-<p>The surface is then viewed by looking at the origin from a direction defined
-by <code>theta</code> and <code>phi</code>. If <code>theta</code> and <code>phi</code> are both zero
-the viewing direction is directly down the negative y axis. Changing
-<code>theta</code> will vary the azimuth and changing <code>phi</code> the colatitude.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>For more information on theoretical foundations and estimation methods see</p>

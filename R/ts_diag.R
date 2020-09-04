@@ -16,7 +16,7 @@
 #' ts_diag(malleco)
 #' 
 #' @return
-#' ** COMPLETE **
+#' A ggplot object
 #'
 #' @seealso \code{\link{box_ljung_test}}
 #'
@@ -50,12 +50,4 @@ ts_diag <- function(x, lag = 10) {
   
   g <- g1 + g2 + g3 + plot_layout(nrow = 3, byrow = FALSE)
   return(g)
-}
-
-#' Diagnostic Plots for Time Series fits
-#' @description \code{ts_diag()} replaces this function
-#' @param ... old parameters
-#' @export
-ts.diag <- function(...) {
-  .Deprecated("")
 }

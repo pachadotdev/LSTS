@@ -7,7 +7,7 @@
 ls_summary(object)
 }
 \arguments{
-\item{object}{(type: list) the output of \code{\link{LS.whittle}} function}
+\item{object}{(type: list) the output of \code{\link{ls_whittle}} function}
 }
 \value{
 A list with the estimates, AIC and number of parameters
@@ -19,9 +19,13 @@ of the model.}
 \item{npar}{number of parameters in the model.}
 }
 \description{
-Function used to produce summaries of the results to Whittle
-estimator to Locally Stationary Time Series (\code{\link{LS.whittle}}
+Produces a summary of the results to Whittle
+estimator to Locally Stationary Time Series (\code{\link{ls_whittle}}
 function).
+}
+\details{
+Calls the output from \code{\link{ls_whittle}} and computes the standard 
+error and p-values to provide a detailed summary.
 }
 \examples{
 fit_whittle <- ls_whittle(

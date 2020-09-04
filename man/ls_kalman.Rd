@@ -54,7 +54,7 @@ infinite of moving average in processes LS-ARMA or LS-ARFIMA.
 The model fit is done using the Whittle likelihood, while the generation of
 innovations is through Kalman Filter.
 Details about \code{ar.order, ma.order, sd.order} and \code{d.order} can be
-viewed in \code{\link{LS.whittle}}.
+viewed in \code{\link{ls_whittle}}.
 }
 \examples{
 ls_kalman(malleco, start(malleco))

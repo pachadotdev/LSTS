@@ -52,18 +52,11 @@ taking the blocks or windows.}
 
 \item{sd.par}{(type: numeric) value corresponding to known variance.}
 }
-\value{
-** COMPLETE **
-}
 \description{
 Calculate the log-likelihood with \eqn{\sigma} known, through
 \code{ls_whittle_loglik} function.
 }
 \details{
-This function computes \code{\link{LS.whittle.loglik}} with \code{x} as
+This function computes \code{\link{ls_whittle_loglik}} with \code{x} as
 \code{x = c(x, sd.par)}.
-}
-\examples{
-# COMPLETE
-
 }

@@ -17,7 +17,7 @@ periodogram.}
 \eqn{0.5*(1 - cos(2\pi(n-1)/n))(\emph{cosine bell})}.}
 }
 \value{
-** COMPLETE **
+A list with with the periodogram and the lambda values
 }
 \description{
 This function computes the periodogram from a stationary time
@@ -45,6 +45,7 @@ the periodogram is \code{periodogram} values vs. \eqn{\lambda}.
 set.seed(1776)
 ts.sim <- arima.sim(n = 1000, model = list(order = c(1, 0, 0), ar = 0.7))
 periodogram(ts.sim)
+
 }
 \references{
 For more information on theoretical foundations and estimation methods see

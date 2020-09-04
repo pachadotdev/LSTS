@@ -7,7 +7,7 @@
 #' The model fit is done using the Whittle likelihood, while the generation of
 #' innovations is through Kalman Filter.
 #' Details about \code{ar.order, ma.order, sd.order} and \code{d.order} can be
-#' viewed in \code{\link{LS.whittle}}.
+#' viewed in \code{\link{ls_whittle}}.
 #'
 #' @param series (type: numeric) univariate time series.
 #'
@@ -176,12 +176,4 @@ ls_kalman <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL, m
   residuals <- (series - hat.y) / sqrt(delta[1:T.])
   fitted.values <- hat.y
   return(list(residuals = residuals, fitted.values = fitted.values, delta = delta))
-}
-
-#' Kalman filter for locally stationary processes
-#' @description \code{ls_kalman()} replaces this function
-#' @param ... old parameters
-#' @export
-LS.kalman <- function(...) {
-  .Deprecated("")
 }

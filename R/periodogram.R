@@ -41,8 +41,9 @@
 #' set.seed(1776)
 #' ts.sim <- arima.sim(n = 1000, model = list(order = c(1, 0, 0), ar = 0.7))
 #' periodogram(ts.sim)
+#' 
 #' @return
-#' ** COMPLETE **
+#' A list with with the periodogram and the lambda values
 #'
 #' @seealso \code{\link[stats]{fft}}, \code{\link[base]{Mod}},
 #' \code{\link[stats]{smooth.spline}}.

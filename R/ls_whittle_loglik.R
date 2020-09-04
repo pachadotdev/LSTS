@@ -53,12 +53,6 @@
 #'
 #' \insertRef{palma2010efficient}{lsts}
 #'
-#' @examples
-#' # COMPLETE
-#' 
-#' @return
-#' # COMPLETE
-#'
 #' @seealso \code{\link[stats]{nlminb}}, \code{\link{ls_kalman}}
 #'
 #' @importFrom stats na.omit
@@ -147,12 +141,4 @@ ls_whittle_loglik <- function(x, series, order = c(p = 0, q = 0), ar.order = NUL
 
     lik
   }
-}
-
-#' Locally Stationary Whittle log-likelihood Function
-#' @description \code{ls_whittle_loglik()} replaces this function
-#' @param ... old parameters
-#' @export
-LS.whittle.loglik <- function(...) {
-  .Deprecated("")
 }

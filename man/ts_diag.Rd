@@ -13,7 +13,7 @@ ts_diag(x, lag = 10)
 Ljung-Box test. By default set to 10.}
 }
 \value{
-** COMPLETE **
+A ggplot object
 }
 \description{
 Plot time-series diagnostics.

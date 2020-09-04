@@ -114,11 +114,3 @@ block_smooth_periodogram <- function(y, x = NULL, N = NULL, S = NULL, p = 0.25,
   
   return(g)
 }
-
-#' Smooth Periodogram by Blocks
-#' @description \code{block_smooth_periodogram()} replaces this function
-#' @param ... old parameters
-#' @export
-block.smooth.periodogram <- function(...) {
-  .Deprecated("")
-}

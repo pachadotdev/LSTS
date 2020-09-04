@@ -40,8 +40,8 @@
 
 
 <meta property="og:title" content="Summary for Locally Stationary Time Series — ls_summary" />
-<meta property="og:description" content="Function used to produce summaries of the results to Whittle
-estimator to Locally Stationary Time Series (LS.whittle
+<meta property="og:description" content="Produces a summary of the results to Whittle
+estimator to Locally Stationary Time Series (ls_whittle
 function)." />
 
 
@@ -89,18 +89,6 @@ function)." />
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/basic-usage.html">Basic usage</a>
-    </li>
-  </ul>
-</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -128,8 +116,8 @@ function)." />
     </div>
 
     <div class="ref-description">
-    <p>Function used to produce summaries of the results to Whittle
-estimator to Locally Stationary Time Series (<code><a href='LS.whittle.html'>LS.whittle</a></code>
+    <p>Produces a summary of the results to Whittle
+estimator to Locally Stationary Time Series (<code><a href='ls_whittle.html'>ls_whittle</a></code>
 function).</p>
     </div>
 
@@ -140,13 +128,13 @@ function).</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>object</th>
-      <td><p>(type: COMPLETE) <code><a href='LS.whittle.html'>LS.whittle</a></code> function</p></td>
+      <td><p>(type: list) the output of <code><a href='ls_whittle.html'>ls_whittle</a></code> function</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>**COMPLETE**</p>
+    <p>A list with the estimates, AIC and number of parameters</p>
 <p>A list with the following components:</p>
 <dt>summary</dt><dd><p>a resume table with estimate, std. error, z-value and p-value
 of the model.</p></dd>
@@ -155,7 +143,8 @@ of the model.</p></dd>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>** COMPLETE **</p>
+    <p>Calls the output from <code><a href='ls_whittle.html'>ls_whittle</a></code> and computes the standard 
+error and p-values to provide a detailed summary.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='ls_whittle.html'>ls_whittle</a></code></p></div>

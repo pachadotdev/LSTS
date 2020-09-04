@@ -70,11 +70,3 @@ spectral_density <- function(ar = numeric(), ma = numeric(), d = 0, sd = 1, lamb
   aux <- sigma^2 * Re(aux) / (2 * pi)
   aux
 }
-
-#' Spectral Density
-#' @description \code{spectral_density()} replaces this function
-#' @param ... old parameters
-#' @export
-fdensity <- function(...) {
-  .Deprecated("spectral_density")
-}
