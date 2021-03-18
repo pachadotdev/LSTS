@@ -8,19 +8,17 @@
 A time series object with 734 elements
 }
 \source{
-Datos Ricardo Olea
-
 National Oceanic and Atmospheric Administration (NOAA)
 }
 \usage{
 malleco
 }
 \description{
-A ts object containing average annual ring width measured in milimiters 
-for different Araucaria Araucana trees in the Malleco Region (Chile). The years 
-of observation in this data cover the period 1242-1975.
+A ts object containing average annual ring width measured in 
+milimiters for different Araucaria Araucana trees in the Malleco Region 
+(Chile). The years of observation in this data cover the period 1242-1975.
 }
 \details{
-A ts object... EXPLAIN
+A ts object containing average annual ring width measurements
 }
 \keyword{datasets}

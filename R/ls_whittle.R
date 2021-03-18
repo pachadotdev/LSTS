@@ -113,6 +113,7 @@
 #'   series = malleco, start = c(coef(fit.1), coef(fit.2)), order = c(p = 1, q = 0),
 #'   ar.order = 1, sd.order = 1, N = 180, n.ahead = 10
 #' )
+#' 
 #' @return
 #' A list with the following components:
 #' \item{coef }{The best set of parameters found.}

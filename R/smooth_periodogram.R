@@ -42,8 +42,7 @@
 #' lines(spectral_density(ar = 0.7, lambda = aux$lambda) ~ aux$lambda,
 #'   col = "red"
 #' )
-#' @return
-#' A list with with the smooth periodogram and the lambda values
+#' @return A list with with the smooth periodogram and the lambda values
 #'
 #' @seealso \code{\link{smooth.spline}}, \code{\link{periodogram}}
 #'

@@ -25,7 +25,6 @@ residuals (ACF) and the p-values of the Ljung-Box Test for all lags up to
 }
 \examples{
 ts_diag(malleco)
-
 }
 \seealso{
 \code{\link{box_ljung_test}}

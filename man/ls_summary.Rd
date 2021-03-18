@@ -24,7 +24,7 @@ estimator to Locally Stationary Time Series (\code{\link{ls_whittle}}
 function).
 }
 \details{
-Calls the output from \code{\link{ls_whittle}} and computes the standard 
+Calls the output from \code{\link{ls_whittle}} and computes the standard
 error and p-values to provide a detailed summary.
 }
 \examples{
@@ -34,7 +34,6 @@ fit_whittle <- ls_whittle(
 )
 
 ls_summary(fit_whittle)
-
 }
 \seealso{
 \code{\link{ls_whittle}}

@@ -16,7 +16,7 @@ periodogram.}
 necessarily) in \eqn{(0,1].}}
 }
 \value{
-** COMPLETE **
+A list with with the smooth periodogram and the lambda values
 }
 \description{
 This function returns the smoothing periodogram of a stationary
@@ -50,7 +50,9 @@ aux <- smooth_periodogram(ts.sim, plot = FALSE, spar = .7)
 
 lines(aux$smooth_periodogram ~ aux$lambda, lwd = 2, col = "orange")
 
-lines(spectral_density(ar = 0.7, lambda = aux$lambda) ~ aux$lambda, col = "red")
+lines(spectral_density(ar = 0.7, lambda = aux$lambda) ~ aux$lambda,
+  col = "red"
+)
 }
 \seealso{
 \code{\link{smooth.spline}}, \code{\link{periodogram}}

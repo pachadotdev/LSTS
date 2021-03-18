@@ -23,7 +23,7 @@ density is calculated/computed. If \code{lambda=NULL} then it is considered a
 sequence between 0 and \eqn{\pi}.}
 }
 \value{
-** COMPLETE **
+An unnamed vector of numeric class
 }
 \description{
 Returns theoretical spectral density evaluated in ARMA and

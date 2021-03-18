@@ -85,7 +85,7 @@ approximated by \eqn{H^{-1}/n}, where \eqn{H} is the Hessian matrix
 \code{\link{ls_whittle}}.}
 \item{aic }{Akaike's `An Information Criterion', for one fitted model LS-ARMA
 or LS-ARFIMA. The formula is \eqn{-2L + 2k/n}, where \emph{L} represents the
-log-likelihood, \emph{k} represents the number of parameters in the fitted 
+log-likelihood, \emph{k} represents the number of parameters in the fitted
 model and \emph{n} is equal to the length of the \code{series}.}
 \item{series }{original time serie.}
 \item{residuals }{standard residuals.}

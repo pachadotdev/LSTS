@@ -58,7 +58,6 @@ viewed in \code{\link{ls_whittle}}.
 }
 \examples{
 ls_kalman(malleco, start(malleco))
-
 }
 \references{
 For more information on theoretical foundations and estimation methods see

@@ -64,7 +64,6 @@ windows overlap between them.
 }
 \examples{
 block_smooth_periodogram(malleco)
-
 }
 \references{
 For more information on theoretical foundations and estimation methods see

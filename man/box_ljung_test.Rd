@@ -29,7 +29,6 @@ computes \eqn{Q} and returns the p-values graph with lag \emph{j}.
 }
 \examples{
 box_ljung_test(malleco, lag = 5)
-
 }
 \references{
 For more information on theoretical foundations and estimation methods see
