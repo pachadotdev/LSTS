@@ -46,9 +46,8 @@
 #'   bty = "n", type = "l", las = 1, xlab = expression("Frequency"),
 #'   ylab = expression("Spectral Density")
 #' )
-#' 
 #' @return
-#' ** COMPLETE **
+#' An unnamed vector of numeric class
 #'
 #' @seealso \code{\link{periodogram}}, \code{\link[graphics]{persp}}
 #'

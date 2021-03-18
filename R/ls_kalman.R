@@ -43,7 +43,6 @@
 #'
 #' @examples
 #' ls_kalman(malleco, start(malleco))
-#'
 #' @return
 #' A list with:
 #' \item{residuals }{standard residuals.}

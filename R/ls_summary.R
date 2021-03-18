@@ -5,9 +5,9 @@
 #' function).
 #'
 #' @details
-#' Calls the output from \code{\link{ls_whittle}} and computes the standard 
+#' Calls the output from \code{\link{ls_whittle}} and computes the standard
 #' error and p-values to provide a detailed summary.
-#' 
+#'
 #' @param object (type: list) the output of \code{\link{ls_whittle}} function
 #'
 #' @examples
@@ -17,10 +17,9 @@
 #' )
 #'
 #' ls_summary(fit_whittle)
-#' 
 #' @return
 #' A list with the estimates, AIC and number of parameters
-#' 
+#'
 #' A list with the following components:
 #' \item{summary}{a resume table with estimate, std. error, z-value and p-value
 #' of the model.}

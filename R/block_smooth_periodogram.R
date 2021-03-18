@@ -52,65 +52,65 @@
 #'
 #' @examples
 #' block_smooth_periodogram(malleco)
-#' 
 #' @return
 #' A ggplot object
 #'
 #' @seealso \code{\link{arima.sim}}
 #'
 #' @importFrom stats smooth.spline reshape
-#' @importFrom ggplot2 ggplot aes stat geom_contour scale_color_viridis_c 
+#' @importFrom ggplot2 ggplot aes stat geom_contour scale_color_viridis_c
 #'  labs theme_minimal
 #'
 #' @export
 block_smooth_periodogram <- function(y, x = NULL, N = NULL, S = NULL, p = 0.25,
                                      spar.freq = 0, spar.time = 0) {
   len_y <- length(y)
-  
+
   if (is.null(N)) {
     N <- trunc(len_y^0.8)
   }
   if (is.null(S)) {
     S <- trunc(p * N)
   }
-  
+
   M <- trunc((len_y - N) / S + 1)
   aux <- matrix(NA, ncol = M, nrow = trunc(N / 2))
-  
+
   for (j in 1:M) {
     aux[, j] <- periodogram(y[(S * (j - 1) + 1):(S * (j - 1) + N)], plot = FALSE)$periodogram
   }
-  
+
   lambda <- periodogram(y[(S * (j - 1) + 1):(S * (j - 1) + N)], plot = FALSE)$lambda
 
   j <- seq_len(M)
   t <- S * (j - 1) + N / 2
-  
+
   if (is.null(x)) {
     t <- t
   } else {
     t <- x[t]
   }
-  
+
   d <- as.data.frame(aux)
   d$x <- lambda
-  d <- reshape(d, 
-                 direction = "long",
-                 varying = list(names(d)[1:(ncol(d) - 1)]),
-                 v.names = "z",
-                 idvar = "y",
-                 timevar = "key")
+  d <- reshape(d,
+    direction = "long",
+    varying = list(names(d)[1:(ncol(d) - 1)]),
+    v.names = "z",
+    idvar = "y",
+    timevar = "key"
+  )
   d$y <- NULL
-  
+
   d <- merge(x = d, y = data.frame(key = seq_along(t), y = t), by = "key", all.x = TRUE)
-  d <- d[ , c("x","y", "z")]
+  d <- d[, c("x", "y", "z")]
   d <- round(d, 5)
- 
+
   g <- ggplot(data = d, aes(x = x, y = y, z = z)) +
-    geom_contour(binwidth = 0.005, aes(colour = stat(level))) + 
+    geom_contour(binwidth = 0.005, aes(colour = stat(level))) +
     scale_color_viridis_c(name = "Smooth Periodogram", option = "C") +
     labs(x = "Frequency", y = "Time", title = "Smooth Periodogram 2D Contours") +
     theme_minimal()
-  
+
   return(g)
 }

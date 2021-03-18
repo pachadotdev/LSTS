@@ -81,7 +81,7 @@ ARFIMA processes." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -92,7 +92,7 @@ ARFIMA processes." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/pachamaltese/lsts/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -119,7 +119,7 @@ ARFIMA processes." />
 ARFIMA processes.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>spectral_density</span>(<span class='kw'>ar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>numeric</a></span>(), <span class='kw'>ma</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>numeric</a></span>(), <span class='kw'>d</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>lambda</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>spectral_density</span><span class='op'>(</span>ar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>numeric</a></span><span class='op'>(</span><span class='op'>)</span>, ma <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>numeric</a></span><span class='op'>(</span><span class='op'>)</span>, d <span class='op'>=</span> <span class='fl'>0</span>, sd <span class='op'>=</span> <span class='fl'>1</span>, lambda <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -181,12 +181,13 @@ John Wiley \&amp; Sons.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Spectral Density AR(1)</span>
 
-<span class='no'>f</span> <span class='kw'>&lt;-</span> <span class='fu'>spectral_density</span>(<span class='kw'>ar</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>lambda</span> <span class='kw'>=</span> <span class='no'>malleco</span>)
+<span class='va'>f</span> <span class='op'>&lt;-</span> <span class='fu'>spectral_density</span><span class='op'>(</span>ar <span class='op'>=</span> <span class='fl'>0.5</span>, lambda <span class='op'>=</span> <span class='va'>malleco</span><span class='op'>)</span>
 
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>f</span> ~ <span class='no'>malleco</span>,
-  <span class='kw'>bty</span> <span class='kw'>=</span> <span class='st'>"n"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"l"</span>, <span class='kw'>las</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span>(<span class='st'>"Frequency"</span>),
-  <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span>(<span class='st'>"Spectral Density"</span>)
-)</div><div class='img'><img src='spectral_density-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>f</span> <span class='op'>~</span> <span class='va'>malleco</span>,
+  bty <span class='op'>=</span> <span class='st'>"n"</span>, type <span class='op'>=</span> <span class='st'>"l"</span>, las <span class='op'>=</span> <span class='fl'>1</span>, xlab <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='st'>"Frequency"</span><span class='op'>)</span>,
+  ylab <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='st'>"Spectral Density"</span><span class='op'>)</span>
+<span class='op'>)</span>
+</div><div class='img'><img src='spectral_density-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -203,7 +204,7 @@ John Wiley \&amp; Sons.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
