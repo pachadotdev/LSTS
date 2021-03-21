@@ -1,0 +1,150 @@
+{
+  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@type": "SoftwareSourceCode",
+  "identifier": "lsts2",
+  "description": "A set of functions that allow stationary analysis and locally stationary time series analysis.",
+  "name": "lsts2: Locally Stationary Time Series",
+  "codeRepository": "https://github.com/pachamaltese/lsts",
+  "issueTracker": "https://github.com/pachamaltese/lsts2/issues/",
+  "license": "https://spdx.org/licenses/GPL-3.0",
+  "version": "2.0",
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "R",
+    "url": "https://r-project.org"
+  },
+  "runtimePlatform": "R version 4.0.4 (2021-02-15)",
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Ricardo",
+      "familyName": "Olea",
+      "email": "raolea@uc.cl"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Wilfredo",
+      "familyName": "Palma",
+      "email": "wilfredo@mat.puc.cl"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Pilar",
+      "familyName": "Rubio",
+      "email": "parubio@puc.cl"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Mauricio",
+      "familyName": "Vargas",
+      "email": "mvargas@dcc.uchile.cl",
+      "@id": "https://orcid.org/0000-0003-1017-7574"
+    }
+  ],
+  "contributor": {},
+  "copyrightHolder": [
+    {
+      "@type": "Person",
+      "givenName": "Ricardo",
+      "familyName": "Olea",
+      "email": "raolea@uc.cl"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Wilfredo",
+      "familyName": "Palma",
+      "email": "wilfredo@mat.puc.cl"
+    }
+  ],
+  "funder": {},
+  "maintainer": [
+    {
+      "@type": "Person",
+      "givenName": "Mauricio",
+      "familyName": "Vargas",
+      "email": "mvargas@dcc.uchile.cl",
+      "@id": "https://orcid.org/0000-0003-1017-7574"
+    }
+  ],
+  "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "testthat",
+      "name": "testthat",
+      "version": ">= 2.1.0",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=testthat"
+    }
+  ],
+  "softwareRequirements": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "stats",
+      "name": "stats"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "Rdpack",
+      "name": "Rdpack",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=Rdpack"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "ggplot2",
+      "name": "ggplot2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=ggplot2"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "scales",
+      "name": "scales",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=scales"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "patchwork",
+      "name": "patchwork",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=patchwork"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "R",
+      "name": "R",
+      "version": ">= 3.6.0"
+    }
+  ],
+  "relatedLink": "https://pacha.dev/lsts2/",
+  "readme": "https://github.com/pachamaltese/lsts2/blob/master/README.md",
+  "fileSize": "0KB",
+  "contIntegration": "https://codecov.io/gh/pachamaltese/lsts2?branch=master",
+  "developmentStatus": "https://lifecycle.r-lib.org/articles/stages.html#stable"
+}
