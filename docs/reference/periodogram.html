@@ -119,7 +119,7 @@ serie. Returns the periodogram, its graph and the Fourier frequency." />
 serie. Returns the periodogram, its graph and the Fourier frequency.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>periodogram</span><span class='op'>(</span><span class='va'>y</span>, plot <span class='op'>=</span> <span class='cn'>TRUE</span>, include.taper <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>periodogram</span><span class='op'>(</span><span class='va'>y</span>, plot <span class='op'>=</span> <span class='cn'>TRUE</span>, include_taper <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -134,10 +134,10 @@ serie. Returns the periodogram, its graph and the Fourier frequency.</p>
 periodogram. Defaults to TRUE.</p></td>
     </tr>
     <tr>
-      <th>include.taper</th>
+      <th>include_taper</th>
       <td><p>(type: logical) logical argument which by default is
-<code>FALSE</code>. If <code>include.taper=TRUE</code> then <code>y</code> is multiplied by
-\(0.5*(1 - cos(2\pi(n-1)/n))(\emph{cosine bell})\).</p></td>
+<code>FALSE</code>. If <code>include_taper=TRUE</code> then <code>y</code> is multiplied by
+\(0.5(1 - cos(2\pi(n-1)/n))\) (cosine bell).</p></td>
     </tr>
     </table>
 

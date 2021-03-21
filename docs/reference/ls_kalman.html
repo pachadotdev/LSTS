@@ -123,11 +123,11 @@ infinite of moving average in processes LS-ARMA or LS-ARFIMA.</p>
   <span class='va'>series</span>,
   <span class='va'>start</span>,
   order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>p <span class='op'>=</span> <span class='fl'>0</span>, q <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>,
-  ar.order <span class='op'>=</span> <span class='cn'>NULL</span>,
-  ma.order <span class='op'>=</span> <span class='cn'>NULL</span>,
-  sd.order <span class='op'>=</span> <span class='cn'>NULL</span>,
-  d.order <span class='op'>=</span> <span class='cn'>NULL</span>,
-  include.d <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  ar_order <span class='op'>=</span> <span class='cn'>NULL</span>,
+  ma_order <span class='op'>=</span> <span class='cn'>NULL</span>,
+  sd_order <span class='op'>=</span> <span class='cn'>NULL</span>,
+  d_order <span class='op'>=</span> <span class='cn'>NULL</span>,
+  include_d <span class='op'>=</span> <span class='cn'>FALSE</span>,
   m <span class='op'>=</span> <span class='cn'>NULL</span>
 <span class='op'>)</span></pre>
 
@@ -149,31 +149,31 @@ run the model.</p></td>
 entered.</p></td>
     </tr>
     <tr>
-      <th>ar.order</th>
+      <th>ar_order</th>
       <td><p>(type: numeric) AR polimonial order.</p></td>
     </tr>
     <tr>
-      <th>ma.order</th>
+      <th>ma_order</th>
       <td><p>(type: numeric) MA polimonial order.</p></td>
     </tr>
     <tr>
-      <th>sd.order</th>
+      <th>sd_order</th>
       <td><p>(type: numeric) polinomial order noise scale factor.</p></td>
     </tr>
     <tr>
-      <th>d.order</th>
+      <th>d_order</th>
       <td><p>(type: numeric) <code>d</code> polinomial order, where <code>d</code> is
 the <code>ARFIMA</code> parameter.</p></td>
     </tr>
     <tr>
-      <th>include.d</th>
+      <th>include_d</th>
       <td><p>(type: numeric) logical argument for <code>ARFIMA</code> models.
-If <code>include.d=FALSE</code> then the model is an ARMA process.</p></td>
+If <code>include_d=FALSE</code> then the model is an ARMA process.</p></td>
     </tr>
     <tr>
       <th>m</th>
       <td><p>(type: numeric) truncation order of the MA infinity process. By
-default \(m = 0.25*n^{0.8}\) where <code>n</code> the length of <code>series</code>.</p></td>
+default \(m = 0.25n^{0.8}\) where <code>n</code> the length of <code>series</code>.</p></td>
     </tr>
     </table>
 
@@ -188,7 +188,7 @@ default \(m = 0.25*n^{0.8}\) where <code>n</code> the length of <code>series</co
 
     <p>The model fit is done using the Whittle likelihood, while the generation of
 innovations is through Kalman Filter.
-Details about <code>ar.order, ma.order, sd.order</code> and <code>d.order</code> can be
+Details about <code>ar_order, ma_order, sd_order</code> and <code>d_order</code> can be
 viewed in <code><a href='ls_whittle.html'>ls_whittle</a></code>.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 

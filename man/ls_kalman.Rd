@@ -8,11 +8,11 @@ ls_kalman(
   series,
   start,
   order = c(p = 0, q = 0),
-  ar.order = NULL,
-  ma.order = NULL,
-  sd.order = NULL,
-  d.order = NULL,
-  include.d = FALSE,
+  ar_order = NULL,
+  ma_order = NULL,
+  sd_order = NULL,
+  d_order = NULL,
+  include_d = FALSE,
   m = NULL
 )
 }
@@ -25,20 +25,20 @@ run the model.}
 \item{order}{(type: numeric) vector corresponding to \code{ARMA} model
 entered.}
 
-\item{ar.order}{(type: numeric) AR polimonial order.}
+\item{ar_order}{(type: numeric) AR polimonial order.}
 
-\item{ma.order}{(type: numeric) MA polimonial order.}
+\item{ma_order}{(type: numeric) MA polimonial order.}
 
-\item{sd.order}{(type: numeric) polinomial order noise scale factor.}
+\item{sd_order}{(type: numeric) polinomial order noise scale factor.}
 
-\item{d.order}{(type: numeric) \code{d} polinomial order, where \code{d} is
+\item{d_order}{(type: numeric) \code{d} polinomial order, where \code{d} is
 the \code{ARFIMA} parameter.}
 
-\item{include.d}{(type: numeric) logical argument for \code{ARFIMA} models.
-If \code{include.d=FALSE} then the model is an ARMA process.}
+\item{include_d}{(type: numeric) logical argument for \code{ARFIMA} models.
+If \code{include_d=FALSE} then the model is an ARMA process.}
 
 \item{m}{(type: numeric) truncation order of the MA infinity process. By
-default \eqn{m = 0.25*n^{0.8}} where \code{n} the length of \code{series}.}
+default \eqn{m = 0.25n^{0.8}} where \code{n} the length of \code{series}.}
 }
 \value{
 A list with:
@@ -53,7 +53,7 @@ infinite of moving average in processes LS-ARMA or LS-ARFIMA.
 \details{
 The model fit is done using the Whittle likelihood, while the generation of
 innovations is through Kalman Filter.
-Details about \code{ar.order, ma.order, sd.order} and \code{d.order} can be
+Details about \code{ar_order, ma_order, sd_order} and \code{d_order} can be
 viewed in \code{\link{ls_whittle}}.
 }
 \examples{

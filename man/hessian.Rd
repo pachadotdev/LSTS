@@ -16,7 +16,7 @@ at which you want the hessian estimated (usually will be the mle).}
 \item{...}{Additional arguments to be passed to the function.}
 }
 \value{
-An \code{n x n} matrix of 2nd derivatives, where \emph{n} is the length of
+An \eqn{n \times n} matrix of 2nd derivatives, where \eqn{n} is the length of
 \code{x0}.
 }
 \description{

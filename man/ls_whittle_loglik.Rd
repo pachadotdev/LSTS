@@ -8,14 +8,14 @@ ls_whittle_loglik(
   x,
   series,
   order = c(p = 0, q = 0),
-  ar.order = NULL,
-  ma.order = NULL,
-  sd.order = NULL,
-  d.order = NULL,
-  include.d = FALSE,
+  ar_order = NULL,
+  ma_order = NULL,
+  sd_order = NULL,
+  d_order = NULL,
+  include_d = FALSE,
   N = NULL,
   S = NULL,
-  include.taper = TRUE
+  include_taper = TRUE
 )
 }
 \arguments{
@@ -26,17 +26,17 @@ ls_whittle_loglik(
 \item{order}{(type: numeric) vector corresponding to \code{ARMA} model
 entered.}
 
-\item{ar.order}{(type: numeric) AR polimonial order.}
+\item{ar_order}{(type: numeric) AR polimonial order.}
 
-\item{ma.order}{(type: numeric) MA polimonial order.}
+\item{ma_order}{(type: numeric) MA polimonial order.}
 
-\item{sd.order}{(type: numeric) polinomial order noise scale factor.}
+\item{sd_order}{(type: numeric) polinomial order noise scale factor.}
 
-\item{d.order}{(type: numeric) \code{d} polinomial order, where \code{d} is
+\item{d_order}{(type: numeric) \code{d} polinomial order, where \code{d} is
 the \code{ARFIMA} parameter.}
 
-\item{include.d}{(type: numeric) logical argument for \code{ARFIMA} models.
-If \code{include.d=FALSE} then the model is an ARMA process.}
+\item{include_d}{(type: numeric) logical argument for \code{ARFIMA} models.
+If \code{include_d=FALSE} then the model is an ARMA process.}
 
 \item{N}{(type: numeric) value corresponding to the length of the window to
 compute periodogram. If \code{N=NULL} then the function will use
@@ -46,7 +46,7 @@ length of the \code{y} vector.}
 \item{S}{(type: numeric) value corresponding to the lag with which will go
 taking the blocks or windows.}
 
-\item{include.taper}{(type: logical) logical argument that by default is
+\item{include_taper}{(type: logical) logical argument that by default is
 \code{TRUE}. See \code{\link{periodogram}}.}
 }
 \description{

@@ -37,10 +37,10 @@
 #' proportional to \code{N}. By default \code{p=0.25}, if \code{S} and \code{N}
 #' are not entered.
 #'
-#' @param spar.freq (type: numeric) smoothing parameter, typically (but not
+#' @param spar_freq (type: numeric) smoothing parameter, typically (but not
 #' necessarily) in \eqn{(0,1]}.
 #'
-#' @param spar.time (type: numeric) smoothing parameter, typically (but not
+#' @param spar_time (type: numeric) smoothing parameter, typically (but not
 #' necessarily) in \eqn{(0,1]}.
 #'
 #' @references
@@ -63,7 +63,7 @@
 #'
 #' @export
 block_smooth_periodogram <- function(y, x = NULL, N = NULL, S = NULL, p = 0.25,
-                                     spar.freq = 0, spar.time = 0) {
+                                     spar_freq = 0, spar_time = 0) {
   len_y <- length(y)
 
   if (is.null(N)) {

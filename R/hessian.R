@@ -29,7 +29,7 @@
 #'   sd = sd(malleco)
 #' )))))
 #' @return
-#' An \code{n x n} matrix of 2nd derivatives, where \emph{n} is the length of
+#' An \eqn{n \times n} matrix of 2nd derivatives, where \eqn{n} is the length of
 #' \code{x0}.
 #'
 #' @seealso \code{\link{arima.sim}}

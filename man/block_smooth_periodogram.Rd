@@ -10,8 +10,8 @@ block_smooth_periodogram(
   N = NULL,
   S = NULL,
   p = 0.25,
-  spar.freq = 0,
-  spar.time = 0
+  spar_freq = 0,
+  spar_time = 0
 )
 }
 \arguments{
@@ -36,10 +36,10 @@ taking the blocks or windows to calculate the periodogram.}
 proportional to \code{N}. By default \code{p=0.25}, if \code{S} and \code{N}
 are not entered.}
 
-\item{spar.freq}{(type: numeric) smoothing parameter, typically (but not
+\item{spar_freq}{(type: numeric) smoothing parameter, typically (but not
 necessarily) in \eqn{(0,1]}.}
 
-\item{spar.time}{(type: numeric) smoothing parameter, typically (but not
+\item{spar_time}{(type: numeric) smoothing parameter, typically (but not
 necessarily) in \eqn{(0,1]}.}
 }
 \value{

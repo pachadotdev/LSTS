@@ -8,19 +8,19 @@ ls_whittle(
   series,
   start,
   order = c(p = 0, q = 0),
-  ar.order = NULL,
-  ma.order = NULL,
-  sd.order = NULL,
-  d.order = NULL,
-  include.d = FALSE,
+  ar_order = NULL,
+  ma_order = NULL,
+  sd_order = NULL,
+  d_order = NULL,
+  include_d = FALSE,
   N = NULL,
   S = NULL,
-  include.taper = TRUE,
+  include_taper = TRUE,
   control = list(),
   lower = -Inf,
   upper = Inf,
   m = NULL,
-  n.ahead = 0
+  n_ahead = 0
 )
 }
 \arguments{
@@ -32,27 +32,27 @@ run the model.}
 \item{order}{(type: numeric) vector corresponding to \code{ARMA} model
 entered.}
 
-\item{ar.order}{(type: numeric) AR polimonial order.}
+\item{ar_order}{(type: numeric) AR polimonial order.}
 
-\item{ma.order}{(type: numeric) MA polimonial order.}
+\item{ma_order}{(type: numeric) MA polimonial order.}
 
-\item{sd.order}{(type: numeric) polinomial order noise scale factor.}
+\item{sd_order}{(type: numeric) polinomial order noise scale factor.}
 
-\item{d.order}{(type: numeric) \code{d} polinomial order, where \code{d} is
+\item{d_order}{(type: numeric) \code{d} polinomial order, where \code{d} is
 the \code{ARFIMA} parameter.}
 
-\item{include.d}{(type: numeric) logical argument for \code{ARFIMA} models.
-If \code{include.d=FALSE} then the model is an ARMA process.}
+\item{include_d}{(type: numeric) logical argument for \code{ARFIMA} models.
+If \code{include_d=FALSE} then the model is an ARMA process.}
 
 \item{N}{(type: numeric) value corresponding to the length of the window to
 compute periodogram. If \code{N=NULL} then the function will use
-\eqn{N = \textmd{trunc}(n^{0.8})}, see Dahlhaus (1998) where \eqn{n} is the
+\eqn{N = \text{trunc}(n^{0.8})}, see Dahlhaus (1998) where \eqn{n} is the
 length of the \code{y} vector.}
 
 \item{S}{(type: numeric) value corresponding to the lag with which will go
 taking the blocks or windows.}
 
-\item{include.taper}{(type: logical) logical argument that by default is
+\item{include_taper}{(type: logical) logical argument that by default is
 \code{TRUE}. See \code{\link{periodogram}}.}
 
 \item{control}{(type: list) A list of control parameters. More details in
@@ -67,9 +67,9 @@ unconstrained.}
 unconstrained.}
 
 \item{m}{(type: numeric) truncation order of the MA infinity process, by
-default \eqn{m = 0.25*n^{0.8}}. Parameter used in \code{lsts_kalman}.}
+default \eqn{m = 0.25n^{0.8}}. Parameter used in \code{lsts_kalman}.}
 
-\item{n.ahead}{(type: numeric) The number of steps ahead for which prediction
+\item{n_ahead}{(type: numeric) The number of steps ahead for which prediction
 is required. By default is zero.}
 }
 \value{
@@ -128,7 +128,7 @@ In this situation, estimating \eqn{\theta} involves determining \eqn{k} and
 estimating the coefficients \eqn{\alpha_0,\,\alpha_1,\,\ldots, \,\alpha_k}.
 \code{ls_whittle} optimizes \code{\link{ls_whittle_loglik}} as objective
 function using \code{\link[stats]{nlminb}} function, for both LS-ARMA
-(\code{include.d=FALSE}) and LS-ARFIMA (\code{include.d=TRUE}) models.
+(\code{include_d=FALSE}) and LS-ARFIMA (\code{include_d=TRUE}) models.
 Also computes Kalman filter with \code{\link{ls_kalman}} and this values
 are given in \code{var.coef} in the output.
 }
@@ -151,14 +151,14 @@ table <- as.data.frame(cbind(u, table))
 colnames(table) <- c("u", "phi", "sigma")
 
 # Start parameters
-phi <- smooth.spline(table$phi, spar = 1, tol = 0.01)$y
+phi <- smooth.spline(table$phi, spar_= 1, tol = 0.01)$y
 fit.1 <- nls(phi ~ a0 + a1 * u, start = list(a0 = 0.65, a1 = 0.00))
-sigma <- smooth.spline(table$sigma, spar = 1)$y
+sigma <- smooth.spline(table$sigma, spar_= 1)$y
 fit.2 <- nls(sigma ~ b0 + b1 * u, start = list(b0 = 0.65, b1 = 0.00))
 
 fit_whittle <- ls_whittle(
   series = malleco, start = c(coef(fit.1), coef(fit.2)), order = c(p = 1, q = 0),
-  ar.order = 1, sd.order = 1, N = 180, n.ahead = 10
+  ar_order = 1, sd_order = 1, N = 180, n_ahead = 10
 )
 
 }

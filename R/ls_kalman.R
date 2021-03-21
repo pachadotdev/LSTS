@@ -6,7 +6,7 @@
 #' @details
 #' The model fit is done using the Whittle likelihood, while the generation of
 #' innovations is through Kalman Filter.
-#' Details about \code{ar.order, ma.order, sd.order} and \code{d.order} can be
+#' Details about \code{ar_order, ma_order, sd_order} and \code{d_order} can be
 #' viewed in \code{\link{ls_whittle}}.
 #'
 #' @param series (type: numeric) univariate time series.
@@ -17,20 +17,20 @@
 #' @param order (type: numeric) vector corresponding to \code{ARMA} model
 #' entered.
 #'
-#' @param ar.order (type: numeric) AR polimonial order.
+#' @param ar_order (type: numeric) AR polimonial order.
 #'
-#' @param ma.order (type: numeric) MA polimonial order.
+#' @param ma_order (type: numeric) MA polimonial order.
 #'
-#' @param sd.order (type: numeric) polinomial order noise scale factor.
+#' @param sd_order (type: numeric) polinomial order noise scale factor.
 #'
-#' @param d.order (type: numeric) \code{d} polinomial order, where \code{d} is
+#' @param d_order (type: numeric) \code{d} polinomial order, where \code{d} is
 #' the \code{ARFIMA} parameter.
 #'
-#' @param include.d (type: numeric) logical argument for \code{ARFIMA} models.
-#' If \code{include.d=FALSE} then the model is an ARMA process.
+#' @param include_d (type: numeric) logical argument for \code{ARFIMA} models.
+#' If \code{include_d=FALSE} then the model is an ARMA process.
 #'
 #' @param m (type: numeric) truncation order of the MA infinity process. By
-#' default \eqn{m = 0.25*n^{0.8}} where \code{n} the length of \code{series}.
+#' default \eqn{m = 0.25n^{0.8}} where \code{n} the length of \code{series}.
 #'
 #' @references
 #' For more information on theoretical foundations and estimation methods see
@@ -53,21 +53,21 @@
 #' @importFrom stats na.omit ARMAtoMA
 #'
 #' @export
-ls_kalman <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL, ma.order = NULL, sd.order = NULL, d.order = NULL, include.d = FALSE, m = NULL) {
+ls_kalman <- function(series, start, order = c(p = 0, q = 0), ar_order = NULL, ma_order = NULL, sd_order = NULL, d_order = NULL, include_d = FALSE, m = NULL) {
   x <- start
   T. <- length(series)
 
-  if (is.null(ar.order)) {
-    ar.order <- rep(0, order[1])
+  if (is.null(ar_order)) {
+    ar_order <- rep(0, order[1])
   }
-  if (is.null(ma.order)) {
-    ma.order <- rep(0, order[2])
+  if (is.null(ma_order)) {
+    ma_order <- rep(0, order[2])
   }
-  if (is.null(sd.order)) {
-    sd.order <- 0
+  if (is.null(sd_order)) {
+    sd_order <- 0
   }
-  if (is.null(d.order)) {
-    d.order <- 0
+  if (is.null(d_order)) {
+    d_order <- 0
   }
   if (is.null(m)) {
     m <- trunc(0.25 * T.^0.8)
@@ -76,9 +76,9 @@ ls_kalman <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL, m
   M <- m + 1
   u <- (1:T.) / T.
 
-  p <- na.omit(c(ar.order, ma.order, sd.order))
-  if (include.d == TRUE) {
-    p <- na.omit(c(ar.order, ma.order, d.order, sd.order))
+  p <- na.omit(c(ar_order, ma_order, sd_order))
+  if (include_d == TRUE) {
+    p <- na.omit(c(ar_order, ma_order, d_order, sd_order))
   }
 
   phi. <- numeric()
@@ -97,23 +97,23 @@ ls_kalman <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL, m
     phi <- numeric()
     k <- 1
     if (order[1] > 0) {
-      phi[is.na(ar.order) == 1] <- 0
-      phi[is.na(ar.order) == 0] <- X[k:(length(na.omit(ar.order)))]
-      k <- length(na.omit(ar.order)) + 1
+      phi[is.na(ar_order) == 1] <- 0
+      phi[is.na(ar_order) == 0] <- X[k:(length(na.omit(ar_order)))]
+      k <- length(na.omit(ar_order)) + 1
       phi. <- rbind(phi., phi)
     }
 
 
     theta <- numeric()
     if (order[2] > 0) {
-      theta[is.na(ma.order) == 1] <- 0
-      theta[is.na(ma.order) == 0] <- X[k:(length(na.omit(ma.order)) + k - 1)]
-      k <- length(na.omit(ma.order)) + k
+      theta[is.na(ma_order) == 1] <- 0
+      theta[is.na(ma_order) == 0] <- X[k:(length(na.omit(ma_order)) + k - 1)]
+      k <- length(na.omit(ma_order)) + k
       theta. <- rbind(theta., theta)
     }
 
     d <- 0
-    if (include.d == TRUE) {
+    if (include_d == TRUE) {
       d <- X[k]
       k <- k + 1
       d. <- c(d., d)
@@ -145,7 +145,7 @@ ls_kalman <- function(series, start, order = c(p = 0, q = 0), ar.order = NULL, m
       psi <- c(1, ARMAtoMA(ar = phi.[i, ], ma = theta.[i, ], lag.max = m))
     }
     psi. <- numeric()
-    if (include.d == TRUE) {
+    if (include_d == TRUE) {
       eta <- gamma(0:m + d.[i]) / (gamma(0:m + 1) * gamma(d.[i]))
       for (k in 0:m) {
         psi.[k + 1] <- sum(psi[1:(k + 1)] * rev(eta[1:(k + 1)]))

@@ -4,7 +4,7 @@
 \alias{periodogram}
 \title{Periodogram function}
 \usage{
-periodogram(y, plot = TRUE, include.taper = FALSE)
+periodogram(y, plot = TRUE, include_taper = FALSE)
 }
 \arguments{
 \item{y}{(type: numeric) data vector}
@@ -12,9 +12,9 @@ periodogram(y, plot = TRUE, include.taper = FALSE)
 \item{plot}{(type: logical) logical argument which allows to plot the
 periodogram. Defaults to TRUE.}
 
-\item{include.taper}{(type: logical) logical argument which by default is
-\code{FALSE}. If \code{include.taper=TRUE} then \code{y} is multiplied by
-\eqn{0.5*(1 - cos(2\pi(n-1)/n))(\emph{cosine bell})}.}
+\item{include_taper}{(type: logical) logical argument which by default is
+\code{FALSE}. If \code{include_taper=TRUE} then \code{y} is multiplied by
+\eqn{0.5(1 - cos(2\pi(n-1)/n))} (cosine bell).}
 }
 \value{
 A list with with the periodogram and the lambda values

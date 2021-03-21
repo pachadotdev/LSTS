@@ -5,7 +5,7 @@
 #'
 #' @details
 #' This function computes \code{\link{ls_whittle_loglik}} with \code{x} as
-#' \code{x = c(theta.par, x)}.
+#' \code{x = c(theta_par, x)}.
 #'
 #' @param x (type: numeric) parameter vector.
 #'
@@ -14,17 +14,17 @@
 #' @param order (type: numeric) vector corresponding to \code{ARMA} model
 #' entered.
 #'
-#' @param ar.order (type: numeric) AR polimonial order.
+#' @param ar_order (type: numeric) AR polimonial order.
 #'
-#' @param ma.order (type: numeric) MA polimonial order.
+#' @param ma_order (type: numeric) MA polimonial order.
 #'
-#' @param sd.order (type: numeric) polinomial order noise scale factor.
+#' @param sd_order (type: numeric) polinomial order noise scale factor.
 #'
-#' @param d.order (type: numeric) \code{d} polinomial order, where \code{d} is
+#' @param d_order (type: numeric) \code{d} polinomial order, where \code{d} is
 #' the \code{ARFIMA} parameter.
 #'
-#' @param include.d (type: numeric) logical argument for \code{ARFIMA} models.
-#' If \code{include.d=FALSE} then the model is an ARMA process.
+#' @param include_d (type: numeric) logical argument for \code{ARFIMA} models.
+#' If \code{include_d=FALSE} then the model is an ARMA process.
 #'
 #' @param N (type: numeric) value corresponding to the length of the window to
 #' compute periodogram. If \code{N=NULL} then the function will use
@@ -34,14 +34,14 @@
 #' @param S (type: numeric) value corresponding to the lag with which will go
 #' taking the blocks or windows.
 #'
-#' @param include.taper (type: logical) logical argument that by default is
+#' @param include_taper (type: logical) logical argument that by default is
 #' \code{TRUE}. See \code{\link{periodogram}}.
 #'
-#' @param theta.par (type: numeric) vector with the known parameters of the
+#' @param theta_par (type: numeric) vector with the known parameters of the
 #' model.
 #'
 #' @export
-ls_whittle_loglik_sd <- function(x, series, order = c(p = 0, q = 0), ar.order = NULL, ma.order = NULL, sd.order = NULL, d.order = NULL, include.d = FALSE, N = NULL, S = NULL, include.taper = TRUE, theta.par = numeric()) {
-  x <- c(theta.par, x)
-  ls_whittle_loglik(x = x, series = series, order = order, ar.order = ar.order, ma.order = ma.order, sd.order = sd.order, d.order = d.order, include.d = include.d, N = N, S = S, include.taper = include.taper)
+ls_whittle_loglik_sd <- function(x, series, order = c(p = 0, q = 0), ar_order = NULL, ma_order = NULL, sd_order = NULL, d_order = NULL, include_d = FALSE, N = NULL, S = NULL, include_taper = TRUE, theta_par = numeric()) {
+  x <- c(theta_par, x)
+  ls_whittle_loglik(x = x, series = series, order = order, ar_order = ar_order, ma_order = ma_order, sd_order = sd_order, d_order = d_order, include_d = include_d, N = N, S = S, include_taper = include_taper)
 }
