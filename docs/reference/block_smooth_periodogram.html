@@ -148,7 +148,7 @@ function.</p></td>
       <td><p>(type: numeric) value corresponding to the length of the window to
 compute periodogram.
 If <code>N=NULL</code> then the function will use
-\(N = \textmd{trunc}(n^{0.8})\), see
+\(N = \text{trunc}(n^{0.8})\), see
 Dahlhaus and Giraitis (1998)
  where \(n\) is the length of
 the <code>y</code> vector.</p></td>
@@ -181,11 +181,11 @@ necessarily) in \((0,1]\).</p></td>
     <p>A ggplot object</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The number of windows of the function is \(M = \textmd{trunc}((n-N)/S+1)\),
+    <p>The number of windows of the function is \(M = \text{trunc}((n-N)/S+1)\),
 where <code><a href='https://rdrr.io/r/base/Round.html'>trunc</a></code> truncates de entered value and <em>n</em> is
 the length of the vector <code>y</code>. All windows are of the same length
 <code>N</code>, if this value isn't entered by user then is computed as
-\(N=\textmd{trunc}(n^{0.8})\) (Dahlhaus).</p>
+\(N=\text{trunc}(n^{0.8})\) (Dahlhaus).</p>
 <p><code>lsts_spb</code> computes the periodogram in each of the
 <em>M</em> windows and then smoothes it two times with
 <code><a href='https://rdrr.io/r/stats/smooth.spline.html'>smooth.spline</a></code> function; the first time using

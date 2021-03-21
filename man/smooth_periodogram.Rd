@@ -10,7 +10,7 @@ smooth_periodogram(y, plot = TRUE, spar = 0)
 \item{y}{(type: numeric) data vector.}
 
 \item{plot}{(type: logical) logical argument which allows to plot the
-periodogram.}
+periodogram. Defaults to TRUE.}
 
 \item{spar}{(type: numeric) smoothing parameter, typically (but not
 necessarily) in \eqn{(0,1].}}
@@ -39,20 +39,21 @@ If it presents problems with tol (\bold{tol}erance), see
 }
 \examples{
 # AR(1) simulated
-
+require(ggplot2)
 set.seed(1776)
-
 ts.sim <- arima.sim(n = 1000, model = list(order = c(1, 0, 0), ar = 0.7))
-
-periodogram(ts.sim)
-
+per <- periodogram(ts.sim)
 aux <- smooth_periodogram(ts.sim, plot = FALSE, spar = .7)
 
-lines(aux$smooth_periodogram ~ aux$lambda, lwd = 2, col = "orange")
+sm_p <- data.frame(x = aux$lambda, y = aux$smooth_periodogram)
+sp_d <- data.frame(x = aux$lambda,
+ y = spectral_density(ar = 0.7, lambda = aux$lambda))
 
-lines(spectral_density(ar = 0.7, lambda = aux$lambda) ~ aux$lambda,
-  col = "red"
-)
+g <- per$plot
+g +
+ geom_line(data = sm_p, aes(x,y), color = "#ff7f0e") +
+ geom_line(data = sp_d, aes(x,y), color = "#d31244")
+  
 }
 \seealso{
 \code{\link{smooth.spline}}, \code{\link{periodogram}}

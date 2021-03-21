@@ -42,7 +42,8 @@
 #' \insertRef{palma2013estimation}{lsts}
 #'
 #' @examples
-#' ls_kalman(malleco, start(malleco))
+#' fit_kalman <- ls_kalman(malleco, start(malleco))
+#' 
 #' @return
 #' A list with:
 #' \item{residuals }{standard residuals.}

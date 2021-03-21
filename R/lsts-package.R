@@ -9,4 +9,4 @@
 #' @source National Oceanic and Atmospheric Administration (NOAA)
 "malleco"
 
-globalVariables(c("x", "y", "z", "level"))
+globalVariables(c("x", "y", "z", "level", ".x"))

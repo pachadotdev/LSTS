@@ -28,7 +28,7 @@
 #'
 #' @param N (type: numeric) value corresponding to the length of the window to
 #' compute periodogram. If \code{N=NULL} then the function will use
-#' \eqn{N = \textmd{trunc}(n^{0.8})}, see Dahlhaus (1998) where \eqn{n} is the
+#' \eqn{N = \text{trunc}(n^{0.8})}, see Dahlhaus (1998) where \eqn{n} is the
 #' length of the \code{y} vector.
 #'
 #' @param S (type: numeric) value corresponding to the lag with which will go

@@ -10,7 +10,7 @@ periodogram(y, plot = TRUE, include.taper = FALSE)
 \item{y}{(type: numeric) data vector}
 
 \item{plot}{(type: logical) logical argument which allows to plot the
-periodogram.}
+periodogram. Defaults to TRUE.}
 
 \item{include.taper}{(type: logical) logical argument which by default is
 \code{FALSE}. If \code{include.taper=TRUE} then \code{y} is multiplied by
@@ -41,10 +41,10 @@ the periodogram is \code{periodogram} values vs. \eqn{\lambda}.
 }
 \examples{
 # AR(1) simulated
-
 set.seed(1776)
 ts.sim <- arima.sim(n = 1000, model = list(order = c(1, 0, 0), ar = 0.7))
-periodogram(ts.sim)
+per <- periodogram(ts.sim)
+per$plot
 
 }
 \references{

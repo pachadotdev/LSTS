@@ -11,7 +11,7 @@
 #' {\bigg|\phi\bigg(\exp\bigg(-i\lambda\bigg)\bigg)\bigg|^2}}
 #'
 #' With \eqn{-\pi \le \lambda \le \pi} and \eqn{-1 < d < 1/2}. \eqn{|x|} is the
-#' \code{\link[base]{Mod}} of \emph{x}. \code{lsts_sd} returns the
+#' \code{\link[base]{Mod}} of \eqn{x}. \code{lsts_sd} returns the
 #' values corresponding to \eqn{f(\lambda)}. When \code{d} is zero, the spectral
 #' density corresponds to an ARMA(p,q).
 #'
@@ -39,13 +39,12 @@
 #'
 #' @examples
 #' # Spectral Density AR(1)
-#'
+#' require(ggplot2)
 #' f <- spectral_density(ar = 0.5, lambda = malleco)
-#'
-#' plot(f ~ malleco,
-#'   bty = "n", type = "l", las = 1, xlab = expression("Frequency"),
-#'   ylab = expression("Spectral Density")
-#' )
+#' ggplot(data.frame(x = malleco, y = f)) +
+#'  geom_line(aes(x = as.numeric(x), y = as.numeric(y))) +
+#'  labs(x = "Frequency", y = "Spectral Density") +
+#'  theme_minimal()
 #' 
 #' @return An unnamed vector of numeric class
 #'

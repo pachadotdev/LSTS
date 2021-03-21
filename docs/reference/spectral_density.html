@@ -162,7 +162,7 @@ $$f(\lambda) = \frac{\sigma^2}{2\pi} \cdot \bigg(2\,
 \frac{\bigg|\theta\bigg(\exp\bigg(-i\lambda\bigg)\bigg)\bigg|^2}
 {\bigg|\phi\bigg(\exp\bigg(-i\lambda\bigg)\bigg)\bigg|^2}$$</p>
 <p>With \(-\pi \le \lambda \le \pi\) and \(-1 &lt; d &lt; 1/2\). \(|x|\) is the
-<code><a href='https://rdrr.io/r/base/complex.html'>Mod</a></code> of <em>x</em>. <code>lsts_sd</code> returns the
+<code><a href='https://rdrr.io/r/base/complex.html'>Mod</a></code> of \(x\). <code>lsts_sd</code> returns the
 values corresponding to \(f(\lambda)\). When <code>d</code> is zero, the spectral
 density corresponds to an ARMA(p,q).</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
@@ -180,13 +180,12 @@ John Wiley \&amp; Sons.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Spectral Density AR(1)</span>
-
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
 <span class='va'>f</span> <span class='op'>&lt;-</span> <span class='fu'>spectral_density</span><span class='op'>(</span>ar <span class='op'>=</span> <span class='fl'>0.5</span>, lambda <span class='op'>=</span> <span class='va'>malleco</span><span class='op'>)</span>
-
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>f</span> <span class='op'>~</span> <span class='va'>malleco</span>,
-  bty <span class='op'>=</span> <span class='st'>"n"</span>, type <span class='op'>=</span> <span class='st'>"l"</span>, las <span class='op'>=</span> <span class='fl'>1</span>, xlab <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='st'>"Frequency"</span><span class='op'>)</span>,
-  ylab <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='st'>"Spectral Density"</span><span class='op'>)</span>
-<span class='op'>)</span>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>malleco</span>, y <span class='op'>=</span> <span class='va'>f</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+ <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>, y <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+ <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Frequency"</span>, y <span class='op'>=</span> <span class='st'>"Spectral Density"</span><span class='op'>)</span> <span class='op'>+</span>
+ <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='img'><img src='spectral_density-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>

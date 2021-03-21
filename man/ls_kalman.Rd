@@ -57,7 +57,8 @@ Details about \code{ar.order, ma.order, sd.order} and \code{d.order} can be
 viewed in \code{\link{ls_whittle}}.
 }
 \examples{
-ls_kalman(malleco, start(malleco))
+fit_kalman <- ls_kalman(malleco, start(malleco))
+
 }
 \references{
 For more information on theoretical foundations and estimation methods see

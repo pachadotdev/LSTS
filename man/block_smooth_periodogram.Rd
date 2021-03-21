@@ -25,7 +25,7 @@ function.}
 \item{N}{(type: numeric) value corresponding to the length of the window to
 compute periodogram.
 If \code{N=NULL} then the function will use
-\eqn{N = \textmd{trunc}(n^{0.8})}, see
+\eqn{N = \text{trunc}(n^{0.8})}, see
 \insertCite{dahlhaus1998optimal;textual}{lsts} where \eqn{n} is the length of
 the \code{y} vector.}
 
@@ -50,11 +50,11 @@ Plots the contour plot of the smoothing periodogram of a time series, by
 blocks or windows.
 }
 \details{
-The number of windows of the function is \eqn{M = \textmd{trunc}((n-N)/S+1)},
+The number of windows of the function is \eqn{M = \text{trunc}((n-N)/S+1)},
 where \code{\link[base]{trunc}} truncates de entered value and \emph{n} is
 the length of the vector \code{y}. All windows are of the same length
 \code{N}, if this value isn't entered by user then is computed as
-\eqn{N=\textmd{trunc}(n^{0.8})} (Dahlhaus).
+\eqn{N=\text{trunc}(n^{0.8})} (Dahlhaus).
 
 \code{lsts_spb} computes the periodogram in each of the
 \emph{M} windows and then smoothes it two times with

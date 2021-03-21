@@ -22,7 +22,7 @@
 #' @param y (type: numeric) data vector
 #'
 #' @param plot (type: logical) logical argument which allows to plot the
-#' periodogram.
+#' periodogram. Defaults to TRUE.
 #'
 #' @param include.taper (type: logical) logical argument which by default is
 #' \code{FALSE}. If \code{include.taper=TRUE} then \code{y} is multiplied by
@@ -37,10 +37,10 @@
 #'
 #' @examples
 #' # AR(1) simulated
-#'
 #' set.seed(1776)
 #' ts.sim <- arima.sim(n = 1000, model = list(order = c(1, 0, 0), ar = 0.7))
-#' periodogram(ts.sim)
+#' per <- periodogram(ts.sim)
+#' per$plot
 #' 
 #' @return
 #' A list with with the periodogram and the lambda values
@@ -49,7 +49,8 @@
 #' \code{\link[stats]{smooth.spline}}.
 #'
 #' @importFrom stats fft
-#' @importFrom graphics axis
+#' @importFrom ggplot2 geom_line
+#' @importFrom scales math_format
 #'
 #' @export
 periodogram <- function(y, plot = TRUE, include.taper = FALSE) {
@@ -69,8 +70,14 @@ periodogram <- function(y, plot = TRUE, include.taper = FALSE) {
   }
   lambda <- (2 * pi * (1:m)) / n
   if (plot == TRUE) {
-    plot(periodogram ~ lambda, bty = "n", las = 1, xlab = expression("Frequency"), ylab = expression("Periodogram"), xaxt = "n", type = "l")
-    axis(1, at = seq(0, pi, pi / 4), labels = expression(0, pi / 4, pi / 2, 3 * pi / 4, pi))
+    pi_scales <- math_format(.x * pi, format = function(x) x / pi)
+    g <- ggplot(data.frame(x = lambda, y = periodogram)) +
+      geom_line(aes(x = as.numeric(x), y = as.numeric(y)), color = "#1f77b4") +
+      labs(x = "Frequency", y = "Periodogram") +
+      scale_x_continuous(labels = pi_scales, breaks = seq(0, pi, pi / 4)) +
+      theme_minimal()
+  } else {
+    g <- NULL
   }
-  return(list(periodogram = periodogram, lambda = lambda))
+  return(list(periodogram = periodogram, lambda = lambda, plot = g))
 }

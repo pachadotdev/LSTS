@@ -3,7 +3,7 @@
 <!-- badges: start -->
 [![R build status](https://github.com/pachamaltese/lsts/workflows/R-CMD-check/badge.svg)](https://github.com/pachamaltese/lsts/actions?workflow=R-CMD-check)
 [![Codecov test coverage](https://codecov.io/gh/pachamaltese/lsts/branch/master/graph/badge.svg)](https://codecov.io/gh/pachamaltese/lsts?branch=master)
-[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 <!-- badges: end -->
 
 ## Description
