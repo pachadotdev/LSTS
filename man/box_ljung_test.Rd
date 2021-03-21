@@ -14,7 +14,7 @@ box_ljung_test(z, lag = NULL, main = NULL)
 \item{main}{(type: character) a title for the returned plot}
 }
 \value{
-A ggplot object
+A ggplot object.
 }
 \description{
 Plots the p-values Ljung-Box test.
@@ -22,10 +22,10 @@ Plots the p-values Ljung-Box test.
 \details{
 The Ljung-Box test is used to check if exists autocorrelation in a time
 series. The statistic is
-\deqn{Q = n(n+2)\cdot\sum_{j=1}^h \hat{\rho}(j)^2/(n-j)} with \emph{n} the
+\deqn{q = n(n+2)\cdot\sum_{j=1}^h \hat{\rho}(j)^2/(n-j)} with \emph{n} the
 number of observations and \eqn{\hat{\rho}(j)} the autocorrelation
-coefficient in the sample when the lag is \emph{j}. \code{lsts_lbtp}
-computes \eqn{Q} and returns the p-values graph with lag \emph{j}.
+coefficient in the sample when the lag is \emph{j}. \code{lsts2_lbtp}
+computes \eqn{q} and returns the p-values graph with lag \emph{j}.
 }
 \examples{
 box_ljung_test(malleco, lag = 5)
@@ -33,10 +33,10 @@ box_ljung_test(malleco, lag = 5)
 \references{
 For more information on theoretical foundations and estimation methods see
 
-\insertRef{brockwell2002introduction}{lsts}
+\insertRef{brockwell2002introduction}{lsts2}
 
-\insertRef{ljung1978measure}{lsts}
+\insertRef{ljung1978measure}{lsts2}
 }
 \seealso{
-\code{\link{periodogram}}, \code{\link[graphics]{persp}}
+\code{\link{periodogram}}
 }

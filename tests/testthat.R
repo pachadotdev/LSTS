@@ -1,4 +1,4 @@
 library(testthat)
-library(lsts)
+library(lsts2)
 
-test_check("lsts")
+test_check("lsts2")

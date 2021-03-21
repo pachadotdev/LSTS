@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Smooth Periodogram by Blocks — block_smooth_periodogram • lsts</title>
+<title>Smooth Periodogram by Blocks — block_smooth_periodogram • lsts2</title>
 
 
 <!-- jquery -->
@@ -72,8 +72,8 @@ blocks or windows." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">lsts</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1</span>
+        <a class="navbar-link" href="../index.html">lsts2</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0</span>
       </span>
     </div>
 
@@ -91,7 +91,7 @@ blocks or windows." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/pachamaltese/lsts/">
+  <a href="https://github.com/pachamaltese/lsts2/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -110,7 +110,7 @@ blocks or windows." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Smooth Periodogram by Blocks</h1>
-    <small class="dont-index">Source: <a href='https://github.com/pachamaltese/lsts/blob/master/R/block_smooth_periodogram.R'><code>R/block_smooth_periodogram.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/pachamaltese/lsts2/blob/master/R/block_smooth_periodogram.R'><code>R/block_smooth_periodogram.R</code></a></small>
     <div class="hidden name"><code>block_smooth_periodogram.Rd</code></div>
     </div>
 
@@ -122,8 +122,8 @@ blocks or windows.</p>
     <pre class="usage"><span class='fu'>block_smooth_periodogram</span><span class='op'>(</span>
   <span class='va'>y</span>,
   x <span class='op'>=</span> <span class='cn'>NULL</span>,
-  N <span class='op'>=</span> <span class='cn'>NULL</span>,
-  S <span class='op'>=</span> <span class='cn'>NULL</span>,
+  w <span class='op'>=</span> <span class='cn'>NULL</span>,
+  s <span class='op'>=</span> <span class='cn'>NULL</span>,
   p <span class='op'>=</span> <span class='fl'>0.25</span>,
   spar_freq <span class='op'>=</span> <span class='fl'>0</span>,
   spar_time <span class='op'>=</span> <span class='fl'>0</span>
@@ -144,24 +144,24 @@ More details in <code>y</code> argument from <code><a href='https://rdrr.io/r/gr
 function.</p></td>
     </tr>
     <tr>
-      <th>N</th>
+      <th>w</th>
       <td><p>(type: numeric) value corresponding to the length of the window to
 compute periodogram.
-If <code>N=NULL</code> then the function will use
-\(N = \text{trunc}(n^{0.8})\), see
+If <code>w=NULL</code> then the function will use
+\(w = \text{trunc}(n^{0.8})\), see
 Dahlhaus and Giraitis (1998)
  where \(n\) is the length of
 the <code>y</code> vector.</p></td>
     </tr>
     <tr>
-      <th>S</th>
+      <th>s</th>
       <td><p>(type: numeric) value corresponding to the lag with which will be
 taking the blocks or windows to calculate the periodogram.</p></td>
     </tr>
     <tr>
       <th>p</th>
-      <td><p>(type: numeric) value used if it is desired that <code>S</code> is
-proportional to <code>N</code>. By default <code>p=0.25</code>, if <code>S</code> and <code>N</code>
+      <td><p>(type: numeric) value used if it is desired that <code>s</code> is
+proportional to <code>w</code>. By default <code>p=0.25</code>, if <code>s</code> and <code>w</code>
 are not entered.</p></td>
     </tr>
     <tr>
@@ -181,12 +181,12 @@ necessarily) in \((0,1]\).</p></td>
     <p>A ggplot object</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The number of windows of the function is \(M = \text{trunc}((n-N)/S+1)\),
+    <p>The number of windows of the function is \(m = \text{trunc}((n-w)/s+1)\),
 where <code><a href='https://rdrr.io/r/base/Round.html'>trunc</a></code> truncates de entered value and <em>n</em> is
 the length of the vector <code>y</code>. All windows are of the same length
-<code>N</code>, if this value isn't entered by user then is computed as
-\(N=\text{trunc}(n^{0.8})\) (Dahlhaus).</p>
-<p><code>lsts_spb</code> computes the periodogram in each of the
+<code>w</code>, if this value isn't entered by user then is computed as
+\(w=\text{trunc}(n^{0.8})\) (Dahlhaus).</p>
+<p><code>lsts2_spb</code> computes the periodogram in each of the
 <em>M</em> windows and then smoothes it two times with
 <code><a href='https://rdrr.io/r/stats/smooth.spline.html'>smooth.spline</a></code> function; the first time using
 <code>spar_freq</code> parameter and the second time with <code>spar_time</code>. These

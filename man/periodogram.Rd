@@ -17,7 +17,7 @@ periodogram. Defaults to TRUE.}
 \eqn{0.5(1 - cos(2\pi(n-1)/n))} (cosine bell).}
 }
 \value{
-A list with with the periodogram and the lambda values
+A list with with the periodogram and the lambda values.
 }
 \description{
 This function computes the periodogram from a stationary time
@@ -50,9 +50,9 @@ per$plot
 \references{
 For more information on theoretical foundations and estimation methods see
 
-\insertRef{brockwell2002introduction}{lsts}
+\insertRef{brockwell2002introduction}{lsts2}
 
-\insertRef{dahlhaus1997fitting}{lsts}
+\insertRef{dahlhaus1997fitting}{lsts2}
 }
 \seealso{
 \code{\link[stats]{fft}}, \code{\link[base]{Mod}},

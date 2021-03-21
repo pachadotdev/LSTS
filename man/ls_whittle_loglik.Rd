@@ -13,8 +13,8 @@ ls_whittle_loglik(
   sd_order = NULL,
   d_order = NULL,
   include_d = FALSE,
-  N = NULL,
-  S = NULL,
+  w = NULL,
+  s = NULL,
   include_taper = TRUE
 )
 }
@@ -38,12 +38,12 @@ the \code{ARFIMA} parameter.}
 \item{include_d}{(type: numeric) logical argument for \code{ARFIMA} models.
 If \code{include_d=FALSE} then the model is an ARMA process.}
 
-\item{N}{(type: numeric) value corresponding to the length of the window to
-compute periodogram. If \code{N=NULL} then the function will use
-\eqn{N = \text{trunc}(n^{0.8})}, see Dahlhaus (1998) where \eqn{n} is the
+\item{w}{(type: numeric) value corresponding to the length of the window to
+compute periodogram. If \code{w=NULL} then the function will use
+\eqn{w = \text{trunc}(n^{0.8})}, see Dahlhaus (1998) where \eqn{n} is the
 length of the \code{y} vector.}
 
-\item{S}{(type: numeric) value corresponding to the lag with which will go
+\item{s}{(type: numeric) value corresponding to the lag with which will go
 taking the blocks or windows.}
 
 \item{include_taper}{(type: logical) logical argument that by default is
@@ -60,18 +60,18 @@ the Whittle log-likelihood function proposed by Dahlhaus (1997),
 \deqn{L_n(\theta) = \frac{1}{4\pi}\frac{1}{M} \int_{-\pi}^{\pi}
 \bigg\{log f_{\theta}(u_j,\lambda) +
 \frac{I_N(u_j, \lambda)}{f_{\theta}(u_j,\lambda)}\bigg\}\,d\lambda}
-where \eqn{M} is the number of blocks, \eqn{N} the length of the series per
-block, \eqn{n =S(M-1)+N}, \eqn{S} is the shift from block to block,
-\eqn{u_j =t_j/n}, \eqn{t_j =S(j-1)+N/2}, \eqn{j =1,\ldots,M} and
+where \eqn{M} is the number of blocks, \eqn{w} the length of the series per
+block, \eqn{n =s(M-1)+w}, \eqn{s} is the shift from block to block,
+\eqn{u_j =t_j/n}, \eqn{t_j =s(j-1)+w/2}, \eqn{j =1,\ldots,M} and
 \eqn{\lambda} the Fourier frequencies in the block
-(\eqn{2\,\pi\,k/N}, \eqn{k = 1,\ldots, N}).
+(\eqn{2\,\pi\,k/w}, \eqn{k = 1,\ldots, w}).
 }
 \references{
 For more information on theoretical foundations and estimation methods see
 
-\insertRef{brockwell2002introduction}{lsts}
+\insertRef{brockwell2002introduction}{lsts2}
 
-\insertRef{palma2010efficient}{lsts}
+\insertRef{palma2010efficient}{lsts2}
 }
 \seealso{
 \code{\link[stats]{nlminb}}, \code{\link{ls_kalman}}

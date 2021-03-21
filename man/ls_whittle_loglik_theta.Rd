@@ -13,8 +13,8 @@ ls_whittle_loglik_theta(
   sd_order = NULL,
   d_order = NULL,
   include_d = FALSE,
-  N = NULL,
-  S = NULL,
+  w = NULL,
+  s = NULL,
   include_taper = TRUE,
   sd_par = 1
 )
@@ -39,12 +39,12 @@ the \code{ARFIMA} parameter.}
 \item{include_d}{(type: numeric) logical argument for \code{ARFIMA} models.
 If \code{include_d=FALSE} then the model is an ARMA process.}
 
-\item{N}{(type: numeric) value corresponding to the length of the window to
-compute periodogram. If \code{N=NULL} then the function will use
-\eqn{N = \text{trunc}(n^{0.8})}, see Dahlhaus (1998) where \eqn{n} is the
+\item{w}{(type: numeric) value corresponding to the length of the window to
+compute periodogram. If \code{w=NULL} then the function will use
+\eqn{w = \text{trunc}(n^{0.8})}, see Dahlhaus (1998) where \eqn{n} is the
 length of the \code{y} vector.}
 
-\item{S}{(type: numeric) value corresponding to the lag with which will go
+\item{s}{(type: numeric) value corresponding to the lag with which will go
 taking the blocks or windows.}
 
 \item{include_taper}{(type: logical) logical argument that by default is

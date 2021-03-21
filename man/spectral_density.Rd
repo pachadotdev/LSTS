@@ -23,7 +23,7 @@ density is calculated/computed. If \code{lambda=NULL} then it is considered a
 sequence between 0 and \eqn{\pi}.}
 }
 \value{
-An unnamed vector of numeric class
+An unnamed vector of numeric class.
 }
 \description{
 Returns theoretical spectral density evaluated in ARMA and
@@ -37,7 +37,7 @@ The spectral density of an ARFIMA(p,d,q) processes is
 {\bigg|\phi\bigg(\exp\bigg(-i\lambda\bigg)\bigg)\bigg|^2}}
 
 With \eqn{-\pi \le \lambda \le \pi} and \eqn{-1 < d < 1/2}. \eqn{|x|} is the
-\code{\link[base]{Mod}} of \eqn{x}. \code{lsts_sd} returns the
+\code{\link[base]{Mod}} of \eqn{x}. \code{lsts2_sd} returns the
 values corresponding to \eqn{f(\lambda)}. When \code{d} is zero, the spectral
 density corresponds to an ARMA(p,q).
 }
@@ -54,10 +54,7 @@ ggplot(data.frame(x = malleco, y = f)) +
 \references{
 For more information on theoretical foundations and estimation methods see
 
-\insertRef{brockwell2002introduction}{lsts}
+\insertRef{brockwell2002introduction}{lsts2}
 
-\insertRef{palma2007long}{lsts}
-}
-\seealso{
-\code{\link{periodogram}}, \code{\link[graphics]{persp}}
+\insertRef{palma2007long}{lsts2}
 }

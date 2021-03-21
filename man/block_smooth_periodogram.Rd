@@ -7,8 +7,8 @@
 block_smooth_periodogram(
   y,
   x = NULL,
-  N = NULL,
-  S = NULL,
+  w = NULL,
+  s = NULL,
   p = 0.25,
   spar_freq = 0,
   spar_time = 0
@@ -18,22 +18,20 @@ block_smooth_periodogram(
 \item{y}{(type: numeric) data vector}
 
 \item{x}{(type: numeric) optional vector, if \code{x = NULL} then the
-function uses \eqn{(1,\ldots,n)} where \code{n} is the length of \code{y}.
-More details in \code{y} argument from \code{\link[graphics]{persp}}
-function.}
+function uses \eqn{(1,\ldots,n)} where \code{n} is the length of \code{y}.}
 
-\item{N}{(type: numeric) value corresponding to the length of the window to
+\item{w}{(type: numeric) value corresponding to the length of the window to
 compute periodogram.
-If \code{N=NULL} then the function will use
-\eqn{N = \text{trunc}(n^{0.8})}, see
-\insertCite{dahlhaus1998optimal;textual}{lsts} where \eqn{n} is the length of
+If \code{w=NULL} then the function will use
+\eqn{w = \text{trunc}(n^{0.8})}, see
+\insertCite{dahlhaus1998optimal;textual}{lsts2} where \eqn{n} is the length of
 the \code{y} vector.}
 
-\item{S}{(type: numeric) value corresponding to the lag with which will be
+\item{s}{(type: numeric) value corresponding to the lag with which will be
 taking the blocks or windows to calculate the periodogram.}
 
-\item{p}{(type: numeric) value used if it is desired that \code{S} is
-proportional to \code{N}. By default \code{p=0.25}, if \code{S} and \code{N}
+\item{p}{(type: numeric) value used if it is desired that \code{s} is
+proportional to \code{w}. By default \code{p=0.25}, if \code{s} and \code{w}
 are not entered.}
 
 \item{spar_freq}{(type: numeric) smoothing parameter, typically (but not
@@ -43,20 +41,20 @@ necessarily) in \eqn{(0,1]}.}
 necessarily) in \eqn{(0,1]}.}
 }
 \value{
-A ggplot object
+A ggplot object.
 }
 \description{
 Plots the contour plot of the smoothing periodogram of a time series, by
 blocks or windows.
 }
 \details{
-The number of windows of the function is \eqn{M = \text{trunc}((n-N)/S+1)},
+The number of windows of the function is \eqn{m = \text{trunc}((n-w)/s+1)},
 where \code{\link[base]{trunc}} truncates de entered value and \emph{n} is
 the length of the vector \code{y}. All windows are of the same length
-\code{N}, if this value isn't entered by user then is computed as
-\eqn{N=\text{trunc}(n^{0.8})} (Dahlhaus).
+\code{w}, if this value isn't entered by user then is computed as
+\eqn{w=\text{trunc}(n^{0.8})} (Dahlhaus).
 
-\code{lsts_spb} computes the periodogram in each of the
+\code{lsts2_spb} computes the periodogram in each of the
 \emph{M} windows and then smoothes it two times with
 \code{\link[stats]{smooth.spline}} function; the first time using
 \code{spar_freq} parameter and the second time with \code{spar_time}. These
@@ -68,9 +66,9 @@ block_smooth_periodogram(malleco)
 \references{
 For more information on theoretical foundations and estimation methods see
 
-\insertRef{dahlhaus1997fitting}{lsts}
+\insertRef{dahlhaus1997fitting}{lsts2}
 
-\insertRef{dahlhaus1998optimal}{lsts}
+\insertRef{dahlhaus1998optimal}{lsts2}
 }
 \seealso{
 \code{\link{arima.sim}}
