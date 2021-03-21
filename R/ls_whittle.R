@@ -104,9 +104,9 @@
 #' colnames(table) <- c("u", "phi", "sigma")
 #'
 #' # Start parameters
-#' phi <- smooth.spline(table$phi, spar_= 1, tol = 0.01)$y
+#' phi <- smooth.spline(table$phi, spar = 1, tol = 0.01)$y
 #' fit.1 <- nls(phi ~ a0 + a1 * u, start = list(a0 = 0.65, a1 = 0.00))
-#' sigma <- smooth.spline(table$sigma, spar_= 1)$y
+#' sigma <- smooth.spline(table$sigma, spar = 1)$y
 #' fit.2 <- nls(sigma ~ b0 + b1 * u, start = list(b0 = 0.65, b1 = 0.00))
 #'
 #' fit_whittle <- ls_whittle(
