@@ -31,9 +31,9 @@
 #' @references
 #' For more information on theoretical foundations and estimation methods see
 #'
-#' \insertRef{brockwell2002introduction}{lsts}
+#' \insertRef{brockwell2002introduction}{lsts2}
 #'
-#' \insertRef{dahlhaus1997fitting}{lsts}
+#' \insertRef{dahlhaus1997fitting}{lsts2}
 #'
 #' @examples
 #' # AR(1) simulated
@@ -43,7 +43,7 @@
 #' per$plot
 #' 
 #' @return
-#' A list with with the periodogram and the lambda values
+#' A list with with the periodogram and the lambda values.
 #'
 #' @seealso \code{\link[stats]{fft}}, \code{\link[base]{Mod}},
 #' \code{\link[stats]{smooth.spline}}.

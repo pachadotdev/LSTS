@@ -57,12 +57,12 @@
 #' @param include_d (type: numeric) logical argument for \code{ARFIMA} models.
 #' If \code{include_d=FALSE} then the model is an ARMA process.
 #'
-#' @param N (type: numeric) value corresponding to the length of the window to
-#' compute periodogram. If \code{N=NULL} then the function will use
-#' \eqn{N = \text{trunc}(n^{0.8})}, see Dahlhaus (1998) where \eqn{n} is the
+#' @param w (type: numeric) value corresponding to the length of the window to
+#' compute periodogram. If \code{w=NULL} then the function will use
+#' \eqn{w = \text{trunc}(n^{0.8})}, see Dahlhaus (1998) where \eqn{n} is the
 #' length of the \code{y} vector.
 #'
-#' @param S (type: numeric) value corresponding to the lag with which will go
+#' @param s (type: numeric) value corresponding to the lag with which will go
 #' taking the blocks or windows.
 #'
 #' @param include_taper (type: logical) logical argument that by default is
@@ -80,26 +80,26 @@
 #' unconstrained.
 #'
 #' @param m (type: numeric) truncation order of the MA infinity process, by
-#' default \eqn{m = 0.25n^{0.8}}. Parameter used in \code{lsts_kalman}.
+#' default \eqn{m = 0.25n^{0.8}}. Parameter used in \code{lsts2_kalman}.
 #'
 #' @param n_ahead (type: numeric) The number of steps ahead for which prediction
 #' is required. By default is zero.
 #'
 #' @examples
 #' # Analysis by blocks of phi and sigma parameters
-#' N <- 200
-#' S <- 100
-#' M <- trunc((length(malleco) - N) / S + 1)
+#' w <- 200
+#' s <- 100
+#' M <- trunc((length(malleco) - w) / s + 1)
 #' table <- c()
 #' for (j in 1:M) {
-#'   x <- malleco[(1 + S * (j - 1)):(N + S * (j - 1))]
+#'   x <- malleco[(1 + s * (j - 1)):(w + s * (j - 1))]
 #'   table <- rbind(table, nlminb(
-#'     start = c(0.65, 0.15), N = N,
+#'     start = c(0.65, 0.15), w = w,
 #'     objective = ls_whittle_loglik,
 #'     series = x, order = c(p = 1, q = 0)
 #'   )$par)
 #' }
-#' u <- (N / 2 + S * (1:M - 1)) / length(malleco)
+#' u <- (w / 2 + s * (1:M - 1)) / length(malleco)
 #' table <- as.data.frame(cbind(u, table))
 #' colnames(table) <- c("u", "phi", "sigma")
 #'
@@ -111,7 +111,7 @@
 #'
 #' fit_whittle <- ls_whittle(
 #'   series = malleco, start = c(coef(fit.1), coef(fit.2)), order = c(p = 1, q = 0),
-#'   ar_order = 1, sd_order = 1, N = 180, n_ahead = 10
+#'   ar_order = 1, sd_order = 1, w = 180, n_ahead = 10
 #' )
 #' 
 #' @return
@@ -141,10 +141,10 @@
 #' @importFrom stats nlminb
 #'
 #' @export
-ls_whittle <- function(series, start, order = c(p = 0, q = 0), ar_order = NULL, ma_order = NULL, sd_order = NULL, d_order = NULL, include_d = FALSE, N = NULL, S = NULL, include_taper = TRUE, control = list(), lower = -Inf, upper = Inf, m = NULL, n_ahead = 0) {
+ls_whittle <- function(series, start, order = c(p = 0, q = 0), ar_order = NULL, ma_order = NULL, sd_order = NULL, d_order = NULL, include_d = FALSE, w = NULL, s = NULL, include_taper = TRUE, control = list(), lower = -Inf, upper = Inf, m = NULL, n_ahead = 0) {
   series <- c(series, rep(NA, n_ahead))
 
-  aux <- nlminb(start = start, objective = ls_whittle_loglik, series = series, order = order, ar_order = ar_order, ma_order = ma_order, sd_order = sd_order, d_order = d_order, include_d = include_d, N = N, S = S, include_taper = include_taper, lower = lower, upper = upper, control = control)
+  aux <- nlminb(start = start, objective = ls_whittle_loglik, series = series, order = order, ar_order = ar_order, ma_order = ma_order, sd_order = sd_order, d_order = d_order, include_d = include_d, w = w, s = s, include_taper = include_taper, lower = lower, upper = upper, control = control)
 
   len_s <- length(series)
   loglik <- -aux$objective
@@ -161,8 +161,8 @@ ls_whittle <- function(series, start, order = c(p = 0, q = 0), ar_order = NULL, 
   if (is.null(d_order)) {
     d_order <- 0
   }
-  G1 <- hessian(f = ls_whittle_loglik_theta, x0 = x[1:(k - d_order - 1)], series = series, order = order, ar_order = ar_order, ma_order = ma_order, sd_order = sd_order, d_order = d_order, include_d = include_d, N = N, S = S, include_taper = include_taper, sd_par = x[(k - d_order):k])
-  G2 <- hessian(f = ls_whittle_loglik_sd, x0 = x[(k - d_order):k], series = series, order = order, ar_order = ar_order, ma_order = ma_order, sd_order = sd_order, d_order = d_order, include_d = include_d, N = N, S = S, include_taper = include_taper, theta_par = x[1:(k - d_order - 1)])
+  G1 <- hessian(f = ls_whittle_loglik_theta, x0 = x[1:(k - d_order - 1)], series = series, order = order, ar_order = ar_order, ma_order = ma_order, sd_order = sd_order, d_order = d_order, include_d = include_d, w = w, s = s, include_taper = include_taper, sd_par = x[(k - d_order):k])
+  G2 <- hessian(f = ls_whittle_loglik_sd, x0 = x[(k - d_order):k], series = series, order = order, ar_order = ar_order, ma_order = ma_order, sd_order = sd_order, d_order = d_order, include_d = include_d, w = w, s = s, include_taper = include_taper, theta_par = x[1:(k - d_order - 1)])
   G <- matrix(0, ncol = k, nrow = k)
   G[1:(k - d_order - 1), 1:(k - d_order - 1)] <- G1
   G[(k - d_order):k, (k - d_order):k] <- G2

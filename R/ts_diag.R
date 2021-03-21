@@ -15,7 +15,7 @@
 #' @examples
 #' ts_diag(malleco)
 #' @return
-#' A ggplot object
+#' A ggplot object.
 #'
 #' @seealso \code{\link{box_ljung_test}}
 #'

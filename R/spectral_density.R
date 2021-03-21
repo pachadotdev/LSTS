@@ -11,7 +11,7 @@
 #' {\bigg|\phi\bigg(\exp\bigg(-i\lambda\bigg)\bigg)\bigg|^2}}
 #'
 #' With \eqn{-\pi \le \lambda \le \pi} and \eqn{-1 < d < 1/2}. \eqn{|x|} is the
-#' \code{\link[base]{Mod}} of \eqn{x}. \code{lsts_sd} returns the
+#' \code{\link[base]{Mod}} of \eqn{x}. \code{lsts2_sd} returns the
 #' values corresponding to \eqn{f(\lambda)}. When \code{d} is zero, the spectral
 #' density corresponds to an ARMA(p,q).
 #'
@@ -33,9 +33,9 @@
 #' @references
 #' For more information on theoretical foundations and estimation methods see
 #'
-#' \insertRef{brockwell2002introduction}{lsts}
+#' \insertRef{brockwell2002introduction}{lsts2}
 #'
-#' \insertRef{palma2007long}{lsts}
+#' \insertRef{palma2007long}{lsts2}
 #'
 #' @examples
 #' # Spectral Density AR(1)
@@ -46,9 +46,7 @@
 #'  labs(x = "Frequency", y = "Spectral Density") +
 #'  theme_minimal()
 #' 
-#' @return An unnamed vector of numeric class
-#'
-#' @seealso \code{\link{periodogram}}, \code{\link[graphics]{persp}}
+#' @return An unnamed vector of numeric class.
 #'
 #' @export
 spectral_density <- function(ar = numeric(), ma = numeric(), d = 0, sd = 1, lambda = NULL) {

@@ -4,13 +4,13 @@
 #' blocks or windows.
 #'
 #' @details
-#' The number of windows of the function is \eqn{M = \text{trunc}((n-N)/S+1)},
+#' The number of windows of the function is \eqn{m = \text{trunc}((n-w)/s+1)},
 #' where \code{\link[base]{trunc}} truncates de entered value and \emph{n} is
 #' the length of the vector \code{y}. All windows are of the same length
-#' \code{N}, if this value isn't entered by user then is computed as
-#' \eqn{N=\text{trunc}(n^{0.8})} (Dahlhaus).
+#' \code{w}, if this value isn't entered by user then is computed as
+#' \eqn{w=\text{trunc}(n^{0.8})} (Dahlhaus).
 #'
-#' \code{lsts_spb} computes the periodogram in each of the
+#' \code{lsts2_spb} computes the periodogram in each of the
 #' \emph{M} windows and then smoothes it two times with
 #' \code{\link[stats]{smooth.spline}} function; the first time using
 #' \code{spar_freq} parameter and the second time with \code{spar_time}. These
@@ -20,21 +20,19 @@
 #'
 #' @param x (type: numeric) optional vector, if \code{x = NULL} then the
 #' function uses \eqn{(1,\ldots,n)} where \code{n} is the length of \code{y}.
-#' More details in \code{y} argument from \code{\link[graphics]{persp}}
-#' function.
 #'
-#' @param N (type: numeric) value corresponding to the length of the window to
+#' @param w (type: numeric) value corresponding to the length of the window to
 #' compute periodogram.
-#' If \code{N=NULL} then the function will use
-#' \eqn{N = \text{trunc}(n^{0.8})}, see
-#' \insertCite{dahlhaus1998optimal;textual}{lsts} where \eqn{n} is the length of
+#' If \code{w=NULL} then the function will use
+#' \eqn{w = \text{trunc}(n^{0.8})}, see
+#' \insertCite{dahlhaus1998optimal;textual}{lsts2} where \eqn{n} is the length of
 #' the \code{y} vector.
 #'
-#' @param S (type: numeric) value corresponding to the lag with which will be
+#' @param s (type: numeric) value corresponding to the lag with which will be
 #' taking the blocks or windows to calculate the periodogram.
 #'
-#' @param p (type: numeric) value used if it is desired that \code{S} is
-#' proportional to \code{N}. By default \code{p=0.25}, if \code{S} and \code{N}
+#' @param p (type: numeric) value used if it is desired that \code{s} is
+#' proportional to \code{w}. By default \code{p=0.25}, if \code{s} and \code{w}
 #' are not entered.
 #'
 #' @param spar_freq (type: numeric) smoothing parameter, typically (but not
@@ -46,14 +44,14 @@
 #' @references
 #' For more information on theoretical foundations and estimation methods see
 #'
-#' \insertRef{dahlhaus1997fitting}{lsts}
+#' \insertRef{dahlhaus1997fitting}{lsts2}
 #'
-#' \insertRef{dahlhaus1998optimal}{lsts}
+#' \insertRef{dahlhaus1998optimal}{lsts2}
 #'
 #' @examples
 #' block_smooth_periodogram(malleco)
 #' @return
-#' A ggplot object
+#' A ggplot object.
 #'
 #' @seealso \code{\link{arima.sim}}
 #'
@@ -62,28 +60,28 @@
 #'  labs theme_minimal
 #'
 #' @export
-block_smooth_periodogram <- function(y, x = NULL, N = NULL, S = NULL, p = 0.25,
+block_smooth_periodogram <- function(y, x = NULL, w = NULL, s = NULL, p = 0.25,
                                      spar_freq = 0, spar_time = 0) {
   len_y <- length(y)
 
-  if (is.null(N)) {
-    N <- trunc(len_y^0.8)
+  if (is.null(w)) {
+    w <- trunc(len_y^0.8)
   }
-  if (is.null(S)) {
-    S <- trunc(p * N)
+  if (is.null(s)) {
+    s <- trunc(p * w)
   }
 
-  M <- trunc((len_y - N) / S + 1)
-  aux <- matrix(NA, ncol = M, nrow = trunc(N / 2))
+  M <- trunc((len_y - w) / s + 1)
+  aux <- matrix(NA, ncol = M, nrow = trunc(w / 2))
 
   for (j in 1:M) {
-    aux[, j] <- periodogram(y[(S * (j - 1) + 1):(S * (j - 1) + N)], plot = FALSE)$periodogram
+    aux[, j] <- periodogram(y[(s * (j - 1) + 1):(s * (j - 1) + w)], plot = FALSE)$periodogram
   }
 
-  lambda <- periodogram(y[(S * (j - 1) + 1):(S * (j - 1) + N)], plot = FALSE)$lambda
+  lambda <- periodogram(y[(s * (j - 1) + 1):(s * (j - 1) + w)], plot = FALSE)$lambda
 
   j <- seq_len(M)
-  t <- S * (j - 1) + N / 2
+  t <- s * (j - 1) + w / 2
 
   if (is.null(x)) {
     t <- t

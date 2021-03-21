@@ -35,11 +35,11 @@
 #' @references
 #' For more information on theoretical foundations and estimation methods see
 #'
-#' \insertRef{brockwell2002introduction}{lsts}
+#' \insertRef{brockwell2002introduction}{lsts2}
 #'
-#' \insertRef{palma2007long}{lsts}
+#' \insertRef{palma2007long}{lsts2}
 #'
-#' \insertRef{palma2013estimation}{lsts}
+#' \insertRef{palma2013estimation}{lsts2}
 #'
 #' @examples
 #' fit_kalman <- ls_kalman(malleco, start(malleco))

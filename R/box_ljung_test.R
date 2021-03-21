@@ -5,10 +5,10 @@
 #' @details
 #' The Ljung-Box test is used to check if exists autocorrelation in a time
 #' series. The statistic is
-#' \deqn{Q = n(n+2)\cdot\sum_{j=1}^h \hat{\rho}(j)^2/(n-j)} with \emph{n} the
+#' \deqn{q = n(n+2)\cdot\sum_{j=1}^h \hat{\rho}(j)^2/(n-j)} with \emph{n} the
 #' number of observations and \eqn{\hat{\rho}(j)} the autocorrelation
-#' coefficient in the sample when the lag is \emph{j}. \code{lsts_lbtp}
-#' computes \eqn{Q} and returns the p-values graph with lag \emph{j}.
+#' coefficient in the sample when the lag is \emph{j}. \code{lsts2_lbtp}
+#' computes \eqn{q} and returns the p-values graph with lag \emph{j}.
 #'
 #' @param z (type: numeric) data vector
 #' @param lag (type: numeric) the number of periods for the autocorrelation
@@ -17,16 +17,16 @@
 #' @references
 #' For more information on theoretical foundations and estimation methods see
 #'
-#' \insertRef{brockwell2002introduction}{lsts}
+#' \insertRef{brockwell2002introduction}{lsts2}
 #'
-#' \insertRef{ljung1978measure}{lsts}
+#' \insertRef{ljung1978measure}{lsts2}
 #'
 #' @examples
 #' box_ljung_test(malleco, lag = 5)
 #' @return
-#' A ggplot object
+#' A ggplot object.
 #'
-#' @seealso \code{\link{periodogram}}, \code{\link[graphics]{persp}}
+#' @seealso \code{\link{periodogram}}
 #'
 #' @importFrom stats acf na.pass pchisq
 #' @importFrom ggplot2 aes ggplot geom_point geom_hline scale_x_continuous
@@ -41,11 +41,11 @@ box_ljung_test <- function(z, lag = NULL, main = NULL) {
   n <- length(z)
   aux <- acf(z, plot = FALSE, lag.max = k, na.action = na.pass)
   p.value <- vector("numeric")
-  Q <- vector("numeric")
+  q <- vector("numeric")
   for (j in 1:k) {
     rho <- aux$acf[2:(j + 1), , 1]
-    Q[j] <- sum(n * (n + 2) * rho^2 / (n - 1:j))
-    p.value[j] <- 1 - pchisq(Q[j], df = j)
+    q[j] <- sum(n * (n + 2) * rho^2 / (n - 1:j))
+    p.value[j] <- 1 - pchisq(q[j], df = j)
   }
   if (is.null(main)) {
     main <- expression("p values for Ljung-Box statistic")
