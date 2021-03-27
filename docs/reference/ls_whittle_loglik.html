@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Locally Stationary Whittle log-likelihood Function — ls_whittle_loglik • lsts2</title>
+<title>Locally Stationary Whittle log-likelihood Function — ls_whittle_loglik • lsts</title>
 
 
 <!-- jquery -->
@@ -73,7 +73,7 @@ subtracted to data." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">lsts2</a>
+        <a class="navbar-link" href="../index.html">lsts</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0</span>
       </span>
     </div>
@@ -89,10 +89,13 @@ subtracted to data." />
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/pachamaltese/lsts2/">
+  <a href="https://github.com/pachamaltese/lsts/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -111,7 +114,7 @@ subtracted to data." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Locally Stationary Whittle log-likelihood Function</h1>
-    <small class="dont-index">Source: <a href='https://github.com/pachamaltese/lsts2/blob/master/R/ls_whittle_loglik.R'><code>R/ls_whittle_loglik.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/pachamaltese/lsts/blob/master/R/ls_whittle_loglik.R'><code>R/ls_whittle_loglik.R</code></a></small>
     <div class="hidden name"><code>ls_whittle_loglik.Rd</code></div>
     </div>
 
@@ -121,19 +124,19 @@ LS-ARFIMA models, in data with mean zero. If mean is not zero, then it is
 subtracted to data.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ls_whittle_loglik</span><span class='op'>(</span>
-  <span class='va'>x</span>,
-  <span class='va'>series</span>,
-  order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>p <span class='op'>=</span> <span class='fl'>0</span>, q <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>,
-  ar_order <span class='op'>=</span> <span class='cn'>NULL</span>,
-  ma_order <span class='op'>=</span> <span class='cn'>NULL</span>,
-  sd_order <span class='op'>=</span> <span class='cn'>NULL</span>,
-  d_order <span class='op'>=</span> <span class='cn'>NULL</span>,
-  include_d <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  w <span class='op'>=</span> <span class='cn'>NULL</span>,
-  s <span class='op'>=</span> <span class='cn'>NULL</span>,
-  include_taper <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>ls_whittle_loglik</span>(
+  <span class='no'>x</span>,
+  <span class='no'>series</span>,
+  <span class='kw'>order</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>0</span>),
+  <span class='kw'>ar_order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>ma_order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>sd_order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>d_order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>include_d</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>w</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>s</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>include_taper</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -206,11 +209,12 @@ block, \(n =s(M-1)+w\), \(s\) is the shift from block to block,
 (\(2\,\pi\,k/w\), \(k = 1,\ldots, w\)).</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>For more information on theoretical foundations and estimation methods see</p>
-<p>Brockwell PJ, Davis RA, Calder MV (2002).
+    <p>For more information on theoretical foundations and estimation methods see
+Brockwell PJ, Davis RA, Calder MV (2002).
 <em>Introduction to time series and forecasting</em>, volume 2.
-Springer.</p>
-<p>Palma W, Olea R, others (2010).
+Springer.
+
+Palma W, Olea R, others (2010).
 &#8220;An efficient estimator for locally stationary Gaussian long-memory processes.&#8221;
 <em>The Annals of Statistics</em>, <b>38</b>(5), 2958--2997.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
@@ -232,7 +236,7 @@ Springer.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

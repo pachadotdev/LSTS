@@ -31,11 +31,9 @@ numerical sophistication.
 \examples{
 # Variance of the maximum likelihood estimator for mu parameter in
 # gaussian data
-
 loglik <- function(series, x, sd = 1) {
   -sum(log(dnorm(series, mean = x, sd = sd)))
 }
-
 sqrt(c(var(malleco) / length(malleco), diag(solve(hessian(
   f = loglik, x = mean(malleco), series = malleco,
   sd = sd(malleco)

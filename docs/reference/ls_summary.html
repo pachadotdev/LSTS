@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Summary for Locally Stationary Time Series — ls_summary • lsts2</title>
+<title>Summary for Locally Stationary Time Series — ls_summary • lsts</title>
 
 
 <!-- jquery -->
@@ -73,7 +73,7 @@ function)." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">lsts2</a>
+        <a class="navbar-link" href="../index.html">lsts</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0</span>
       </span>
     </div>
@@ -89,10 +89,13 @@ function)." />
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/pachamaltese/lsts2/">
+  <a href="https://github.com/pachamaltese/lsts/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -111,7 +114,7 @@ function)." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Summary for Locally Stationary Time Series</h1>
-    <small class="dont-index">Source: <a href='https://github.com/pachamaltese/lsts2/blob/master/R/ls_summary.R'><code>R/ls_summary.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/pachamaltese/lsts/blob/master/R/ls_summary.R'><code>R/ls_summary.R</code></a></small>
     <div class="hidden name"><code>ls_summary.Rd</code></div>
     </div>
 
@@ -121,7 +124,7 @@ estimator to Locally Stationary Time Series (<code><a href='ls_whittle.html'>ls_
 function).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ls_summary</span><span class='op'>(</span><span class='va'>object</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>ls_summary</span>(<span class='no'>object</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -134,8 +137,7 @@ function).</p>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list with the estimates, AIC and number of parameters</p>
-<p>A list with the following components:</p>
+    <p>A list with the following components:</p>
 <dt>summary</dt><dd><p>a resume table with estimate, std. error, z-value and p-value
 of the model.</p></dd>
 <dt>aic</dt><dd><p>AIC of the model.</p></dd>
@@ -150,13 +152,11 @@ error and p-values to provide a detailed summary.</p>
     <div class='dont-index'><p><code><a href='ls_whittle.html'>ls_whittle</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>fit_whittle</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ls_whittle.html'>ls_whittle</a></span><span class='op'>(</span>
-  series <span class='op'>=</span> <span class='va'>malleco</span>, start <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span><span class='op'>)</span>,
-  order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>p <span class='op'>=</span> <span class='fl'>1</span>, q <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>, ar_order <span class='op'>=</span> <span class='fl'>1</span>, sd_order <span class='op'>=</span> <span class='fl'>1</span>, w <span class='op'>=</span> <span class='fl'>180</span>, n_ahead <span class='op'>=</span> <span class='fl'>10</span>
-<span class='op'>)</span>
-
-<span class='fu'>ls_summary</span><span class='op'>(</span><span class='va'>fit_whittle</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; $summary
+    <pre class="examples"><div class='input'><span class='no'>fit_whittle</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ls_whittle.html'>ls_whittle</a></span>(
+  <span class='kw'>series</span> <span class='kw'>=</span> <span class='no'>malleco</span>, <span class='kw'>start</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>),
+  <span class='kw'>order</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>0</span>), <span class='kw'>ar_order</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>sd_order</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>w</span> <span class='kw'>=</span> <span class='fl'>180</span>, <span class='kw'>n_ahead</span> <span class='kw'>=</span> <span class='fl'>10</span>
+)
+<span class='fu'>ls_summary</span>(<span class='no'>fit_whittle</span>)</div><div class='output co'>#&gt; $summary
 #&gt;      Estimate Std. Error  z-value Pr(&gt;|z|)
 #&gt; [1,]   1.9793     0.1178  16.7983        0
 #&gt; [2,]  -0.7406     0.1604  -4.6176        0
@@ -184,7 +184,7 @@ error and p-values to provide a detailed summary.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

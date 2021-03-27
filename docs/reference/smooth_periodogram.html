@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Smoothing periodogram — smooth_periodogram • lsts2</title>
+<title>Smoothing periodogram — smooth_periodogram • lsts</title>
 
 
 <!-- jquery -->
@@ -72,7 +72,7 @@ time serie, its plot and its Fourier frequency." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">lsts2</a>
+        <a class="navbar-link" href="../index.html">lsts</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0</span>
       </span>
     </div>
@@ -88,10 +88,13 @@ time serie, its plot and its Fourier frequency." />
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/pachamaltese/lsts2/">
+  <a href="https://github.com/pachamaltese/lsts/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -110,7 +113,7 @@ time serie, its plot and its Fourier frequency." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Smoothing periodogram</h1>
-    <small class="dont-index">Source: <a href='https://github.com/pachamaltese/lsts2/blob/master/R/smooth_periodogram.R'><code>R/smooth_periodogram.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/pachamaltese/lsts/blob/master/R/smooth_periodogram.R'><code>R/smooth_periodogram.R</code></a></small>
     <div class="hidden name"><code>smooth_periodogram.Rd</code></div>
     </div>
 
@@ -119,7 +122,7 @@ time serie, its plot and its Fourier frequency." />
 time serie, its plot and its Fourier frequency.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>smooth_periodogram</span><span class='op'>(</span><span class='va'>y</span>, plot <span class='op'>=</span> <span class='cn'>TRUE</span>, spar <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>smooth_periodogram</span>(<span class='no'>y</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>spar</span> <span class='kw'>=</span> <span class='fl'>0</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -149,12 +152,12 @@ necessarily) in \((0,1].\)</p></td>
 then smooth it with <em>smoothing spline</em> method, which basically
 approximates a curve using a cubic spline (see more details in
 <code><a href='https://rdrr.io/r/stats/smooth.spline.html'>smooth.spline</a></code>). \(\lambda\) is the Fourier frequency
-obtained through <code><a href='periodogram.html'>periodogram</a></code>.</p>
-<p>It must have caution with the minimum length of <code>y</code>, because
+obtained through <code><a href='periodogram.html'>periodogram</a></code>.
+It must have caution with the minimum length of <code>y</code>, because
 <code>smooth.spline</code> requires the entered vector has at least length 4 and
 the length of <code>y</code> does not equal to the length of the data of the
-periodogram that <code>smooth.spline</code> receives.</p>
-<p>If it presents problems with tol (<b>tol</b>erance), see
+periodogram that <code>smooth.spline</code> receives.
+If it presents problems with tol (<b>tol</b>erance), see
 <code><a href='https://rdrr.io/r/stats/smooth.spline.html'>smooth.spline</a></code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -162,22 +165,19 @@ periodogram that <code>smooth.spline</code> receives.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># AR(1) simulated</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Loading required package: ggplot2</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>1776</span><span class='op'>)</span>
-<span class='va'>ts.sim</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/arima.sim.html'>arima.sim</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>1000</span>, model <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>0</span>, <span class='fl'>0</span><span class='op'>)</span>, ar <span class='op'>=</span> <span class='fl'>0.7</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>per</span> <span class='op'>&lt;-</span> <span class='fu'><a href='periodogram.html'>periodogram</a></span><span class='op'>(</span><span class='va'>ts.sim</span><span class='op'>)</span>
-<span class='va'>aux</span> <span class='op'>&lt;-</span> <span class='fu'>smooth_periodogram</span><span class='op'>(</span><span class='va'>ts.sim</span>, plot <span class='op'>=</span> <span class='cn'>FALSE</span>, spar <span class='op'>=</span> <span class='fl'>.7</span><span class='op'>)</span>
-
-<span class='va'>sm_p</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>aux</span><span class='op'>$</span><span class='va'>lambda</span>, y <span class='op'>=</span> <span class='va'>aux</span><span class='op'>$</span><span class='va'>smooth_periodogram</span><span class='op'>)</span>
-<span class='va'>sp_d</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>aux</span><span class='op'>$</span><span class='va'>lambda</span>,
- y <span class='op'>=</span> <span class='fu'><a href='spectral_density.html'>spectral_density</a></span><span class='op'>(</span>ar <span class='op'>=</span> <span class='fl'>0.7</span>, lambda <span class='op'>=</span> <span class='va'>aux</span><span class='op'>$</span><span class='va'>lambda</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='va'>g</span> <span class='op'>&lt;-</span> <span class='va'>per</span><span class='op'>$</span><span class='va'>plot</span>
-<span class='va'>g</span> <span class='op'>+</span>
- <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>sm_p</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span><span class='va'>x</span>,<span class='va'>y</span><span class='op'>)</span>, color <span class='op'>=</span> <span class='st'>"#ff7f0e"</span><span class='op'>)</span> <span class='op'>+</span>
- <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>sp_d</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span><span class='va'>x</span>,<span class='va'>y</span><span class='op'>)</span>, color <span class='op'>=</span> <span class='st'>"#d31244"</span><span class='op'>)</span>
-</div><div class='img'><img src='smooth_periodogram-1.png' alt='' width='700' height='433' /></div><div class='input'>  
-</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='no'>ggplot2</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: ggplot2</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>1776</span>)
+<span class='no'>ts.sim</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/arima.sim.html'>arima.sim</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>model</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>order</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>0</span>, <span class='fl'>0</span>), <span class='kw'>ar</span> <span class='kw'>=</span> <span class='fl'>0.7</span>))
+<span class='no'>per</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='periodogram.html'>periodogram</a></span>(<span class='no'>ts.sim</span>)
+<span class='no'>aux</span> <span class='kw'>&lt;-</span> <span class='fu'>smooth_periodogram</span>(<span class='no'>ts.sim</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>spar</span> <span class='kw'>=</span> <span class='fl'>.7</span>)
+<span class='no'>sm_p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>aux</span>$<span class='no'>lambda</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>aux</span>$<span class='no'>smooth_periodogram</span>)
+<span class='no'>sp_d</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>aux</span>$<span class='no'>lambda</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='spectral_density.html'>spectral_density</a></span>(<span class='kw'>ar</span> <span class='kw'>=</span> <span class='fl'>0.7</span>, <span class='kw'>lambda</span> <span class='kw'>=</span> <span class='no'>aux</span>$<span class='no'>lambda</span>)
+)
+<span class='no'>g</span> <span class='kw'>&lt;-</span> <span class='no'>per</span>$<span class='no'>plot</span>
+<span class='no'>g</span> +
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>sm_p</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='no'>x</span>, <span class='no'>y</span>), <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"#ff7f0e"</span>) +
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>sp_d</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='no'>x</span>, <span class='no'>y</span>), <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"#d31244"</span>)</div><div class='img'><img src='smooth_periodogram-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -193,7 +193,7 @@ periodogram that <code>smooth.spline</code> receives.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

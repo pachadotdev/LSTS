@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Locally Stationary Whittle Log-likelihood sigma — ls_whittle_loglik_sd • lsts2</title>
+<title>Locally Stationary Whittle Log-likelihood sigma — ls_whittle_loglik_sd • lsts</title>
 
 
 <!-- jquery -->
@@ -72,7 +72,7 @@ through ls_whittle_loglik function." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">lsts2</a>
+        <a class="navbar-link" href="../index.html">lsts</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0</span>
       </span>
     </div>
@@ -88,10 +88,13 @@ through ls_whittle_loglik function." />
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/pachamaltese/lsts2/">
+  <a href="https://github.com/pachamaltese/lsts/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -110,7 +113,7 @@ through ls_whittle_loglik function." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Locally Stationary Whittle Log-likelihood sigma</h1>
-    <small class="dont-index">Source: <a href='https://github.com/pachamaltese/lsts2/blob/master/R/ls_whittle_loglik_sd.R'><code>R/ls_whittle_loglik_sd.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/pachamaltese/lsts/blob/master/R/ls_whittle_loglik_sd.R'><code>R/ls_whittle_loglik_sd.R</code></a></small>
     <div class="hidden name"><code>ls_whittle_loglik_sd.Rd</code></div>
     </div>
 
@@ -119,20 +122,20 @@ through ls_whittle_loglik function." />
 through <code>ls_whittle_loglik</code> function.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ls_whittle_loglik_sd</span><span class='op'>(</span>
-  <span class='va'>x</span>,
-  <span class='va'>series</span>,
-  order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>p <span class='op'>=</span> <span class='fl'>0</span>, q <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>,
-  ar_order <span class='op'>=</span> <span class='cn'>NULL</span>,
-  ma_order <span class='op'>=</span> <span class='cn'>NULL</span>,
-  sd_order <span class='op'>=</span> <span class='cn'>NULL</span>,
-  d_order <span class='op'>=</span> <span class='cn'>NULL</span>,
-  include_d <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  w <span class='op'>=</span> <span class='cn'>NULL</span>,
-  s <span class='op'>=</span> <span class='cn'>NULL</span>,
-  include_taper <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  theta_par <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>numeric</a></span><span class='op'>(</span><span class='op'>)</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>ls_whittle_loglik_sd</span>(
+  <span class='no'>x</span>,
+  <span class='no'>series</span>,
+  <span class='kw'>order</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>0</span>),
+  <span class='kw'>ar_order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>ma_order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>sd_order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>d_order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>include_d</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>w</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>s</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>include_taper</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>theta_par</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>numeric</a></span>()
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -216,7 +219,7 @@ model.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

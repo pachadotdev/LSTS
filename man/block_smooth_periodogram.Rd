@@ -23,8 +23,8 @@ function uses \eqn{(1,\ldots,n)} where \code{n} is the length of \code{y}.}
 \item{w}{(type: numeric) value corresponding to the length of the window to
 compute periodogram.
 If \code{w=NULL} then the function will use
-\eqn{w = \text{trunc}(n^{0.8})}, see
-\insertCite{dahlhaus1998optimal;textual}{lsts2} where \eqn{n} is the length of
+\eqn{w = \textrm{trunc}(n^{0.8})}, see
+\insertCite{dahlhaus1998optimal;textual}{lsts} where \eqn{n} is the length of
 the \code{y} vector.}
 
 \item{s}{(type: numeric) value corresponding to the lag with which will be
@@ -48,13 +48,12 @@ Plots the contour plot of the smoothing periodogram of a time series, by
 blocks or windows.
 }
 \details{
-The number of windows of the function is \eqn{m = \text{trunc}((n-w)/s+1)},
+The number of windows of the function is \eqn{m = \textrm{trunc}((n-w)/s+1)},
 where \code{\link[base]{trunc}} truncates de entered value and \emph{n} is
 the length of the vector \code{y}. All windows are of the same length
 \code{w}, if this value isn't entered by user then is computed as
-\eqn{w=\text{trunc}(n^{0.8})} (Dahlhaus).
-
-\code{lsts2_spb} computes the periodogram in each of the
+\eqn{w=\textrm{trunc}(n^{0.8})} (Dahlhaus).
+\code{lsts_spb} computes the periodogram in each of the
 \emph{M} windows and then smoothes it two times with
 \code{\link[stats]{smooth.spline}} function; the first time using
 \code{spar_freq} parameter and the second time with \code{spar_time}. These
@@ -65,10 +64,8 @@ block_smooth_periodogram(malleco)
 }
 \references{
 For more information on theoretical foundations and estimation methods see
-
-\insertRef{dahlhaus1997fitting}{lsts2}
-
-\insertRef{dahlhaus1998optimal}{lsts2}
+\insertRef{dahlhaus1997fitting}{lsts}
+\insertRef{dahlhaus1998optimal}{lsts}
 }
 \seealso{
 \code{\link{arima.sim}}

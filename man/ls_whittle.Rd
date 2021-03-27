@@ -46,7 +46,7 @@ If \code{include_d=FALSE} then the model is an ARMA process.}
 
 \item{w}{(type: numeric) value corresponding to the length of the window to
 compute periodogram. If \code{w=NULL} then the function will use
-\eqn{w = \text{trunc}(n^{0.8})}, see Dahlhaus (1998) where \eqn{n} is the
+\eqn{w = \textrm{trunc}(n^{0.8})}, see Dahlhaus (1998) where \eqn{n} is the
 length of the \code{y} vector.}
 
 \item{s}{(type: numeric) value corresponding to the lag with which will go
@@ -67,7 +67,7 @@ unconstrained.}
 unconstrained.}
 
 \item{m}{(type: numeric) truncation order of the MA infinity process, by
-default \eqn{m = 0.25n^{0.8}}. Parameter used in \code{lsts2_kalman}.}
+default \eqn{m = 0.25n^{0.8}}. Parameter used in \code{lsts_kalman}.}
 
 \item{n_ahead}{(type: numeric) The number of steps ahead for which prediction
 is required. By default is zero.}
@@ -149,18 +149,15 @@ for (j in 1:M) {
 u <- (w / 2 + s * (1:M - 1)) / length(malleco)
 table <- as.data.frame(cbind(u, table))
 colnames(table) <- c("u", "phi", "sigma")
-
 # Start parameters
 phi <- smooth.spline(table$phi, spar = 1, tol = 0.01)$y
 fit.1 <- nls(phi ~ a0 + a1 * u, start = list(a0 = 0.65, a1 = 0.00))
 sigma <- smooth.spline(table$sigma, spar = 1)$y
 fit.2 <- nls(sigma ~ b0 + b1 * u, start = list(b0 = 0.65, b1 = 0.00))
-
 fit_whittle <- ls_whittle(
   series = malleco, start = c(coef(fit.1), coef(fit.2)), order = c(p = 1, q = 0),
   ar_order = 1, sd_order = 1, w = 180, n_ahead = 10
 )
-
 }
 \seealso{
 \code{\link[stats]{nlminb}}, \code{\link{ls_kalman}}

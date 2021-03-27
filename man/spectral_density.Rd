@@ -35,9 +35,8 @@ The spectral density of an ARFIMA(p,d,q) processes is
 \sin(\lambda/2)\bigg)^{-2d} \cdot
 \frac{\bigg|\theta\bigg(\exp\bigg(-i\lambda\bigg)\bigg)\bigg|^2}
 {\bigg|\phi\bigg(\exp\bigg(-i\lambda\bigg)\bigg)\bigg|^2}}
-
 With \eqn{-\pi \le \lambda \le \pi} and \eqn{-1 < d < 1/2}. \eqn{|x|} is the
-\code{\link[base]{Mod}} of \eqn{x}. \code{lsts2_sd} returns the
+\code{\link[base]{Mod}} of \eqn{x}. \code{lsts_sd} returns the
 values corresponding to \eqn{f(\lambda)}. When \code{d} is zero, the spectral
 density corresponds to an ARMA(p,q).
 }
@@ -46,15 +45,12 @@ density corresponds to an ARMA(p,q).
 require(ggplot2)
 f <- spectral_density(ar = 0.5, lambda = malleco)
 ggplot(data.frame(x = malleco, y = f)) +
- geom_line(aes(x = as.numeric(x), y = as.numeric(y))) +
- labs(x = "Frequency", y = "Spectral Density") +
- theme_minimal()
-
+  geom_line(aes(x = as.numeric(x), y = as.numeric(y))) +
+  labs(x = "Frequency", y = "Spectral Density") +
+  theme_minimal()
 }
 \references{
 For more information on theoretical foundations and estimation methods see
-
-\insertRef{brockwell2002introduction}{lsts2}
-
-\insertRef{palma2007long}{lsts2}
+\insertRef{brockwell2002introduction}{lsts}
+\insertRef{palma2007long}{lsts}
 }

@@ -1,29 +1,21 @@
 #' @title Diagnostic Plots for Time Series fits
-#'
 #' @description Plot time-series diagnostics.
-#'
 #' @details
 #' This function plot the residuals, the autocorrelation function of the
 #' residuals (ACF) and the p-values of the Ljung-Box Test for all lags up to
 #' \code{lag}.
-#'
 #' @param x (type: numeric) residuals of the fitted time series model.
-#'
 #' @param lag (type: numeric) maximum lag at which to calculate the acf and
 #' Ljung-Box test. By default set to 10.
-#'
 #' @examples
 #' ts_diag(malleco)
 #' @return
 #' A ggplot object.
-#'
 #' @seealso \code{\link{box_ljung_test}}
-#'
 #' @importFrom stats sd acf na.pass time
 #' @importFrom ggplot2 ggplot aes geom_col geom_segment geom_hline labs
 #'  theme_minimal
 #' @importFrom patchwork plot_layout
-#'
 #' @export
 ts_diag <- function(x, lag = 10) {
   Z <- (x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE)

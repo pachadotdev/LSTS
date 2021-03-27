@@ -10,8 +10,6 @@ ls_summary(object)
 \item{object}{(type: list) the output of \code{\link{ls_whittle}} function}
 }
 \value{
-A list with the estimates, AIC and number of parameters
-
 A list with the following components:
 \item{summary}{a resume table with estimate, std. error, z-value and p-value
 of the model.}
@@ -32,7 +30,6 @@ fit_whittle <- ls_whittle(
   series = malleco, start = c(1, 1, 1, 1),
   order = c(p = 1, q = 0), ar_order = 1, sd_order = 1, w = 180, n_ahead = 10
 )
-
 ls_summary(fit_whittle)
 }
 \seealso{

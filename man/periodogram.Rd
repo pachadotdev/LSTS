@@ -14,7 +14,7 @@ periodogram. Defaults to TRUE.}
 
 \item{include_taper}{(type: logical) logical argument which by default is
 \code{FALSE}. If \code{include_taper=TRUE} then \code{y} is multiplied by
-\eqn{0.5(1 - cos(2\pi(n-1)/n))} (cosine bell).}
+\eqn{0.5(1 - \cos(2\pi(n-1)/n))} (cosine bell).}
 }
 \value{
 A list with with the periodogram and the lambda values.
@@ -32,9 +32,8 @@ e^{-i\,\lambda\,s}}, \eqn{H_{k,n} = \sum_{s=0}^{n-1}h
 \left(\frac{s}{N}\right)^k\,
 e^{-i\,\lambda\,s}} and \eqn{\lambda} are Fourier frequencies defined as
 \eqn{2\pi k/n}, with \eqn{k = 1,\,\ldots,\, n}.
-
 The data taper used is the cosine bell function,
-\eqn{h(x) = \frac{1}{2}[1-cos(2\pi x)]}. If the series has missing data,
+\eqn{h(x) = \frac{1}{2}[1-\cos(2\pi x)]}. If the series has missing data,
 these are replaced by the average of the data and \eqn{n} it is corrected by
 $n-N$, where \eqn{N} is the amount of missing values of serie. The plot of
 the periodogram is \code{periodogram} values vs. \eqn{\lambda}.
@@ -45,14 +44,11 @@ set.seed(1776)
 ts.sim <- arima.sim(n = 1000, model = list(order = c(1, 0, 0), ar = 0.7))
 per <- periodogram(ts.sim)
 per$plot
-
 }
 \references{
 For more information on theoretical foundations and estimation methods see
-
-\insertRef{brockwell2002introduction}{lsts2}
-
-\insertRef{dahlhaus1997fitting}{lsts2}
+\insertRef{brockwell2002introduction}{lsts}
+\insertRef{dahlhaus1997fitting}{lsts}
 }
 \seealso{
 \code{\link[stats]{fft}}, \code{\link[base]{Mod}},

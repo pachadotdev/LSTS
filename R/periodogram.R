@@ -1,8 +1,6 @@
 #' @title Periodogram function
-#'
 #' @description This function computes the periodogram from a stationary time
 #' serie. Returns the periodogram, its graph and the Fourier frequency.
-#'
 #' @details
 #' The tapered periodogram it is given by
 #' \deqn{I(\lambda) = \frac{|D_n(\lambda)|^2}{2\pi
@@ -12,46 +10,34 @@
 #' \left(\frac{s}{N}\right)^k\,
 #' e^{-i\,\lambda\,s}} and \eqn{\lambda} are Fourier frequencies defined as
 #' \eqn{2\pi k/n}, with \eqn{k = 1,\,\ldots,\, n}.
-#'
 #' The data taper used is the cosine bell function,
-#' \eqn{h(x) = \frac{1}{2}[1-cos(2\pi x)]}. If the series has missing data,
+#' \eqn{h(x) = \frac{1}{2}[1-\cos(2\pi x)]}. If the series has missing data,
 #' these are replaced by the average of the data and \eqn{n} it is corrected by
 #' $n-N$, where \eqn{N} is the amount of missing values of serie. The plot of
 #' the periodogram is \code{periodogram} values vs. \eqn{\lambda}.
-#'
 #' @param y (type: numeric) data vector
-#'
 #' @param plot (type: logical) logical argument which allows to plot the
 #' periodogram. Defaults to TRUE.
-#'
 #' @param include_taper (type: logical) logical argument which by default is
 #' \code{FALSE}. If \code{include_taper=TRUE} then \code{y} is multiplied by
-#' \eqn{0.5(1 - cos(2\pi(n-1)/n))} (cosine bell).
-#'
+#' \eqn{0.5(1 - \cos(2\pi(n-1)/n))} (cosine bell).
 #' @references
 #' For more information on theoretical foundations and estimation methods see
-#'
-#' \insertRef{brockwell2002introduction}{lsts2}
-#'
-#' \insertRef{dahlhaus1997fitting}{lsts2}
-#'
+#' \insertRef{brockwell2002introduction}{lsts}
+#' \insertRef{dahlhaus1997fitting}{lsts}
 #' @examples
 #' # AR(1) simulated
 #' set.seed(1776)
 #' ts.sim <- arima.sim(n = 1000, model = list(order = c(1, 0, 0), ar = 0.7))
 #' per <- periodogram(ts.sim)
 #' per$plot
-#' 
 #' @return
 #' A list with with the periodogram and the lambda values.
-#'
 #' @seealso \code{\link[stats]{fft}}, \code{\link[base]{Mod}},
 #' \code{\link[stats]{smooth.spline}}.
-#'
 #' @importFrom stats fft
 #' @importFrom ggplot2 geom_line
 #' @importFrom scales math_format
-#'
 #' @export
 periodogram <- function(y, plot = TRUE, include_taper = FALSE) {
   series <- y - mean(y, na.rm = TRUE)

@@ -1,11 +1,11 @@
 {
   "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
   "@type": "SoftwareSourceCode",
-  "identifier": "lsts2",
+  "identifier": "lsts",
   "description": "A set of functions that allow stationary analysis and locally stationary time series analysis.",
-  "name": "lsts2: Locally Stationary Time Series",
+  "name": "lsts: Locally Stationary Time Series",
   "codeRepository": "https://github.com/pachamaltese/lsts",
-  "issueTracker": "https://github.com/pachamaltese/lsts2/issues/",
+  "issueTracker": "https://github.com/pachamaltese/lsts/issues/",
   "license": "https://spdx.org/licenses/GPL-3.0",
   "version": "2.0",
   "programmingLanguage": {
@@ -142,9 +142,9 @@
       "version": ">= 3.6.0"
     }
   ],
-  "relatedLink": "https://pacha.dev/lsts2/",
-  "readme": "https://github.com/pachamaltese/lsts2/blob/master/README.md",
+  "relatedLink": "https://pacha.dev/lsts/",
+  "readme": "https://github.com/pachamaltese/lsts/blob/master/README.md",
   "fileSize": "0KB",
-  "contIntegration": "https://codecov.io/gh/pachamaltese/lsts2?branch=master",
+  "contIntegration": "https://codecov.io/gh/pachamaltese/lsts?branch=master",
   "developmentStatus": "https://lifecycle.r-lib.org/articles/stages.html#stable"
 }

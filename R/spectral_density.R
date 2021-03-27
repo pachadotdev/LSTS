@@ -1,53 +1,39 @@
 #' @title Spectral Density
-#'
 #' @description Returns theoretical spectral density evaluated in ARMA and
 #' ARFIMA processes.
-#'
 #' @details
 #' The spectral density of an ARFIMA(p,d,q) processes is
 #' \deqn{f(\lambda) = \frac{\sigma^2}{2\pi} \cdot \bigg(2\,
 #' \sin(\lambda/2)\bigg)^{-2d} \cdot
 #' \frac{\bigg|\theta\bigg(\exp\bigg(-i\lambda\bigg)\bigg)\bigg|^2}
 #' {\bigg|\phi\bigg(\exp\bigg(-i\lambda\bigg)\bigg)\bigg|^2}}
-#'
 #' With \eqn{-\pi \le \lambda \le \pi} and \eqn{-1 < d < 1/2}. \eqn{|x|} is the
-#' \code{\link[base]{Mod}} of \eqn{x}. \code{lsts2_sd} returns the
+#' \code{\link[base]{Mod}} of \eqn{x}. \code{lsts_sd} returns the
 #' values corresponding to \eqn{f(\lambda)}. When \code{d} is zero, the spectral
 #' density corresponds to an ARMA(p,q).
-#'
 #' @param ar (type: numeric) AR vector. If the time serie doesn't have AR term
 #' then omit it. For more details see the examples.
-#'
 #' @param ma (type: numeric) MA vector. If the time serie doesn't have MA term
 #' then omit it. For more details see the examples.
-#'
 #' @param d (type: numeric) Long-memory parameter. If d is zero, then the
 #' process is ARMA(p,q).
-#'
 #' @param sd (type: numeric) Noise scale factor, by default is 1.
-#'
 #' @param lambda (type: numeric) \eqn{\lambda} parameter on which the spectral
 #' density is calculated/computed. If \code{lambda=NULL} then it is considered a
 #' sequence between 0 and \eqn{\pi}.
-#'
 #' @references
 #' For more information on theoretical foundations and estimation methods see
-#'
-#' \insertRef{brockwell2002introduction}{lsts2}
-#'
-#' \insertRef{palma2007long}{lsts2}
-#'
+#' \insertRef{brockwell2002introduction}{lsts}
+#' \insertRef{palma2007long}{lsts}
 #' @examples
 #' # Spectral Density AR(1)
 #' require(ggplot2)
 #' f <- spectral_density(ar = 0.5, lambda = malleco)
 #' ggplot(data.frame(x = malleco, y = f)) +
-#'  geom_line(aes(x = as.numeric(x), y = as.numeric(y))) +
-#'  labs(x = "Frequency", y = "Spectral Density") +
-#'  theme_minimal()
-#' 
+#'   geom_line(aes(x = as.numeric(x), y = as.numeric(y))) +
+#'   labs(x = "Frequency", y = "Spectral Density") +
+#'   theme_minimal()
 #' @return An unnamed vector of numeric class.
-#'
 #' @export
 spectral_density <- function(ar = numeric(), ma = numeric(), d = 0, sd = 1, lambda = NULL) {
   p <- length(ar)

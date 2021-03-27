@@ -40,7 +40,7 @@ If \code{include_d=FALSE} then the model is an ARMA process.}
 
 \item{w}{(type: numeric) value corresponding to the length of the window to
 compute periodogram. If \code{w=NULL} then the function will use
-\eqn{w = \text{trunc}(n^{0.8})}, see Dahlhaus (1998) where \eqn{n} is the
+\eqn{w = \textrm{trunc}(n^{0.8})}, see Dahlhaus (1998) where \eqn{n} is the
 length of the \code{y} vector.}
 
 \item{s}{(type: numeric) value corresponding to the lag with which will go
@@ -68,10 +68,8 @@ block, \eqn{n =s(M-1)+w}, \eqn{s} is the shift from block to block,
 }
 \references{
 For more information on theoretical foundations and estimation methods see
-
-\insertRef{brockwell2002introduction}{lsts2}
-
-\insertRef{palma2010efficient}{lsts2}
+\insertRef{brockwell2002introduction}{lsts}
+\insertRef{palma2010efficient}{lsts}
 }
 \seealso{
 \code{\link[stats]{nlminb}}, \code{\link{ls_kalman}}

@@ -1,29 +1,21 @@
 #' @title Hessian Matrix
-#'
 #' @description Numerical aproximation of the Hessian of a function.
-#'
 #' @details
 #' Computes the numerical approximation of the Hessian of \code{f}, evaluated at
 #' \code{x0}.
 #' Usually needs to pass additional parameters (e.g. data).  N.B. this uses no
 #' numerical sophistication.
-#'
 #' @param f (type: numeric) name of function that defines log likelihood
 #' (or negative of it).
-#'
 #' @param x0 (type: numeric) scalar or vector of parameters that give the point
 #' at which you want the hessian estimated (usually will be the mle).
-#'
 #' @param ... Additional arguments to be passed to the function.
-#'
 #' @examples
 #' # Variance of the maximum likelihood estimator for mu parameter in
 #' # gaussian data
-#'
 #' loglik <- function(series, x, sd = 1) {
 #'   -sum(log(dnorm(series, mean = x, sd = sd)))
 #' }
-#'
 #' sqrt(c(var(malleco) / length(malleco), diag(solve(hessian(
 #'   f = loglik, x = mean(malleco), series = malleco,
 #'   sd = sd(malleco)
@@ -31,9 +23,7 @@
 #' @return
 #' An \eqn{n \times n} matrix of 2nd derivatives, where \eqn{n} is the length of
 #' \code{x0}.
-#'
 #' @seealso \code{\link{arima.sim}}
-#'
 #' @export
 hessian <- function(f, x0, ...) {
   n <- length(x0)

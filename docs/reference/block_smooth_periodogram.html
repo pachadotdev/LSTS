@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Smooth Periodogram by Blocks — block_smooth_periodogram • lsts2</title>
+<title>Smooth Periodogram by Blocks — block_smooth_periodogram • lsts</title>
 
 
 <!-- jquery -->
@@ -72,7 +72,7 @@ blocks or windows." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">lsts2</a>
+        <a class="navbar-link" href="../index.html">lsts</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0</span>
       </span>
     </div>
@@ -88,10 +88,13 @@ blocks or windows." />
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/pachamaltese/lsts2/">
+  <a href="https://github.com/pachamaltese/lsts/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -110,7 +113,7 @@ blocks or windows." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Smooth Periodogram by Blocks</h1>
-    <small class="dont-index">Source: <a href='https://github.com/pachamaltese/lsts2/blob/master/R/block_smooth_periodogram.R'><code>R/block_smooth_periodogram.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/pachamaltese/lsts/blob/master/R/block_smooth_periodogram.R'><code>R/block_smooth_periodogram.R</code></a></small>
     <div class="hidden name"><code>block_smooth_periodogram.Rd</code></div>
     </div>
 
@@ -119,15 +122,15 @@ blocks or windows." />
 blocks or windows.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>block_smooth_periodogram</span><span class='op'>(</span>
-  <span class='va'>y</span>,
-  x <span class='op'>=</span> <span class='cn'>NULL</span>,
-  w <span class='op'>=</span> <span class='cn'>NULL</span>,
-  s <span class='op'>=</span> <span class='cn'>NULL</span>,
-  p <span class='op'>=</span> <span class='fl'>0.25</span>,
-  spar_freq <span class='op'>=</span> <span class='fl'>0</span>,
-  spar_time <span class='op'>=</span> <span class='fl'>0</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>block_smooth_periodogram</span>(
+  <span class='no'>y</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>w</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>s</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>0.25</span>,
+  <span class='kw'>spar_freq</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>spar_time</span> <span class='kw'>=</span> <span class='fl'>0</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -183,19 +186,20 @@ necessarily) in \((0,1]\).</p></td>
 where <code><a href='https://rdrr.io/r/base/Round.html'>trunc</a></code> truncates de entered value and <em>n</em> is
 the length of the vector <code>y</code>. All windows are of the same length
 <code>w</code>, if this value isn't entered by user then is computed as
-\(w=\text{trunc}(n^{0.8})\) (Dahlhaus).</p>
-<p><code>lsts2_spb</code> computes the periodogram in each of the
+\(w=\text{trunc}(n^{0.8})\) (Dahlhaus).
+<code>lsts_spb</code> computes the periodogram in each of the
 <em>M</em> windows and then smoothes it two times with
 <code><a href='https://rdrr.io/r/stats/smooth.spline.html'>smooth.spline</a></code> function; the first time using
 <code>spar_freq</code> parameter and the second time with <code>spar_time</code>. These
 windows overlap between them.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>For more information on theoretical foundations and estimation methods see</p>
-<p>Dahlhaus R, others (1997).
+    <p>For more information on theoretical foundations and estimation methods see
+Dahlhaus R, others (1997).
 &#8220;Fitting time series models to nonstationary processes.&#8221;
-<em>The annals of Statistics</em>, <b>25</b>(1), 1--37.</p>
-<p>Dahlhaus R, Giraitis L (1998).
+<em>The annals of Statistics</em>, <b>25</b>(1), 1--37.
+
+Dahlhaus R, Giraitis L (1998).
 &#8220;On the optimal segment length for parameter estimates for locally stationary time series.&#8221;
 <em>Journal of Time Series Analysis</em>, <b>19</b>(6), 629--655.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
@@ -203,8 +207,7 @@ windows overlap between them.</p>
     <div class='dont-index'><p><code><a href='https://rdrr.io/r/stats/arima.sim.html'>arima.sim</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>block_smooth_periodogram</span><span class='op'>(</span><span class='va'>malleco</span><span class='op'>)</span>
-</div><div class='img'><img src='block_smooth_periodogram-1.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>block_smooth_periodogram</span>(<span class='no'>malleco</span>)</div><div class='img'><img src='block_smooth_periodogram-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -220,7 +223,7 @@ windows overlap between them.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

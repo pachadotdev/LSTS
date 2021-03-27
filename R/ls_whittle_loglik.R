@@ -1,9 +1,7 @@
 #' @title Locally Stationary Whittle log-likelihood Function
-#'
 #' @description This function computes Whittle estimator for LS-ARMA and
 #' LS-ARFIMA models, in data with mean zero. If mean is not zero, then it is
 #' subtracted to data.
-#'
 #' @details
 #' The estimation of the time-varying parameters can be carried out by means of
 #' the Whittle log-likelihood function proposed by Dahlhaus (1997),
@@ -15,48 +13,31 @@
 #' \eqn{u_j =t_j/n}, \eqn{t_j =s(j-1)+w/2}, \eqn{j =1,\ldots,M} and
 #' \eqn{\lambda} the Fourier frequencies in the block
 #' (\eqn{2\,\pi\,k/w}, \eqn{k = 1,\ldots, w}).
-#'
 #' @param x (type: numeric) parameter vector.
-#'
 #' @param series (type: numeric) univariate time series.
-#'
 #' @param order (type: numeric) vector corresponding to \code{ARMA} model
 #' entered.
-#'
 #' @param ar_order (type: numeric) AR polimonial order.
-#'
 #' @param ma_order (type: numeric) MA polimonial order.
-#'
 #' @param sd_order (type: numeric) polinomial order noise scale factor.
-#'
 #' @param d_order (type: numeric) \code{d} polinomial order, where \code{d} is
 #' the \code{ARFIMA} parameter.
-#'
 #' @param include_d (type: numeric) logical argument for \code{ARFIMA} models.
 #' If \code{include_d=FALSE} then the model is an ARMA process.
-#'
 #' @param w (type: numeric) value corresponding to the length of the window to
 #' compute periodogram. If \code{w=NULL} then the function will use
-#' \eqn{w = \text{trunc}(n^{0.8})}, see Dahlhaus (1998) where \eqn{n} is the
+#' \eqn{w = \textrm{trunc}(n^{0.8})}, see Dahlhaus (1998) where \eqn{n} is the
 #' length of the \code{y} vector.
-#'
 #' @param s (type: numeric) value corresponding to the lag with which will go
 #' taking the blocks or windows.
-#'
 #' @param include_taper (type: logical) logical argument that by default is
 #' \code{TRUE}. See \code{\link{periodogram}}.
-#'
 #' @references
 #' For more information on theoretical foundations and estimation methods see
-#'
-#' \insertRef{brockwell2002introduction}{lsts2}
-#'
-#' \insertRef{palma2010efficient}{lsts2}
-#'
+#' \insertRef{brockwell2002introduction}{lsts}
+#' \insertRef{palma2010efficient}{lsts}
 #' @seealso \code{\link[stats]{nlminb}}, \code{\link{ls_kalman}}
-#'
 #' @importFrom stats na.omit
-#'
 #' @export
 ls_whittle_loglik <- function(x, series, order = c(p = 0, q = 0), ar_order = NULL, ma_order = NULL, sd_order = NULL, d_order = NULL, include_d = FALSE, w = NULL, s = NULL, include_taper = TRUE) {
   y <- series
