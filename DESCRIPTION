@@ -8,13 +8,13 @@ Authors@R: c(
     email = "raolea@uc.cl"),
   person("Wilfredo", "Palma",
     role = c("aut", "cph"),
-    email = "wilfredo@mat.puc.cl"),
+    email = "wpalma@uc.cl"),
   person("Pilar", "Rubio",
     role = c("aut"),
     email = "parubio@puc.cl"),
   person("Mauricio", "Vargas", 
     role = c("aut", "cre"), 
-    email = "mvargas@dcc.uchile.cl", 
+    email = "mavargas11@uc.cl", 
     comment = c(ORCID = "0000-0003-1017-7574"))
   )
 Description: A set of functions that allow stationary analysis and locally stationary time series analysis.

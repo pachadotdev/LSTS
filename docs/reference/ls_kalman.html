@@ -122,17 +122,17 @@ infinite of moving average in processes LS-ARMA or LS-ARFIMA." />
 infinite of moving average in processes LS-ARMA or LS-ARFIMA.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ls_kalman</span>(
-  <span class='no'>series</span>,
-  <span class='no'>start</span>,
-  <span class='kw'>order</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>0</span>),
-  <span class='kw'>ar_order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ma_order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>sd_order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>d_order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>include_d</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>m</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)</pre>
+    <pre class="usage"><span class='fu'>ls_kalman</span><span class='op'>(</span>
+  <span class='va'>series</span>,
+  <span class='va'>start</span>,
+  order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>p <span class='op'>=</span> <span class='fl'>0</span>, q <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>,
+  ar_order <span class='op'>=</span> <span class='cn'>NULL</span>,
+  ma_order <span class='op'>=</span> <span class='cn'>NULL</span>,
+  sd_order <span class='op'>=</span> <span class='cn'>NULL</span>,
+  d_order <span class='op'>=</span> <span class='cn'>NULL</span>,
+  include_d <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  m <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -209,7 +209,8 @@ Palma W, Olea R, Ferreira G (2013).
 <em>Journal of Forecasting</em>, <b>32</b>(1), 86--96.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>fit_kalman</span> <span class='kw'>&lt;-</span> <span class='fu'>ls_kalman</span>(<span class='no'>malleco</span>, <span class='fu'><a href='https://rdrr.io/r/stats/start.html'>start</a></span>(<span class='no'>malleco</span>))</div></pre>
+    <pre class="examples"><div class='input'><span class='va'>fit_kalman</span> <span class='op'>&lt;-</span> <span class='fu'>ls_kalman</span><span class='op'>(</span><span class='va'>malleco</span>, <span class='fu'><a href='https://rdrr.io/r/stats/start.html'>start</a></span><span class='op'>(</span><span class='va'>malleco</span><span class='op'>)</span><span class='op'>)</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -225,7 +226,7 @@ Palma W, Olea R, Ferreira G (2013).
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

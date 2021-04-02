@@ -122,24 +122,24 @@ LS-ARFIMA models." />
 LS-ARFIMA models.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ls_whittle</span>(
-  <span class='no'>series</span>,
-  <span class='no'>start</span>,
-  <span class='kw'>order</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>0</span>),
-  <span class='kw'>ar_order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ma_order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>sd_order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>d_order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>include_d</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>w</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>s</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>include_taper</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>control</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>lower</span> <span class='kw'>=</span> -<span class='fl'>Inf</span>,
-  <span class='kw'>upper</span> <span class='kw'>=</span> <span class='fl'>Inf</span>,
-  <span class='kw'>m</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>n_ahead</span> <span class='kw'>=</span> <span class='fl'>0</span>
-)</pre>
+    <pre class="usage"><span class='fu'>ls_whittle</span><span class='op'>(</span>
+  <span class='va'>series</span>,
+  <span class='va'>start</span>,
+  order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>p <span class='op'>=</span> <span class='fl'>0</span>, q <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>,
+  ar_order <span class='op'>=</span> <span class='cn'>NULL</span>,
+  ma_order <span class='op'>=</span> <span class='cn'>NULL</span>,
+  sd_order <span class='op'>=</span> <span class='cn'>NULL</span>,
+  d_order <span class='op'>=</span> <span class='cn'>NULL</span>,
+  include_d <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  w <span class='op'>=</span> <span class='cn'>NULL</span>,
+  s <span class='op'>=</span> <span class='cn'>NULL</span>,
+  include_taper <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  control <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  lower <span class='op'>=</span> <span class='op'>-</span><span class='cn'>Inf</span>,
+  upper <span class='op'>=</span> <span class='cn'>Inf</span>,
+  m <span class='op'>=</span> <span class='cn'>NULL</span>,
+  n_ahead <span class='op'>=</span> <span class='fl'>0</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -184,7 +184,7 @@ If <code>include_d=FALSE</code> then the model is an ARMA process.</p></td>
       <th>w</th>
       <td><p>(type: numeric) value corresponding to the length of the window to
 compute periodogram. If <code>w=NULL</code> then the function will use
-\(w = \text{trunc}(n^{0.8})\), see Dahlhaus (1998) where \(n\) is the
+\(w = \textrm{trunc}(n^{0.8})\), see Dahlhaus (1998) where \(n\) is the
 length of the <code>y</code> vector.</p></td>
     </tr>
     <tr>
@@ -289,30 +289,31 @@ are given in <code>var.coef</code> in the output.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Analysis by blocks of phi and sigma parameters</span>
-<span class='no'>w</span> <span class='kw'>&lt;-</span> <span class='fl'>200</span>
-<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fl'>100</span>
-<span class='no'>M</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>trunc</a></span>((<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>malleco</span>) - <span class='no'>w</span>) / <span class='no'>s</span> + <span class='fl'>1</span>)
-<span class='no'>table</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>()
-<span class='kw'>for</span> (<span class='no'>j</span> <span class='kw'>in</span> <span class='fl'>1</span>:<span class='no'>M</span>) {
-  <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>malleco</span>[(<span class='fl'>1</span> + <span class='no'>s</span> * (<span class='no'>j</span> - <span class='fl'>1</span>)):(<span class='no'>w</span> + <span class='no'>s</span> * (<span class='no'>j</span> - <span class='fl'>1</span>))]
-  <span class='no'>table</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span>(<span class='no'>table</span>, <span class='fu'><a href='https://rdrr.io/r/stats/nlminb.html'>nlminb</a></span>(
-    <span class='kw'>start</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.65</span>, <span class='fl'>0.15</span>), <span class='kw'>w</span> <span class='kw'>=</span> <span class='no'>w</span>,
-    <span class='kw'>objective</span> <span class='kw'>=</span> <span class='no'>ls_whittle_loglik</span>,
-    <span class='kw'>series</span> <span class='kw'>=</span> <span class='no'>x</span>, <span class='kw'>order</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>0</span>)
-  )$<span class='no'>par</span>)
-}
-<span class='no'>u</span> <span class='kw'>&lt;-</span> (<span class='no'>w</span> / <span class='fl'>2</span> + <span class='no'>s</span> * (<span class='fl'>1</span>:<span class='no'>M</span> - <span class='fl'>1</span>)) / <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>malleco</span>)
-<span class='no'>table</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>(<span class='no'>u</span>, <span class='no'>table</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span>(<span class='no'>table</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"u"</span>, <span class='st'>"phi"</span>, <span class='st'>"sigma"</span>)
+<span class='va'>w</span> <span class='op'>&lt;-</span> <span class='fl'>200</span>
+<span class='va'>s</span> <span class='op'>&lt;-</span> <span class='fl'>100</span>
+<span class='va'>M</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>trunc</a></span><span class='op'>(</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>malleco</span><span class='op'>)</span> <span class='op'>-</span> <span class='va'>w</span><span class='op'>)</span> <span class='op'>/</span> <span class='va'>s</span> <span class='op'>+</span> <span class='fl'>1</span><span class='op'>)</span>
+<span class='va'>table</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='kw'>for</span> <span class='op'>(</span><span class='va'>j</span> <span class='kw'>in</span> <span class='fl'>1</span><span class='op'>:</span><span class='va'>M</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='va'>malleco</span><span class='op'>[</span><span class='op'>(</span><span class='fl'>1</span> <span class='op'>+</span> <span class='va'>s</span> <span class='op'>*</span> <span class='op'>(</span><span class='va'>j</span> <span class='op'>-</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span><span class='op'>:</span><span class='op'>(</span><span class='va'>w</span> <span class='op'>+</span> <span class='va'>s</span> <span class='op'>*</span> <span class='op'>(</span><span class='va'>j</span> <span class='op'>-</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span><span class='op'>]</span>
+  <span class='va'>table</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='va'>table</span>, <span class='fu'><a href='https://rdrr.io/r/stats/nlminb.html'>nlminb</a></span><span class='op'>(</span>
+    start <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.65</span>, <span class='fl'>0.15</span><span class='op'>)</span>, w <span class='op'>=</span> <span class='va'>w</span>,
+    objective <span class='op'>=</span> <span class='va'>ls_whittle_loglik</span>,
+    series <span class='op'>=</span> <span class='va'>x</span>, order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>p <span class='op'>=</span> <span class='fl'>1</span>, q <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>
+  <span class='op'>)</span><span class='op'>$</span><span class='va'>par</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='va'>u</span> <span class='op'>&lt;-</span> <span class='op'>(</span><span class='va'>w</span> <span class='op'>/</span> <span class='fl'>2</span> <span class='op'>+</span> <span class='va'>s</span> <span class='op'>*</span> <span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='va'>M</span> <span class='op'>-</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>malleco</span><span class='op'>)</span>
+<span class='va'>table</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span><span class='va'>u</span>, <span class='va'>table</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>table</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"u"</span>, <span class='st'>"phi"</span>, <span class='st'>"sigma"</span><span class='op'>)</span>
 <span class='co'># Start parameters</span>
-<span class='no'>phi</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/smooth.spline.html'>smooth.spline</a></span>(<span class='no'>table</span>$<span class='no'>phi</span>, <span class='kw'>spar</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>tol</span> <span class='kw'>=</span> <span class='fl'>0.01</span>)$<span class='no'>y</span>
-<span class='no'>fit.1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/nls.html'>nls</a></span>(<span class='no'>phi</span> ~ <span class='no'>a0</span> + <span class='no'>a1</span> * <span class='no'>u</span>, <span class='kw'>start</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>a0</span> <span class='kw'>=</span> <span class='fl'>0.65</span>, <span class='kw'>a1</span> <span class='kw'>=</span> <span class='fl'>0.00</span>))
-<span class='no'>sigma</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/smooth.spline.html'>smooth.spline</a></span>(<span class='no'>table</span>$<span class='no'>sigma</span>, <span class='kw'>spar</span> <span class='kw'>=</span> <span class='fl'>1</span>)$<span class='no'>y</span>
-<span class='no'>fit.2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/nls.html'>nls</a></span>(<span class='no'>sigma</span> ~ <span class='no'>b0</span> + <span class='no'>b1</span> * <span class='no'>u</span>, <span class='kw'>start</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>b0</span> <span class='kw'>=</span> <span class='fl'>0.65</span>, <span class='kw'>b1</span> <span class='kw'>=</span> <span class='fl'>0.00</span>))
-<span class='no'>fit_whittle</span> <span class='kw'>&lt;-</span> <span class='fu'>ls_whittle</span>(
-  <span class='kw'>series</span> <span class='kw'>=</span> <span class='no'>malleco</span>, <span class='kw'>start</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span>(<span class='no'>fit.1</span>), <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span>(<span class='no'>fit.2</span>)), <span class='kw'>order</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>q</span> <span class='kw'>=</span> <span class='fl'>0</span>),
-  <span class='kw'>ar_order</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>sd_order</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>w</span> <span class='kw'>=</span> <span class='fl'>180</span>, <span class='kw'>n_ahead</span> <span class='kw'>=</span> <span class='fl'>10</span>
-)</div></pre>
+<span class='va'>phi</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/smooth.spline.html'>smooth.spline</a></span><span class='op'>(</span><span class='va'>table</span><span class='op'>$</span><span class='va'>phi</span>, spar <span class='op'>=</span> <span class='fl'>1</span>, tol <span class='op'>=</span> <span class='fl'>0.01</span><span class='op'>)</span><span class='op'>$</span><span class='va'>y</span>
+<span class='va'>fit.1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/nls.html'>nls</a></span><span class='op'>(</span><span class='va'>phi</span> <span class='op'>~</span> <span class='va'>a0</span> <span class='op'>+</span> <span class='va'>a1</span> <span class='op'>*</span> <span class='va'>u</span>, start <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>a0 <span class='op'>=</span> <span class='fl'>0.65</span>, a1 <span class='op'>=</span> <span class='fl'>0.00</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>sigma</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/smooth.spline.html'>smooth.spline</a></span><span class='op'>(</span><span class='va'>table</span><span class='op'>$</span><span class='va'>sigma</span>, spar <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>$</span><span class='va'>y</span>
+<span class='va'>fit.2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/nls.html'>nls</a></span><span class='op'>(</span><span class='va'>sigma</span> <span class='op'>~</span> <span class='va'>b0</span> <span class='op'>+</span> <span class='va'>b1</span> <span class='op'>*</span> <span class='va'>u</span>, start <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>b0 <span class='op'>=</span> <span class='fl'>0.65</span>, b1 <span class='op'>=</span> <span class='fl'>0.00</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>fit_whittle</span> <span class='op'>&lt;-</span> <span class='fu'>ls_whittle</span><span class='op'>(</span>
+  series <span class='op'>=</span> <span class='va'>malleco</span>, start <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span><span class='op'>(</span><span class='va'>fit.1</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span><span class='op'>(</span><span class='va'>fit.2</span><span class='op'>)</span><span class='op'>)</span>, order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>p <span class='op'>=</span> <span class='fl'>1</span>, q <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>,
+  ar_order <span class='op'>=</span> <span class='fl'>1</span>, sd_order <span class='op'>=</span> <span class='fl'>1</span>, w <span class='op'>=</span> <span class='fl'>180</span>, n_ahead <span class='op'>=</span> <span class='fl'>10</span>
+<span class='op'>)</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -328,7 +329,7 @@ are given in <code>var.coef</code> in the output.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

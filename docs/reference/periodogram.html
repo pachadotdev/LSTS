@@ -122,7 +122,7 @@ serie. Returns the periodogram, its graph and the Fourier frequency." />
 serie. Returns the periodogram, its graph and the Fourier frequency.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>periodogram</span>(<span class='no'>y</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>include_taper</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>periodogram</span><span class='op'>(</span><span class='va'>y</span>, plot <span class='op'>=</span> <span class='cn'>TRUE</span>, include_taper <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -179,10 +179,11 @@ Dahlhaus R, others (1997).
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># AR(1) simulated</span>
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>1776</span>)
-<span class='no'>ts.sim</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/arima.sim.html'>arima.sim</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>model</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>order</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>0</span>, <span class='fl'>0</span>), <span class='kw'>ar</span> <span class='kw'>=</span> <span class='fl'>0.7</span>))
-<span class='no'>per</span> <span class='kw'>&lt;-</span> <span class='fu'>periodogram</span>(<span class='no'>ts.sim</span>)
-<span class='no'>per</span>$<span class='no'>plot</span></div><div class='img'><img src='periodogram-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>1776</span><span class='op'>)</span>
+<span class='va'>ts.sim</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/arima.sim.html'>arima.sim</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>1000</span>, model <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>0</span>, <span class='fl'>0</span><span class='op'>)</span>, ar <span class='op'>=</span> <span class='fl'>0.7</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>per</span> <span class='op'>&lt;-</span> <span class='fu'>periodogram</span><span class='op'>(</span><span class='va'>ts.sim</span><span class='op'>)</span>
+<span class='va'>per</span><span class='op'>$</span><span class='va'>plot</span>
+</div><div class='img'><img src='periodogram-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -198,7 +199,7 @@ Dahlhaus R, others (1997).
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -1,4 +1,4 @@
-# lsts
+# lsts <img src="https://pacha.dev/lsts/hexicon.svg" width=150 align="right" alt="sticker"/>
 
 <!-- badges: start -->
 [![R build status](https://github.com/pachamaltese/lsts/workflows/R-CMD-check/badge.svg)](https://github.com/pachamaltese/lsts/actions?workflow=R-CMD-check)
@@ -15,7 +15,7 @@ A set of functions that allows stationary analysis and locally stationary time s
 You can install the released version of lsts from Github with:
 
 ``` r
-source("https://install-github.me/pachamaltese/lsts")
+remotes::install_github("pachamaltese/lsts")
 ```
 
 ## Code of Conduct

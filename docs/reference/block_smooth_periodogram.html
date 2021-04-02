@@ -122,15 +122,15 @@ blocks or windows." />
 blocks or windows.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>block_smooth_periodogram</span>(
-  <span class='no'>y</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>w</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>s</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>0.25</span>,
-  <span class='kw'>spar_freq</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>spar_time</span> <span class='kw'>=</span> <span class='fl'>0</span>
-)</pre>
+    <pre class="usage"><span class='fu'>block_smooth_periodogram</span><span class='op'>(</span>
+  <span class='va'>y</span>,
+  x <span class='op'>=</span> <span class='cn'>NULL</span>,
+  w <span class='op'>=</span> <span class='cn'>NULL</span>,
+  s <span class='op'>=</span> <span class='cn'>NULL</span>,
+  p <span class='op'>=</span> <span class='fl'>0.25</span>,
+  spar_freq <span class='op'>=</span> <span class='fl'>0</span>,
+  spar_time <span class='op'>=</span> <span class='fl'>0</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -149,7 +149,7 @@ function uses \((1,\ldots,n)\) where <code>n</code> is the length of <code>y</co
       <td><p>(type: numeric) value corresponding to the length of the window to
 compute periodogram.
 If <code>w=NULL</code> then the function will use
-\(w = \text{trunc}(n^{0.8})\), see
+\(w = \textrm{trunc}(n^{0.8})\), see
 Dahlhaus and Giraitis (1998)
  where \(n\) is the length of
 the <code>y</code> vector.</p></td>
@@ -182,11 +182,11 @@ necessarily) in \((0,1]\).</p></td>
     <p>A ggplot object.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The number of windows of the function is \(m = \text{trunc}((n-w)/s+1)\),
+    <p>The number of windows of the function is \(m = \textrm{trunc}((n-w)/s+1)\),
 where <code><a href='https://rdrr.io/r/base/Round.html'>trunc</a></code> truncates de entered value and <em>n</em> is
 the length of the vector <code>y</code>. All windows are of the same length
 <code>w</code>, if this value isn't entered by user then is computed as
-\(w=\text{trunc}(n^{0.8})\) (Dahlhaus).
+\(w=\textrm{trunc}(n^{0.8})\) (Dahlhaus).
 <code>lsts_spb</code> computes the periodogram in each of the
 <em>M</em> windows and then smoothes it two times with
 <code><a href='https://rdrr.io/r/stats/smooth.spline.html'>smooth.spline</a></code> function; the first time using
@@ -207,7 +207,8 @@ Dahlhaus R, Giraitis L (1998).
     <div class='dont-index'><p><code><a href='https://rdrr.io/r/stats/arima.sim.html'>arima.sim</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>block_smooth_periodogram</span>(<span class='no'>malleco</span>)</div><div class='img'><img src='block_smooth_periodogram-1.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>block_smooth_periodogram</span><span class='op'>(</span><span class='va'>malleco</span><span class='op'>)</span>
+</div><div class='img'><img src='block_smooth_periodogram-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -223,7 +224,7 @@ Dahlhaus R, Giraitis L (1998).
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
