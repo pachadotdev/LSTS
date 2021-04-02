@@ -1,7 +1,7 @@
 # devtools::install_github("MarcoDVisser/aprof")
 
 library(profvis)
-library(lsts)
+library(LSTS)
 
 p <- profvis({
   # block.smooth.periodogram(malleco)

@@ -1,4 +1,4 @@
-# lsts 2.0
+# LSTS 2.0
 
 * Added a `NEWS.md` file to track changes to the package.
-* This package is a major revision of the (retired) LSTS package, which adopts tidy conventions
+* Uses ggplot to prevent plotting problems when using projection or external monitors

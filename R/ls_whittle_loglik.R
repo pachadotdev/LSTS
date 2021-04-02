@@ -8,66 +8,69 @@
 #' \deqn{L_n(\theta) = \frac{1}{4\pi}\frac{1}{M} \int_{-\pi}^{\pi}
 #' \bigg\{log f_{\theta}(u_j,\lambda) +
 #' \frac{I_N(u_j, \lambda)}{f_{\theta}(u_j,\lambda)}\bigg\}\,d\lambda}
-#' where \eqn{M} is the number of blocks, \eqn{w} the length of the series per
-#' block, \eqn{n =s(M-1)+w}, \eqn{s} is the shift from block to block,
-#' \eqn{u_j =t_j/n}, \eqn{t_j =s(j-1)+w/2}, \eqn{j =1,\ldots,M} and
+#' where \eqn{M} is the number of blocks, \eqn{N} the length of the series per
+#' block, \eqn{n =S(M-1)+N}, \eqn{S} is the shift from block to block,
+#' \eqn{u_j =t_j/n}, \eqn{t_j =S(j-1)+N/2}, \eqn{j =1,\ldots,M} and
 #' \eqn{\lambda} the Fourier frequencies in the block
-#' (\eqn{2\,\pi\,k/w}, \eqn{k = 1,\ldots, w}).
+#' (\eqn{2\,\pi\,k/N}, \eqn{k = 1,\ldots, N}).
 #' @param x (type: numeric) parameter vector.
 #' @param series (type: numeric) univariate time series.
 #' @param order (type: numeric) vector corresponding to \code{ARMA} model
 #' entered.
-#' @param ar_order (type: numeric) AR polimonial order.
-#' @param ma_order (type: numeric) MA polimonial order.
-#' @param sd_order (type: numeric) polinomial order noise scale factor.
-#' @param d_order (type: numeric) \code{d} polinomial order, where \code{d} is
+#' @param ar.order (type: numeric) AR polimonial order.
+#' @param ma.order (type: numeric) MA polimonial order.
+#' @param sd.order (type: numeric) polinomial order noise scale factor.
+#' @param d.order (type: numeric) \code{d} polinomial order, where \code{d} is
 #' the \code{ARFIMA} parameter.
-#' @param include_d (type: numeric) logical argument for \code{ARFIMA} models.
-#' If \code{include_d=FALSE} then the model is an ARMA process.
-#' @param w (type: numeric) value corresponding to the length of the window to
-#' compute periodogram. If \code{w=NULL} then the function will use
-#' \eqn{w = \textrm{trunc}(n^{0.8})}, see Dahlhaus (1998) where \eqn{n} is the
+#' @param include.d (type: numeric) logical argument for \code{ARFIMA} models.
+#' If \code{include.d=FALSE} then the model is an ARMA process.
+#' @param N (type: numeric) value corresponding to the length of the window to
+#' compute periodogram. If \code{N=NULL} then the function will use
+#' \eqn{N = \textrm{trunc}(n^{0.8})}, see Dahlhaus (1998) where \eqn{n} is the
 #' length of the \code{y} vector.
-#' @param s (type: numeric) value corresponding to the lag with which will go
+#' @param S (type: numeric) value corresponding to the lag with which will go
 #' taking the blocks or windows.
-#' @param include_taper (type: logical) logical argument that by default is
+#' @param include.taper (type: logical) logical argument that by default is
 #' \code{TRUE}. See \code{\link{periodogram}}.
 #' @references
 #' For more information on theoretical foundations and estimation methods see
-#' \insertRef{brockwell2002introduction}{lsts}
-#' \insertRef{palma2010efficient}{lsts}
-#' @seealso \code{\link[stats]{nlminb}}, \code{\link{ls_kalman}}
+#' \insertRef{brockwell2002introduction}{LSTS}
+#' \insertRef{palma2010efficient}{LSTS}
+#' @seealso \code{\link[stats]{nlminb}}, \code{\link{LS.kalman}}
 #' @importFrom stats na.omit
 #' @export
-ls_whittle_loglik <- function(x, series, order = c(p = 0, q = 0), ar_order = NULL, ma_order = NULL, sd_order = NULL, d_order = NULL, include_d = FALSE, w = NULL, s = NULL, include_taper = TRUE) {
+LS.whittle.loglik <- function(x, series, order = c(p = 0, q = 0),
+                              ar.order = NULL, ma.order = NULL, sd.order = NULL,
+                              d.order = NULL, include.d = FALSE, N = NULL,
+                              S = NULL, include.taper = TRUE) {
   y <- series
   T. <- length(y)
 
-  if (is.null(w)) {
-    w <- trunc(T.^0.8)
+  if (is.null(N)) {
+    N <- trunc(T.^0.8)
   }
-  if (is.null(s)) {
-    s <- trunc(0.2 * w)
-  }
-
-  M <- trunc((T. - w) / s + 1)
-
-  if (is.null(ar_order)) {
-    ar_order <- rep(0, order[1])
-  }
-  if (is.null(ma_order)) {
-    ma_order <- rep(0, order[2])
-  }
-  if (is.null(sd_order)) {
-    sd_order <- 0
-  }
-  if (is.null(d_order)) {
-    d_order <- 0
+  if (is.null(S)) {
+    S <- trunc(0.2 * N)
   }
 
-  p <- na.omit(c(ar_order, ma_order, sd_order))
-  if (include_d == TRUE) {
-    p <- na.omit(c(ar_order, ma_order, d_order, sd_order))
+  M <- trunc((T. - N) / S + 1)
+
+  if (is.null(ar.order)) {
+    ar.order <- rep(0, order[1])
+  }
+  if (is.null(ma.order)) {
+    ma.order <- rep(0, order[2])
+  }
+  if (is.null(sd.order)) {
+    sd.order <- 0
+  }
+  if (is.null(d.order)) {
+    d.order <- 0
+  }
+
+  p <- na.omit(c(ar.order, ma.order, sd.order))
+  if (include.d == TRUE) {
+    p <- na.omit(c(ar.order, ma.order, d.order, sd.order))
   }
 
   if (length(x) != sum(p + 1)) {
@@ -75,8 +78,8 @@ ls_whittle_loglik <- function(x, series, order = c(p = 0, q = 0), ar_order = NUL
   } else {
     lik <- 0
     for (j in 1:M) {
-      u <- (w / 2 + s * (j - 1)) / T.
-      aux <- periodogram(y[(1 + s * (j - 1)):(w + s * (j - 1))], include_taper = TRUE, plot = FALSE)
+      u <- (N / 2 + S * (j - 1)) / T.
+      aux <- periodogram(y[(1 + S * (j - 1)):(N + S * (j - 1))], include.taper = TRUE, plot = FALSE)
       I <- aux$periodogram
 
       X <- numeric()
@@ -89,29 +92,29 @@ ls_whittle_loglik <- function(x, series, order = c(p = 0, q = 0), ar_order = NUL
       phi <- numeric()
       k <- 1
       if (order[1] > 0) {
-        phi[is.na(ar_order) == 1] <- 0
-        phi[is.na(ar_order) == 0] <- X[k:(length(na.omit(ar_order)))]
-        k <- length(na.omit(ar_order)) + 1
+        phi[is.na(ar.order) == 1] <- 0
+        phi[is.na(ar.order) == 0] <- X[k:(length(na.omit(ar.order)))]
+        k <- length(na.omit(ar.order)) + 1
       }
 
       theta <- numeric()
       if (order[2] > 0) {
-        theta[is.na(ma_order) == 1] <- 0
-        theta[is.na(ma_order) == 0] <- X[k:(length(na.omit(ma_order)) + k - 1)]
-        k <- length(na.omit(ma_order)) + k
+        theta[is.na(ma.order) == 1] <- 0
+        theta[is.na(ma.order) == 0] <- X[k:(length(na.omit(ma.order)) + k - 1)]
+        k <- length(na.omit(ma.order)) + k
       }
 
       d <- 0
-      if (include_d == TRUE) {
+      if (include.d == TRUE) {
         d <- X[k]
         k <- k + 1
       }
 
       sigma <- X[k]
 
-      f <- spectral_density(ar = phi, ma = theta, d = d, sd = sigma, lambda = aux$lambda)
+      f <- spectral.density(ar = phi, ma = theta, d = d, sd = sigma, lambda = aux$lambda)
 
-      lik <- sum(log(f) + I / f) / w + lik
+      lik <- sum(log(f) + I / f) / N + lik
     }
 
     lik <- lik / M

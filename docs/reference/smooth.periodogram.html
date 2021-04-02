@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Smoothing periodogram — smooth_periodogram • LSTS</title>
+<title>Smoothing periodogram — smooth.periodogram • LSTS</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Smoothing periodogram — smooth_periodogram" />
+<meta property="og:title" content="Smoothing periodogram — smooth.periodogram" />
 <meta property="og:description" content="This function returns the smoothing periodogram of a stationary
 time serie, its plot and its Fourier frequency." />
 
@@ -114,7 +114,7 @@ time serie, its plot and its Fourier frequency." />
     <div class="page-header">
     <h1>Smoothing periodogram</h1>
     <small class="dont-index">Source: <a href='https://github.com/pachamaltese/LSTS/blob/master/R/smooth_periodogram.R'><code>R/smooth_periodogram.R</code></a></small>
-    <div class="hidden name"><code>smooth_periodogram.Rd</code></div>
+    <div class="hidden name"><code>smooth.periodogram.Rd</code></div>
     </div>
 
     <div class="ref-description">
@@ -122,7 +122,7 @@ time serie, its plot and its Fourier frequency." />
 time serie, its plot and its Fourier frequency.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>smooth_periodogram</span><span class='op'>(</span><span class='va'>y</span>, plot <span class='op'>=</span> <span class='cn'>TRUE</span>, spar <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>smooth.periodogram</span><span class='op'>(</span><span class='va'>y</span>, plot <span class='op'>=</span> <span class='cn'>TRUE</span>, spar <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -148,7 +148,7 @@ necessarily) in \((0,1].\)</p></td>
     <p>A list with with the smooth periodogram and the lambda values</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>smooth_periodogram</code> computes the periodogram from <code>y</code> vector and
+    <p><code>smooth.periodogram</code> computes the periodogram from <code>y</code> vector and
 then smooth it with <em>smoothing spline</em> method, which basically
 approximates a curve using a cubic spline (see more details in
 <code><a href='https://rdrr.io/r/stats/smooth.spline.html'>smooth.spline</a></code>). \(\lambda\) is the Fourier frequency
@@ -169,8 +169,8 @@ If it presents problems with tol (<b>tol</b>erance), see
 </div><div class='output co'>#&gt; <span class='message'>Loading required package: ggplot2</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>1776</span><span class='op'>)</span>
 <span class='va'>ts.sim</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/arima.sim.html'>arima.sim</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>1000</span>, model <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>0</span>, <span class='fl'>0</span><span class='op'>)</span>, ar <span class='op'>=</span> <span class='fl'>0.7</span><span class='op'>)</span><span class='op'>)</span>
 <span class='va'>per</span> <span class='op'>&lt;-</span> <span class='fu'><a href='periodogram.html'>periodogram</a></span><span class='op'>(</span><span class='va'>ts.sim</span><span class='op'>)</span>
-<span class='va'>aux</span> <span class='op'>&lt;-</span> <span class='fu'>smooth_periodogram</span><span class='op'>(</span><span class='va'>ts.sim</span>, plot <span class='op'>=</span> <span class='cn'>FALSE</span>, spar <span class='op'>=</span> <span class='fl'>.7</span><span class='op'>)</span>
-<span class='va'>sm_p</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>aux</span><span class='op'>$</span><span class='va'>lambda</span>, y <span class='op'>=</span> <span class='va'>aux</span><span class='op'>$</span><span class='va'>smooth_periodogram</span><span class='op'>)</span>
+<span class='va'>aux</span> <span class='op'>&lt;-</span> <span class='fu'>smooth.periodogram</span><span class='op'>(</span><span class='va'>ts.sim</span>, plot <span class='op'>=</span> <span class='cn'>FALSE</span>, spar <span class='op'>=</span> <span class='fl'>.7</span><span class='op'>)</span>
+<span class='va'>sm_p</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>aux</span><span class='op'>$</span><span class='va'>lambda</span>, y <span class='op'>=</span> <span class='va'>aux</span><span class='op'>$</span><span class='va'>smooth.periodogram</span><span class='op'>)</span>
 <span class='va'>sp_d</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
   x <span class='op'>=</span> <span class='va'>aux</span><span class='op'>$</span><span class='va'>lambda</span>,
   y <span class='op'>=</span> <span class='fu'><a href='spectral.density.html'>spectral.density</a></span><span class='op'>(</span>ar <span class='op'>=</span> <span class='fl'>0.7</span>, lambda <span class='op'>=</span> <span class='va'>aux</span><span class='op'>$</span><span class='va'>lambda</span><span class='op'>)</span>
@@ -179,7 +179,7 @@ If it presents problems with tol (<b>tol</b>erance), see
 <span class='va'>g</span> <span class='op'>+</span>
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>sm_p</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span><span class='op'>)</span>, color <span class='op'>=</span> <span class='st'>"#ff7f0e"</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>sp_d</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span><span class='op'>)</span>, color <span class='op'>=</span> <span class='st'>"#d31244"</span><span class='op'>)</span>
-</div><div class='img'><img src='smooth_periodogram-1.png' alt='' width='700' height='433' /></div></pre>
+</div><div class='img'><img src='smooth.periodogram-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

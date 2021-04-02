@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Smooth Periodogram by Blocks — block_smooth_periodogram • lsts</title>
+<title>Smooth Periodogram by Blocks — block_smooth_periodogram • LSTS</title>
 
 
 <!-- jquery -->
@@ -72,7 +72,7 @@ blocks or windows." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">lsts</a>
+        <a class="navbar-link" href="../index.html">LSTS</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0</span>
       </span>
     </div>
@@ -94,7 +94,7 @@ blocks or windows." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/pachamaltese/lsts/">
+  <a href="https://github.com/pachamaltese/LSTS/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -113,7 +113,7 @@ blocks or windows." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Smooth Periodogram by Blocks</h1>
-    <small class="dont-index">Source: <a href='https://github.com/pachamaltese/lsts/blob/master/R/block_smooth_periodogram.R'><code>R/block_smooth_periodogram.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/pachamaltese/LSTS/blob/master/R/block_smooth_periodogram.R'><code>R/block_smooth_periodogram.R</code></a></small>
     <div class="hidden name"><code>block_smooth_periodogram.Rd</code></div>
     </div>
 
@@ -187,7 +187,7 @@ where <code><a href='https://rdrr.io/r/base/Round.html'>trunc</a></code> truncat
 the length of the vector <code>y</code>. All windows are of the same length
 <code>w</code>, if this value isn't entered by user then is computed as
 \(w=\textrm{trunc}(n^{0.8})\) (Dahlhaus).
-<code>lsts_spb</code> computes the periodogram in each of the
+<code>LSTS_spb</code> computes the periodogram in each of the
 <em>M</em> windows and then smoothes it two times with
 <code><a href='https://rdrr.io/r/stats/smooth.spline.html'>smooth.spline</a></code> function; the first time using
 <code>spar_freq</code> parameter and the second time with <code>spar_time</code>. These

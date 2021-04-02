@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Summary for Locally Stationary Time Series — ls_summary • LSTS</title>
+<title>Summary for Locally Stationary Time Series — LS.summary • LSTS</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,9 @@
 
 
 
-<meta property="og:title" content="Summary for Locally Stationary Time Series — ls_summary" />
+<meta property="og:title" content="Summary for Locally Stationary Time Series — LS.summary" />
 <meta property="og:description" content="Produces a summary of the results to Whittle
-estimator to Locally Stationary Time Series (ls_whittle
+estimator to Locally Stationary Time Series (LS.whittle
 function)." />
 
 
@@ -115,23 +115,23 @@ function)." />
     <div class="page-header">
     <h1>Summary for Locally Stationary Time Series</h1>
     <small class="dont-index">Source: <a href='https://github.com/pachamaltese/LSTS/blob/master/R/ls_summary.R'><code>R/ls_summary.R</code></a></small>
-    <div class="hidden name"><code>ls_summary.Rd</code></div>
+    <div class="hidden name"><code>LS.summary.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>Produces a summary of the results to Whittle
-estimator to Locally Stationary Time Series (<code><a href='ls_whittle.html'>ls_whittle</a></code>
+estimator to Locally Stationary Time Series (<code><a href='LS.whittle.html'>LS.whittle</a></code>
 function).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ls_summary</span><span class='op'>(</span><span class='va'>object</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>LS.summary</span><span class='op'>(</span><span class='va'>object</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>object</th>
-      <td><p>(type: list) the output of <code><a href='ls_whittle.html'>ls_whittle</a></code> function</p></td>
+      <td><p>(type: list) the output of <code><a href='LS.whittle.html'>LS.whittle</a></code> function</p></td>
     </tr>
     </table>
 
@@ -145,18 +145,18 @@ of the model.</p></dd>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Calls the output from <code><a href='ls_whittle.html'>ls_whittle</a></code> and computes the standard
+    <p>Calls the output from <code><a href='LS.whittle.html'>LS.whittle</a></code> and computes the standard
 error and p-values to provide a detailed summary.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='ls_whittle.html'>ls_whittle</a></code></p></div>
+    <div class='dont-index'><p><code><a href='LS.whittle.html'>LS.whittle</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>fit_whittle</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ls_whittle.html'>ls_whittle</a></span><span class='op'>(</span>
+    <pre class="examples"><div class='input'><span class='va'>fit_whittle</span> <span class='op'>&lt;-</span> <span class='fu'><a href='LS.whittle.html'>LS.whittle</a></span><span class='op'>(</span>
   series <span class='op'>=</span> <span class='va'>malleco</span>, start <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span><span class='op'>)</span>,
-  order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>p <span class='op'>=</span> <span class='fl'>1</span>, q <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>, ar_order <span class='op'>=</span> <span class='fl'>1</span>, sd_order <span class='op'>=</span> <span class='fl'>1</span>, w <span class='op'>=</span> <span class='fl'>180</span>, n_ahead <span class='op'>=</span> <span class='fl'>10</span>
+  order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>p <span class='op'>=</span> <span class='fl'>1</span>, q <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>, ar.order <span class='op'>=</span> <span class='fl'>1</span>, sd.order <span class='op'>=</span> <span class='fl'>1</span>, N <span class='op'>=</span> <span class='fl'>180</span>, n.ahead <span class='op'>=</span> <span class='fl'>10</span>
 <span class='op'>)</span>
-<span class='fu'>ls_summary</span><span class='op'>(</span><span class='va'>fit_whittle</span><span class='op'>)</span>
+<span class='fu'>LS.summary</span><span class='op'>(</span><span class='va'>fit_whittle</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; $summary
 #&gt;      Estimate Std. Error  z-value Pr(&gt;|z|)
 #&gt; [1,]   1.9793     0.1178  16.7983        0

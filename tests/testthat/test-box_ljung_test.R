@@ -1,4 +1,4 @@
-test_that("box_ljung_test works", {
-  blt <- box_ljung_test(malleco, lag = 5)
+test_that("Box.Ljung.Test works", {
+  blt <- Box.Ljung.Test(malleco, lag = 5)
   expect_equal(blt$data$y, rep(0, 5))
 })

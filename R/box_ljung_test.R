@@ -5,17 +5,17 @@
 #' series. The statistic is
 #' \deqn{q = n(n+2)\cdot\sum_{j=1}^h \hat{\rho}(j)^2/(n-j)} with \emph{n} the
 #' number of observations and \eqn{\hat{\rho}(j)} the autocorrelation
-#' coefficient in the sample when the lag is \emph{j}. \code{lsts_lbtp}
+#' coefficient in the sample when the lag is \emph{j}. \code{LSTS_lbtp}
 #' computes \eqn{q} and returns the p-values graph with lag \emph{j}.
 #' @param z (type: numeric) data vector
 #' @param lag (type: numeric) the number of periods for the autocorrelation
 #' @param main (type: character) a title for the returned plot
 #' @references
 #' For more information on theoretical foundations and estimation methods see
-#' \insertRef{brockwell2002introduction}{lsts}
-#' \insertRef{ljung1978measure}{lsts}
+#' \insertRef{brockwell2002introduction}{LSTS}
+#' \insertRef{ljung1978measure}{LSTS}
 #' @examples
-#' box_ljung_test(malleco, lag = 5)
+#' Box.Ljung.Test(malleco, lag = 5)
 #' @return
 #' A ggplot object.
 #' @seealso \code{\link{periodogram}}
@@ -23,7 +23,7 @@
 #' @importFrom ggplot2 aes ggplot geom_point geom_hline scale_x_continuous
 #'  scale_y_continuous labs theme_minimal
 #' @export
-box_ljung_test <- function(z, lag = NULL, main = NULL) {
+Box.Ljung.Test <- function(z, lag = NULL, main = NULL) {
   if (is.null(lag)) {
     lag <- 10
   }

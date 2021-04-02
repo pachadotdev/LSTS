@@ -4,11 +4,11 @@
     "http://schema.org"
   ],
   "@type": "SoftwareSourceCode",
-  "identifier": "lsts",
+  "identifier": "LSTS",
   "description": "A set of functions that allow stationary analysis and locally stationary time series analysis.",
-  "name": "lsts: Locally Stationary Time Series",
-  "codeRepository": "https://github.com/pachamaltese/lsts",
-  "issueTracker": "https://github.com/pachamaltese/lsts/issues/",
+  "name": "LSTS: Locally Stationary Time Series",
+  "codeRepository": "https://github.com/pachamaltese/LSTS",
+  "issueTracker": "https://github.com/pachamaltese/LSTS/issues/",
   "license": "Apache License 2",
   "version": "2.0",
   "programmingLanguage": {
@@ -145,10 +145,10 @@
       "version": ">= 3.6.0"
     }
   ],
-  "relatedLink": "https://pacha.dev/lsts/",
-  "readme": "https://github.com/pachamaltese/lsts/blob/master/README.md",
+  "relatedLink": "https://pacha.dev/LSTS/",
+  "readme": "https://github.com/pachamaltese/LSTS/blob/master/README.md",
   "fileSize": "0KB",
-  "contIntegration": "https://codecov.io/gh/pachamaltese/lsts?branch=master",
+  "contIntegration": "https://codecov.io/gh/pachamaltese/LSTS?branch=master",
   "developmentStatus": "https://lifecycle.r-lib.org/articles/stages.html#stable",
-  "releaseNotes": "https://github.com/pachamaltese/lsts/blob/master/NEWS.md"
+  "releaseNotes": "https://github.com/pachamaltese/LSTS/blob/master/NEWS.md"
 }

@@ -8,7 +8,7 @@
 #' \frac{\bigg|\theta\bigg(\exp\bigg(-i\lambda\bigg)\bigg)\bigg|^2}
 #' {\bigg|\phi\bigg(\exp\bigg(-i\lambda\bigg)\bigg)\bigg|^2}}
 #' With \eqn{-\pi \le \lambda \le \pi} and \eqn{-1 < d < 1/2}. \eqn{|x|} is the
-#' \code{\link[base]{Mod}} of \eqn{x}. \code{lsts_sd} returns the
+#' \code{\link[base]{Mod}} of \eqn{x}. \code{LSTS_sd} returns the
 #' values corresponding to \eqn{f(\lambda)}. When \code{d} is zero, the spectral
 #' density corresponds to an ARMA(p,q).
 #' @param ar (type: numeric) AR vector. If the time serie doesn't have AR term
@@ -23,19 +23,19 @@
 #' sequence between 0 and \eqn{\pi}.
 #' @references
 #' For more information on theoretical foundations and estimation methods see
-#' \insertRef{brockwell2002introduction}{lsts}
-#' \insertRef{palma2007long}{lsts}
+#' \insertRef{brockwell2002introduction}{LSTS}
+#' \insertRef{palma2007long}{LSTS}
 #' @examples
 #' # Spectral Density AR(1)
 #' require(ggplot2)
-#' f <- spectral_density(ar = 0.5, lambda = malleco)
+#' f <- spectral.density(ar = 0.5, lambda = malleco)
 #' ggplot(data.frame(x = malleco, y = f)) +
 #'   geom_line(aes(x = as.numeric(x), y = as.numeric(y))) +
 #'   labs(x = "Frequency", y = "Spectral Density") +
 #'   theme_minimal()
 #' @return An unnamed vector of numeric class.
 #' @export
-spectral_density <- function(ar = numeric(), ma = numeric(), d = 0, sd = 1, lambda = NULL) {
+spectral.density <- function(ar = numeric(), ma = numeric(), d = 0, sd = 1, lambda = NULL) {
   p <- length(ar)
   q <- length(ma)
   phi <- c(1, -ar)

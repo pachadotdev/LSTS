@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Periodogram function — periodogram • lsts</title>
+<title>Periodogram function — periodogram • LSTS</title>
 
 
 <!-- jquery -->
@@ -72,7 +72,7 @@ serie. Returns the periodogram, its graph and the Fourier frequency." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">lsts</a>
+        <a class="navbar-link" href="../index.html">LSTS</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0</span>
       </span>
     </div>
@@ -94,7 +94,7 @@ serie. Returns the periodogram, its graph and the Fourier frequency." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/pachamaltese/lsts/">
+  <a href="https://github.com/pachamaltese/LSTS/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -113,7 +113,7 @@ serie. Returns the periodogram, its graph and the Fourier frequency." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Periodogram function</h1>
-    <small class="dont-index">Source: <a href='https://github.com/pachamaltese/lsts/blob/master/R/periodogram.R'><code>R/periodogram.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/pachamaltese/LSTS/blob/master/R/periodogram.R'><code>R/periodogram.R</code></a></small>
     <div class="hidden name"><code>periodogram.Rd</code></div>
     </div>
 
@@ -122,7 +122,7 @@ serie. Returns the periodogram, its graph and the Fourier frequency." />
 serie. Returns the periodogram, its graph and the Fourier frequency.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>periodogram</span><span class='op'>(</span><span class='va'>y</span>, plot <span class='op'>=</span> <span class='cn'>TRUE</span>, include_taper <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>periodogram</span><span class='op'>(</span><span class='va'>y</span>, plot <span class='op'>=</span> <span class='cn'>TRUE</span>, include.taper <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -137,9 +137,9 @@ serie. Returns the periodogram, its graph and the Fourier frequency.</p>
 periodogram. Defaults to TRUE.</p></td>
     </tr>
     <tr>
-      <th>include_taper</th>
+      <th>include.taper</th>
       <td><p>(type: logical) logical argument which by default is
-<code>FALSE</code>. If <code>include_taper=TRUE</code> then <code>y</code> is multiplied by
+<code>FALSE</code>. If <code>include.taper=TRUE</code> then <code>y</code> is multiplied by
 \(0.5(1 - \cos(2\pi(n-1)/n))\) (cosine bell).</p></td>
     </tr>
     </table>

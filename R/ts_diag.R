@@ -8,16 +8,16 @@
 #' @param lag (type: numeric) maximum lag at which to calculate the acf and
 #' Ljung-Box test. By default set to 10.
 #' @examples
-#' ts_diag(malleco)
+#' ts.diag(malleco)
 #' @return
 #' A ggplot object.
-#' @seealso \code{\link{box_ljung_test}}
+#' @seealso \code{\link{Box.Ljung.Test}}
 #' @importFrom stats sd acf na.pass time
 #' @importFrom ggplot2 ggplot aes geom_col geom_segment geom_hline labs
 #'  theme_minimal
 #' @importFrom patchwork plot_layout
 #' @export
-ts_diag <- function(x, lag = 10) {
+ts.diag <- function(x, lag = 10) {
   Z <- (x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE)
   x_acf <- acf(x, plot = FALSE)
   x_acf <- with(x_acf, data.frame(lag, acf))
@@ -37,7 +37,7 @@ ts_diag <- function(x, lag = 10) {
     labs(x = "Lag", y = "ACF", title = "ACF of Residuals") +
     theme_minimal()
 
-  g3 <- box_ljung_test(x, lag = lag)
+  g3 <- Box.Ljung.Test(x, lag = lag)
 
   g <- g1 + g2 + g3 + plot_layout(nrow = 3, byrow = FALSE)
 

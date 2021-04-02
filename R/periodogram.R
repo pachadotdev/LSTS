@@ -18,13 +18,13 @@
 #' @param y (type: numeric) data vector
 #' @param plot (type: logical) logical argument which allows to plot the
 #' periodogram. Defaults to TRUE.
-#' @param include_taper (type: logical) logical argument which by default is
-#' \code{FALSE}. If \code{include_taper=TRUE} then \code{y} is multiplied by
+#' @param include.taper (type: logical) logical argument which by default is
+#' \code{FALSE}. If \code{include.taper=TRUE} then \code{y} is multiplied by
 #' \eqn{0.5(1 - \cos(2\pi(n-1)/n))} (cosine bell).
 #' @references
 #' For more information on theoretical foundations and estimation methods see
-#' \insertRef{brockwell2002introduction}{lsts}
-#' \insertRef{dahlhaus1997fitting}{lsts}
+#' \insertRef{brockwell2002introduction}{LSTS}
+#' \insertRef{dahlhaus1997fitting}{LSTS}
 #' @examples
 #' # AR(1) simulated
 #' set.seed(1776)
@@ -39,19 +39,19 @@
 #' @importFrom ggplot2 geom_line
 #' @importFrom scales math_format
 #' @export
-periodogram <- function(y, plot = TRUE, include_taper = FALSE) {
+periodogram <- function(y, plot = TRUE, include.taper = FALSE) {
   series <- y - mean(y, na.rm = TRUE)
   N <- sum(is.na(series))
   series[is.na(series)] <- 0
   n <- length(series)
-  if (include_taper == TRUE) {
+  if (include.taper == TRUE) {
     a <- 0.5 * (1 - cos(2 * pi * (0:(n - 1)) / n))
     series <- series * a
   }
   aux <- Mod(fft(series))^2
   m <- n / 2
   periodogram <- (aux[2:(m + 1)]) / (2 * pi * (n - N))
-  if (include_taper == TRUE) {
+  if (include.taper == TRUE) {
     periodogram <- (aux[2:(m + 1)]) / (3 * pi * (n - N) / 4)
   }
   lambda <- (2 * pi * (1:m)) / n

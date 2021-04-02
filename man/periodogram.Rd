@@ -4,7 +4,7 @@
 \alias{periodogram}
 \title{Periodogram function}
 \usage{
-periodogram(y, plot = TRUE, include_taper = FALSE)
+periodogram(y, plot = TRUE, include.taper = FALSE)
 }
 \arguments{
 \item{y}{(type: numeric) data vector}
@@ -12,8 +12,8 @@ periodogram(y, plot = TRUE, include_taper = FALSE)
 \item{plot}{(type: logical) logical argument which allows to plot the
 periodogram. Defaults to TRUE.}
 
-\item{include_taper}{(type: logical) logical argument which by default is
-\code{FALSE}. If \code{include_taper=TRUE} then \code{y} is multiplied by
+\item{include.taper}{(type: logical) logical argument which by default is
+\code{FALSE}. If \code{include.taper=TRUE} then \code{y} is multiplied by
 \eqn{0.5(1 - \cos(2\pi(n-1)/n))} (cosine bell).}
 }
 \value{
@@ -47,8 +47,8 @@ per$plot
 }
 \references{
 For more information on theoretical foundations and estimation methods see
-\insertRef{brockwell2002introduction}{lsts}
-\insertRef{dahlhaus1997fitting}{lsts}
+\insertRef{brockwell2002introduction}{LSTS}
+\insertRef{dahlhaus1997fitting}{LSTS}
 }
 \seealso{
 \code{\link[stats]{fft}}, \code{\link[base]{Mod}},
