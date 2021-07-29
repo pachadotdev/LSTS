@@ -44,7 +44,7 @@ Box.Ljung.Test <- function(z, lag = NULL, main = NULL) {
   g <- ggplot(data = data.frame(x = 1:k, y = p.value), aes(x = x, y = y)) +
     geom_point() +
     geom_hline(yintercept = 0.05, linetype = "dashed", color = "blue") +
-    scale_x_continuous(limits = c(0, k), breaks = 1:k) +
+    scale_x_continuous(limits = c(0, k), breaks = 0:k) +
     scale_y_continuous(limits = c(0, 1)) +
     labs(x = "Lag", y = "p-value", title = "p-values for Ljung-Box statistic") +
     theme_minimal()

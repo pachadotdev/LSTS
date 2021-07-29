@@ -7,6 +7,9 @@
 #' @param x (type: numeric) residuals of the fitted time series model.
 #' @param lag (type: numeric) maximum lag at which to calculate the acf and
 #' Ljung-Box test. By default set to 10.
+#' @param band (type: numeric) absolute value for bandwidth in the the ACF plot.
+#' By default set to `qnorm(0.975)/sqrt(n)` which approximates to 0.07 for 
+#' malleco data (n = 734)
 #' @examples
 #' ts.diag(malleco)
 #' @return
@@ -17,9 +20,9 @@
 #'  theme_minimal
 #' @importFrom patchwork plot_layout
 #' @export
-ts.diag <- function(x, lag = 10) {
+ts.diag <- function(x, lag = 10, band = qnorm(0.975) / sqrt(length(x))) {
   Z <- (x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE)
-  x_acf <- acf(x, plot = FALSE)
+  x_acf <- acf(x, plot = FALSE, lag.max = lag, na.action = na.pass)
   x_acf <- with(x_acf, data.frame(lag, acf))
 
   g1 <- ggplot() +
@@ -33,7 +36,8 @@ ts.diag <- function(x, lag = 10) {
   g2 <- ggplot(data = x_acf, mapping = aes(x = lag, y = acf)) +
     geom_segment(mapping = aes(xend = lag, yend = 0)) +
     geom_hline(yintercept = 0, linetype = "solid", color = "blue") +
-    geom_hline(yintercept = c(-0.05, 0.05), linetype = "dashed", color = "blue") +
+    geom_hline(yintercept = c(-1 * band, band), linetype = "dashed", color = "blue") +
+    scale_x_continuous(limits = c(0, lag), breaks = 0:lag) +
     labs(x = "Lag", y = "ACF", title = "ACF of Residuals") +
     theme_minimal()
 

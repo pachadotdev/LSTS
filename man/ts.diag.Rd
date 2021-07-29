@@ -4,13 +4,17 @@
 \alias{ts.diag}
 \title{Diagnostic Plots for Time Series fits}
 \usage{
-ts.diag(x, lag = 10)
+ts.diag(x, lag = 10, band = qnorm(0.975)/sqrt(length(x)))
 }
 \arguments{
 \item{x}{(type: numeric) residuals of the fitted time series model.}
 
 \item{lag}{(type: numeric) maximum lag at which to calculate the acf and
 Ljung-Box test. By default set to 10.}
+
+\item{band}{(type: numeric) absolute value for bandwidth in the the ACF plot.
+By default set to `qnorm(0.975)/sqrt(n)` which approximates to 0.07 for 
+malleco data (n = 734)}
 }
 \value{
 A ggplot object.

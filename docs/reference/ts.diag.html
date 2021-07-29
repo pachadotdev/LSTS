@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">LSTS</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1</span>
       </span>
     </div>
 
@@ -120,7 +120,7 @@
     <p>Plot time-series diagnostics.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ts.diag</span><span class='op'>(</span><span class='va'>x</span>, lag <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>ts.diag</span><span class='op'>(</span><span class='va'>x</span>, lag <span class='op'>=</span> <span class='fl'>10</span>, band <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>qnorm</a></span><span class='op'>(</span><span class='fl'>0.975</span><span class='op'>)</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -133,6 +133,12 @@
       <th>lag</th>
       <td><p>(type: numeric) maximum lag at which to calculate the acf and
 Ljung-Box test. By default set to 10.</p></td>
+    </tr>
+    <tr>
+      <th>band</th>
+      <td><p>(type: numeric) absolute value for bandwidth in the the ACF plot.
+By default set to `qnorm(0.975)/sqrt(n)` which approximates to 0.07 for 
+malleco data (n = 734)</p></td>
     </tr>
     </table>
 

@@ -7,16 +7,16 @@
   "identifier": "LSTS",
   "description": "A set of functions that allow stationary analysis and locally stationary time series analysis.",
   "name": "LSTS: Locally Stationary Time Series",
-  "codeRepository": "https://github.com/pachamaltese/LSTS",
+  "codeRepository": "https://github.com/pachadotdev/LSTS",
   "issueTracker": "https://github.com/pachamaltese/LSTS/issues/",
   "license": "Apache License 2",
-  "version": "2.0",
+  "version": "2.1",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.4 (2021-02-15)",
+  "runtimePlatform": "R version 4.1.0 (2021-05-18)",
   "author": [
     {
       "@type": "Person",
@@ -146,9 +146,15 @@
     }
   ],
   "relatedLink": "https://pacha.dev/LSTS/",
-  "readme": "https://github.com/pachamaltese/LSTS/blob/master/README.md",
-  "fileSize": "0KB",
-  "contIntegration": "https://codecov.io/gh/pachamaltese/LSTS?branch=master",
+  "readme": "https://github.com/pachadotdev/LSTS/blob/master/README.md",
+  "fileSize": "76.509KB",
+  "contIntegration": ["https://github.com/pachamaltese/LSTS/actions?workflow=R-CMD-check", "https://codecov.io/gh/pachamaltese/LSTS?branch=master"],
   "developmentStatus": "https://lifecycle.r-lib.org/articles/stages.html#stable",
-  "releaseNotes": "https://github.com/pachamaltese/LSTS/blob/master/NEWS.md"
+  "releaseNotes": "https://github.com/pachadotdev/LSTS/blob/master/NEWS.md",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  }
 }
