@@ -1,7 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 docs
-^LICENSE\.md$
+^LICENSE$
 data-raw
 ^CODE_OF_CONDUCT\.md$
 ^codemeta\.json$
