@@ -15,7 +15,7 @@ A set of functions that allows stationary analysis and locally stationary time s
 You can install the released version of LSTS from Github with:
 
 ``` r
-remotes::install_github("pachamaltese/LSTS")
+remotes::install_github("pachadotdev/LSTS")
 ```
 
 ## Code of Conduct
